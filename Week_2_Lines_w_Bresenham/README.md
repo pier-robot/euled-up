@@ -1,3 +1,5 @@
+# Week 2 - Lines with Bresenham
+
 Second problem:
 http://rosettacode.org/wiki/Bitmap/Bresenham%27s_line_algorithm
 
