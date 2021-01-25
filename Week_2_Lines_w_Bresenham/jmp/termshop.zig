@@ -1,7 +1,7 @@
 const std = @import("std");
 
 // TODO
-//  * Dig more into the whole usize and array lookups
+//  * Replace i8 with u8 for the screen.
 //  * Is my comptime array initialization actually comptime?
 //  * Is there a better way to initialize a N-dimensional array at comptime?
 //  * Is a pointer to the screen array the idiomatic way to handle this in zig?
@@ -48,8 +48,8 @@ pub fn update_screen(screen : *[screen_size][screen_size]i8, line : Line2Di) !vo
     var e2: i8 = err;
 
     while (true) {
-        // I'm not clear why this is needed, I suspect it's due to we are looking up an array value
-        // which needs to be done with a "unsigned pointer sized integer" aka usize
+        // We are currently using signed, but for array look-ups the values have
+        // to be unsigned.
         var pix_x = @intCast(usize, x0);
         var pix_y = @intCast(usize, y0);
 
@@ -83,12 +83,12 @@ pub fn main() !void {
     
     // Create two points and a line
     var pt_0 = Point2Di {
-        .x = 9,
+        .x = 8,
         .y = 1,
     };
     
     var pt_1 = Point2Di {
-        .x = 0,
+        .x = 1,
         .y = 5,
     };
     
@@ -101,13 +101,19 @@ pub fn main() !void {
     // Note funtion parameters are immutable. (The Zig documentation mentions this in
     // passing and is somewhat missable. Zig Learn docs however have it in bold. :)
     try update_screen(&screen, line);
+
+    // Make some X's
+    screen[@intCast(u8,pt_0.x)][@intCast(u8,pt_0.y)] = 2;
+    screen[@intCast(u8,pt_1.x)][@intCast(u8,pt_1.y)] = 2;
     
     for (screen) |row| {
         for (row) |pixel| {
-            if (pixel==1) {
+            if (pixel == 1) {
+                std.debug.print("{s}", .{"\u{2588}"});
+            } else if (pixel == 2) {
                 std.debug.print("X", .{});
             } else {
-                std.debug.print(" ", .{});
+                std.debug.print("{s}", .{"\u{2592}"});
             }
         }
         std.debug.print("\n", .{});
