@@ -2,7 +2,6 @@ const std = @import("std");
 
 // TODO
 //  * Replace float math with integer
-//  * Don't hardcode screen_size, use the const
 //  * Dig more into the whole usize and array lookups
 //  * Is my comptime array initialization actually comptime?
 //  * Is there a better way to initialize a N-dimensional array at comptime?
@@ -31,7 +30,7 @@ const Line2Di = Line2D(i8);
 // lobal screen size (x and y dimensions)
 const screen_size : i8 = 10;
 
-pub fn update_screen(screen : *[10][10]i8, line : Line2Di) !void {
+pub fn update_screen(screen : *[screen_size][screen_size]i8, line : Line2Di) !void {
 
     var x0 = line.pt1.x;
     var x1 = line.pt2.x;
@@ -79,9 +78,9 @@ pub fn main() !void {
   
     // Initialize the multidimensional array at compile time
     var screen = comptime init: {
-        var initial_screen: [10][10]i8 = undefined;
+        var initial_screen: [screen_size][screen_size]i8 = undefined;
         for (initial_screen) |*row| {
-            row.* = [_]i8{0} ** 10;
+            row.* = [_]i8{0} ** screen_size;
         }
         break :init initial_screen;
     };
