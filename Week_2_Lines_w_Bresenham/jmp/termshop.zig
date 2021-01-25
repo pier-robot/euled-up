@@ -1,7 +1,6 @@
 const std = @import("std");
 
 // TODO
-//  * Replace float math with integer
 //  * Dig more into the whole usize and array lookups
 //  * Is my comptime array initialization actually comptime?
 //  * Is there a better way to initialize a N-dimensional array at comptime?
@@ -45,14 +44,10 @@ pub fn update_screen(screen : *[screen_size][screen_size]i8, line : Line2Di) !vo
     var sy: i8 = if (y0 < y1) 1 else -1;
 
     // Need to cast the i8 to f32
-    var err: f32 = @intToFloat(f32, if (dx>dy) dx else -dy)/2;
-    var e2: f32 = err;
+    var err: i8 = if (dx>dy) dx else -dy;
+    var e2: i8 = err;
 
     while (true) {
-        // We can't do math on different types, so we need to explicitly convert
-        var dx_f = @intToFloat(f32, dx);
-        var dy_f = @intToFloat(f32, dy);
-
         // I'm not clear why this is needed, I suspect it's due to we are looking up an array value
         // which needs to be done with a "unsigned pointer sized integer" aka usize
         var pix_x = @intCast(usize, x0);
@@ -62,12 +57,12 @@ pub fn update_screen(screen : *[screen_size][screen_size]i8, line : Line2Di) !vo
         if (x0==x1 and y0==y1)
             break;
         e2 = err;
-        if (e2 > -dx_f) {
-            err -= @intToFloat(f32, dy);
+        if (e2 > -dx*2) {
+            err -= dy*2;
             x0 += sx;
         }
-        if (e2 < dy_f) {
-            err += @intToFloat(f32, dx);
+        if (e2 < dy*2) {
+            err += dx*2;
             y0 += sy;
         }
     }
