@@ -1,7 +1,6 @@
 const std = @import("std");
 
 // TODO
-//  * Replace i8 with u8 for the screen.
 //  * Is my comptime array initialization actually comptime?
 //  * Is there a better way to initialize a N-dimensional array at comptime?
 //  * Is a pointer to the screen array the idiomatic way to handle this in zig?
@@ -27,9 +26,11 @@ const Point2Di = Point2D(i8);
 const Line2Di = Line2D(i8);
 
 // lobal screen size (x and y dimensions)
-const screen_size : i8 = 10;
+const screen_size : i8 = 30;
+const random_lines : u8 = 10;
+const random_seed = 40;
 
-pub fn update_screen(screen : *[screen_size][screen_size]i8, line : Line2Di) !void {
+fn draw_line(screen : *[screen_size][screen_size]i8, line : Line2Di) !void {
 
     var x0 = line.pt1.x;
     var x1 = line.pt2.x;
@@ -43,30 +44,47 @@ pub fn update_screen(screen : *[screen_size][screen_size]i8, line : Line2Di) !vo
     var sx: i8 = if (x0 < x1) 1 else -1;
     var sy: i8 = if (y0 < y1) 1 else -1;
 
-    // Need to cast the i8 to f32
-    var err: i8 = if (dx>dy) dx else -dy;
+    // Original method calls for a divide by 2, but instead
+    // we'll scale the dx/dy by 2 instead.
+    var err: i8 = (if (dx>dy) dx else -dy);
+    dx *= 2;
+    dy *= 2;
     var e2: i8 = err;
-
     while (true) {
         // We are currently using signed, but for array look-ups the values have
         // to be unsigned.
-        var pix_x = @intCast(usize, x0);
-        var pix_y = @intCast(usize, y0);
-
-        screen[pix_x][pix_y] = 1;
+        screen[@intCast(usize,y0)][@intCast(usize,x0)] = 1;
         if (x0==x1 and y0==y1)
             break;
         e2 = err;
-        if (e2 > -dx*2) {
-            err -= dy*2;
+        if (e2 > -dx) {
+            err -= dy;
             x0 += sx;
         }
-        if (e2 < dy*2) {
-            err += dx*2;
+        if (e2 < dy) {
+            err += dx;
             y0 += sy;
         }
     }
+    
+    // Make some X's
+    screen[@intCast(u8,line.pt1.y)][@intCast(u8,line.pt1.x)] = 2;
+    screen[@intCast(u8,line.pt2.y)][@intCast(u8,line.pt2.x)] = 2;
+    
     return;
+}
+
+fn create_line(rand : anytype, size_max : i8) Line2Di {
+    return Line2Di {
+        .pt1 = Point2Di {
+            .x = rand.random.intRangeAtMost(i8, 0, size_max),
+            .y = rand.random.intRangeAtMost(i8, 0, size_max),
+        },
+        .pt2 = Point2Di {
+            .x = rand.random.intRangeAtMost(i8, 0, size_max),
+            .y = rand.random.intRangeAtMost(i8, 0, size_max),
+        },
+    };
 }
 
 pub fn main() !void {
@@ -80,31 +98,14 @@ pub fn main() !void {
         break :init initial_screen;
     };
     std.testing.expect(screen[5][5] == 0);
-    
-    // Create two points and a line
-    var pt_0 = Point2Di {
-        .x = 8,
-        .y = 1,
-    };
-    
-    var pt_1 = Point2Di {
-        .x = 1,
-        .y = 5,
-    };
-    
-    var line = Line2Di {
-        .pt1 = pt_0,
-        .pt2 = pt_1,
-    };
-
-    // Update the screen.
-    // Note funtion parameters are immutable. (The Zig documentation mentions this in
-    // passing and is somewhat missable. Zig Learn docs however have it in bold. :)
-    try update_screen(&screen, line);
-
-    // Make some X's
-    screen[@intCast(u8,pt_0.x)][@intCast(u8,pt_0.y)] = 2;
-    screen[@intCast(u8,pt_1.x)][@intCast(u8,pt_1.y)] = 2;
+   
+    var rand = std.rand.DefaultPrng.init(random_seed);
+    var i : u8 = 0;
+   
+   while ( i < random_lines) : ( i+=1 ) {
+        var rand_line = create_line(&rand, screen_size-1);
+        try draw_line(&screen, rand_line);
+    }
     
     for (screen) |row| {
         for (row) |pixel| {
