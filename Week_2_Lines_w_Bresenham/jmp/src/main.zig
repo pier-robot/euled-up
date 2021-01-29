@@ -26,12 +26,11 @@ const Point2Di = Point2D(i8);
 const Line2Di = Line2D(i8);
 
 // lobal screen size (x and y dimensions)
-const screen_size : i8 = 30;
-const random_lines : u8 = 10;
+const screen_size: i8 = 30;
+const random_lines: u8 = 10;
 const random_seed = 40;
 
-fn draw_line(screen : *[screen_size][screen_size]i8, line : Line2Di) !void {
-
+fn draw_line(screen: *[screen_size][screen_size]i8, line: Line2Di) !void {
     var x0 = line.pt1.x;
     var x1 = line.pt2.x;
     var y0 = line.pt1.y;
@@ -46,15 +45,15 @@ fn draw_line(screen : *[screen_size][screen_size]i8, line : Line2Di) !void {
 
     // Original method calls for a divide by 2, but instead
     // we'll scale the dx/dy by 2 instead.
-    var err: i8 = (if (dx>dy) dx else -dy);
+    var err: i8 = (if (dx > dy) dx else -dy);
     dx *= 2;
     dy *= 2;
     var e2: i8 = err;
     while (true) {
         // We are currently using signed, but for array look-ups the values have
         // to be unsigned.
-        screen[@intCast(usize,y0)][@intCast(usize,x0)] = 1;
-        if (x0==x1 and y0==y1)
+        screen[@intCast(usize, y0)][@intCast(usize, x0)] = 1;
+        if (x0 == x1 and y0 == y1)
             break;
         e2 = err;
         if (e2 > -dx) {
@@ -66,21 +65,21 @@ fn draw_line(screen : *[screen_size][screen_size]i8, line : Line2Di) !void {
             y0 += sy;
         }
     }
-    
+
     // Make some X's
-    screen[@intCast(u8,line.pt1.y)][@intCast(u8,line.pt1.x)] = 2;
-    screen[@intCast(u8,line.pt2.y)][@intCast(u8,line.pt2.x)] = 2;
-    
+    screen[@intCast(u8, line.pt1.y)][@intCast(u8, line.pt1.x)] = 2;
+    screen[@intCast(u8, line.pt2.y)][@intCast(u8, line.pt2.x)] = 2;
+
     return;
 }
 
-fn create_line(rand : anytype, size_max : i8) Line2Di {
-    return Line2Di {
-        .pt1 = Point2Di {
+fn create_line(rand: anytype, size_max: i8) Line2Di {
+    return Line2Di{
+        .pt1 = Point2Di{
             .x = rand.random.intRangeAtMost(i8, 0, size_max),
             .y = rand.random.intRangeAtMost(i8, 0, size_max),
         },
-        .pt2 = Point2Di {
+        .pt2 = Point2Di{
             .x = rand.random.intRangeAtMost(i8, 0, size_max),
             .y = rand.random.intRangeAtMost(i8, 0, size_max),
         },
@@ -88,7 +87,7 @@ fn create_line(rand : anytype, size_max : i8) Line2Di {
 }
 
 pub fn main() !void {
-  
+
     // Initialize the multidimensional array at compile time
     var screen = comptime init: {
         var initial_screen: [screen_size][screen_size]i8 = undefined;
@@ -98,15 +97,15 @@ pub fn main() !void {
         break :init initial_screen;
     };
     std.testing.expect(screen[5][5] == 0);
-   
+
     var rand = std.rand.DefaultPrng.init(random_seed);
-    var i : u8 = 0;
-   
-   while ( i < random_lines) : ( i+=1 ) {
-        var rand_line = create_line(&rand, screen_size-1);
+    var i: u8 = 0;
+
+    while (i < random_lines) : (i += 1) {
+        var rand_line = create_line(&rand, screen_size - 1);
         try draw_line(&screen, rand_line);
     }
-    
+
     for (screen) |row| {
         for (row) |pixel| {
             if (pixel == 1) {
@@ -119,5 +118,4 @@ pub fn main() !void {
         }
         std.debug.print("\n", .{});
     }
-
 }
