@@ -1,20 +1,21 @@
+//! Players module provides functionality for different player types.
+//! This includes a:
+//! Human - requires input from user (you)
+//! ATD - randomly picks a position
+//! PipeTD - uses minimax algorithm
+//! Supe - always plays a perfect game using https://en.wikipedia.org/wiki/Tic-tac-toe#Strategy
+
+
 const std = @import("std");
 const expect = std.testing.expect;
 
 const board = @import("board.zig");
+const utils = @import("utils.zig");
 
 const Board = board.Board;
 const Play = board.Play;
 
-// Let's return a type, error and a conditional! :D
-fn nextLine(reader: anytype, buffer: []u8) !?[]const u8 {
-    var line = (try reader.readUntilDelimiterOrEof(
-        buffer,
-        '\n',
-    )) orelse return null;
-    return line;
-}
-
+/// ATD Player definition
 pub const ATD = struct {
     play: Play,
     rand: std.rand.DefaultPrng,
@@ -32,22 +33,22 @@ pub const ATD = struct {
         };
     }
 
-    pub fn seedRNG(self: *@This(), seed: u64) void {
-        self.rand = std.rand.DefaultPrng.init(seed);
+    pub fn reSeedRNG(self: *@This(), seed: u64) void {
+        self.rand.seed(seed);
     }
 
     pub fn pickPos(self: *@This(), game_board: Board) u4 {
-        var highest = game_board.numFreeSpaces();
+        var highest = game_board.numFreePositions();
         var rand_pick = self.rand.random.intRangeAtMost(u4, 0, highest - 1);
-        var checked_space: u4 = 0;
-        for (game_board.spaces) |space, current_space| {
-            if (space != Play.empty) {
+        var checked_position: u4 = 0;
+        for (game_board.positions) |position, current_position| {
+            if (position != Play.empty) {
                 continue;
             }
-            if (checked_space == rand_pick) {
-                return @intCast(u4, current_space);
+            if (checked_position == rand_pick) {
+                return @intCast(u4, current_position);
             }
-            checked_space += 1;
+            checked_position += 1;
         }
         // TODO:
         // We shouldn't reach this point;
@@ -62,6 +63,7 @@ pub const ATD = struct {
     }
 };
 
+/// Human Player definition
 pub const Human = struct {
     play: Play,
     name: []const u8 = "Human",
@@ -73,20 +75,20 @@ pub const Human = struct {
     }
     
     fn print_help(self: @This(), game_board: Board) void {
-        std.debug.print("789\n456\n123\n", .{});
+        std.debug.print("Board positions are:\n", .{});
+        std.debug.print(
+            "7┃8┃9\n" ++
+            "━╋━╋━\n" ++
+            "4┃5┃6\n" ++
+            "━╋━╋━\n" ++
+            "1┃2┃3\n", .{});
         return;
     }
 
     pub fn pickPos(self: @This(), game_board: Board) u4 {
-        const stdin = std.io.getStdIn().reader();
-        var buffer: [100]u8 = undefined;
-
         while (true) {
             std.debug.print("Pick your position (1-9 or h)\n", .{});
-            var input = (nextLine(stdin, &buffer) catch {
-                std.debug.print("Error reading input, try again\n", .{});
-                continue;
-            }).?;
+            var input = utils.readInput();
             if (std.ascii.eqlIgnoreCase(input, "h")) {
                 self.print_help(game_board);
                 continue;
@@ -99,8 +101,8 @@ pub const Human = struct {
                 std.debug.print("Pick your position (1-9 or h)\n", .{});
                 continue;
             }
-            if (game_board.spaces[input_val - 1] != Play.empty) {
-                std.debug.print("Occupied, pick another space.\n", .{});
+            if (game_board.positions[input_val - 1] != Play.empty) {
+                std.debug.print("Occupied, pick another position.\n", .{});
                 continue;
             }
             return input_val - 1;
@@ -116,7 +118,7 @@ pub const Human = struct {
 test "Players: ATD empty board pick" {
     var b = Board.init();
     var atd = ATD.init(Play.o);
-    atd.seedRNG(42);
+    atd.reSeedRNG(42);
 
     var pos = atd.pickPos(b);
 
@@ -129,32 +131,30 @@ test "Players: ATD empty board pick" {
 test "Players: ATD pick till full" {
     var b = Board.init();
     var atd = ATD.init(Play.o);
-    atd.seedRNG(42);
+    atd.reSeedRNG(42);
 
     var i: u4 = 0;
     while (i < 9) {
         atd.playBoard(&b);
         i += 1;
     }
-    expect(b.numFreeSpaces() == 0);
+    expect(b.numFreePositions() == 0);
 }
 
 test "Players: Two ATD pick till full" {
     var b = Board.init();
     var atd_a = ATD.init(Play.o);
     var atd_b = ATD.init(Play.x);
-    atd_a.seedRNG(42);
-    atd_b.seedRNG(43);
+    atd_a.reSeedRNG(42);
+    atd_b.reSeedRNG(43);
 
-    for (b.spaces) |_, turn| {
-        std.debug.print("Turn: {}\n", .{turn});
+    for (b.positions) |_, turn| {
         if (@mod(turn, 2) == 0) {
             atd_b.playBoard(&b);
         } else {
             atd_a.playBoard(&b);
         }
-        b.printBoard();
     }
 
-    expect(b.numFreeSpaces() == 0);
+    expect(b.numFreePositions() == 0);
 }

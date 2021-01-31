@@ -21,18 +21,18 @@ const incidence_structure = [_][3]u4{
 };
 
 pub const Board = struct {
-    spaces: [9]Play,
+    positions: [9]Play,
 
     pub fn init() Board {
         return Board{
-            .spaces = [_]Play{Play.empty} ** 9,
+            .positions = [_]Play{Play.empty} ** 9,
         };
     }
 
-    pub fn numFreeSpaces(self: Board) u4 {
+    pub fn numFreePositions(self: Board) u4 {
         var count: u4 = 0;
-        for (self.spaces) |space| {
-            if (space == Play.empty) {
+        for (self.positions) |position| {
+            if (position == Play.empty) {
                 count += 1;
             }
         }
@@ -40,16 +40,16 @@ pub const Board = struct {
     }
 
     pub fn reset(self: *@This()) void {
-        for (self.spaces) |*space| {
-            space.* = Play.empty;
+        for (self.positions) |*position| {
+            position.* = Play.empty;
         }
     }
 
     pub fn playPosition(self: *@This(), play: Play, pos: u4) void {
         // TODO add errors for
         // pos > 8
-        // spaces[pos] != Play.empty
-        self.spaces[pos] = play;
+        // positions[pos] != Play.empty
+        self.positions[pos] = play;
     }
 
     fn play_to_char(play: Play) u8 {
@@ -61,27 +61,28 @@ pub const Board = struct {
     }
 
     pub fn printBoard(self: @This()) void {
+        // Clear
         std.debug.print("\x1B[2J", .{});
-        std.debug.print("{c}┃{c}┃{c}\n", .{play_to_char(self.spaces[6]),
-                                           play_to_char(self.spaces[7]),
-                                           play_to_char(self.spaces[8])});
+        std.debug.print("{c}┃{c}┃{c}\n", .{play_to_char(self.positions[6]),
+                                           play_to_char(self.positions[7]),
+                                           play_to_char(self.positions[8])});
         std.debug.print("━╋━╋━\n", .{});
-        std.debug.print("{c}┃{c}┃{c}\n", .{play_to_char(self.spaces[3]),
-                                           play_to_char(self.spaces[4]),
-                                           play_to_char(self.spaces[5])});
+        std.debug.print("{c}┃{c}┃{c}\n", .{play_to_char(self.positions[3]),
+                                           play_to_char(self.positions[4]),
+                                           play_to_char(self.positions[5])});
         std.debug.print("━╋━╋━\n", .{});
-        std.debug.print("{c}┃{c}┃{c}\n", .{play_to_char(self.spaces[0]),
-                                           play_to_char(self.spaces[1]),
-                                           play_to_char(self.spaces[2])});
+        std.debug.print("{c}┃{c}┃{c}\n", .{play_to_char(self.positions[0]),
+                                           play_to_char(self.positions[1]),
+                                           play_to_char(self.positions[2])});
     }
 
     pub fn winnerIs(self: @This()) Play {
         for (incidence_structure) |line| {
-            if (self.spaces[line[0]] == self.spaces[line[1]] and
-                self.spaces[line[0]] == self.spaces[line[2]] and
-                self.spaces[line[0]] != Play.empty)
+            if (self.positions[line[0]] == self.positions[line[1]] and
+                self.positions[line[0]] == self.positions[line[2]] and
+                self.positions[line[0]] != Play.empty)
             {
-                return self.spaces[line[0]];
+                return self.positions[line[0]];
             }
         }
         return Play.empty;
@@ -90,19 +91,19 @@ pub const Board = struct {
 
 test "Board: size" {
     var b = Board.init();
-    expect(b.spaces.len == 9);
+    expect(b.positions.len == 9);
 }
 
 test "Board: instanced zerod" {
     var b = Board.init();
-    expect(b.numFreeSpaces() == 9);
+    expect(b.numFreePositions() == 9);
 }
 
 test "Board: plays" {
     var b = Board.init();
     b.playPosition(Play.x, 4);
     b.playPosition(Play.o, 3);
-    expect(b.numFreeSpaces() == 7);
+    expect(b.numFreePositions() == 7);
 }
 
 test "Board: winner none" {

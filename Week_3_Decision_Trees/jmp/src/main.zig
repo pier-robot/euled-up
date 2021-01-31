@@ -1,37 +1,80 @@
+//! Main entry point for the tic-tac-toe
+
 const std = @import("std");
+
 const board = @import("board.zig");
 const player = @import("players.zig");
+const utils = @import("utils.zig");
+
+const Stats = struct {
+    player1 : u32,
+    player2 : u32,
+    draw : u32,
+};
+
+fn game_loop(player1: anytype, player2: anytype, game_board: *board.Board) board.Play {
+
+    game_board.reset();
+
+    for (game_board.positions) |_, turn| {
+        if (@mod(turn, 2) == 0) {
+            player1.playBoard(game_board);
+        } else {
+            player2.playBoard(game_board);
+        }
+        game_board.printBoard();
+
+        // There can't be a winner until at least 5 iterations
+        if (turn < 4) continue;
+
+        var winner = game_board.winnerIs();
+        if (winner != board.Play.empty) {
+            return winner;
+        }
+    }
+
+    // If no winner after all possible turns, must be a draw.
+    return board.Play.empty;
+}
 
 pub fn main() anyerror!void {
-    var game = board.Board.init();
+
+    // Game setup
+    var game_board = board.Board.init();
+
+    var game_wins = Stats {
+        .player1 = 0,
+        .player2 = 0,
+        .draw = 0,
+    };
 
     var player1 = player.ATD.init(board.Play.x);
     var player2 = player.Human.init(board.Play.o);
 
-    for (game.spaces) |_, turn| {
-        if (@mod(turn, 2) == 0) {
-            player1.playBoard(&game);
+    // Start a game loop until the player exits
+    while (true) {
+    
+        var winner = game_loop(&player1, &player2, &game_board);
+
+        if ( winner == player1.play) {
+            std.debug.print("Winner is Player #1 ({s})\n", .{player1.name});
+            game_wins.player1 += 1;
+        } else if (winner == player2.play) {
+            std.debug.print("Winner is Player #2 ({s})\n", .{player2.name});
+            game_wins.player2 += 1;
         } else {
-            player2.playBoard(&game);
+            std.debug.print("Draw\n", .{});
+            game_wins.draw += 1;
         }
-        game.printBoard();
 
-        var winner = game.winnerIs();
-        if (winner != board.Play.empty) {
-            if ( player1.play == winner ) {
-                std.debug.print("Winner is Player #1 ({s})\n", .{player1.name});
-            } else {
-                std.debug.print("Winner is Player #2 ({s})\n", .{player2.name});
-            }
-            return;
+        std.debug.print("\nWin Stats:\n Player 1: {}\n Player 2: {}\n Draws: {}\n", 
+            .{game_wins.player1, game_wins.player2, game_wins.draw});
+
+        std.debug.print("\nPress 'q' to quit or any other key to continue", .{});
+        var input = utils.readInput();
+        if (std.ascii.eqlIgnoreCase(input, "q")) {
+            break;
         }
-    }
 
-    if (game.winnerIs() == board.Play.empty) {
-        std.debug.print("Draw\n", .{});
-        return;
     }
-
-    game.reset();
-    std.debug.print("{}\n", .{game.numFreeSpaces()});
 }
