@@ -15,20 +15,35 @@ const utils = @import("utils.zig");
 const Board = board.Board;
 const Play = board.Play;
 
+pub const Player = struct {
+    play: Play,
+    name: []const u8,
+    playBoardFn: fn (player: *Player, game_board: *Board) void,
+
+    pub fn playBoard(self: *Player, game_board: *Board) void {
+        self.playBoardFn(self, game_board);
+    }
+
+};
+
 /// ATD Player definition
 pub const ATD = struct {
-    play: Play,
+    player: Player,
     rand: std.rand.DefaultPrng,
-    name: []const u8 = "ATD",
 
-    pub fn init(play: Play) ATD {
+    pub fn init(play: Play, name: []const u8) ATD {
         var seed: u64 = undefined;
         std.os.getrandom(std.mem.asBytes(&seed)) catch |err| {
             std.debug.print("Unable to seed random, defaulting to 0\n", .{});
             seed = 0;
         };
+
         return ATD{
-            .play = play,
+            .player = Player {
+                .play = play,
+                .name = name,
+                .playBoardFn = playBoardCallback
+            },
             .rand = std.rand.DefaultPrng.init(seed),
         };
     }
@@ -57,20 +72,24 @@ pub const ATD = struct {
         return 8;
     }
 
-    pub fn playBoard(self: *@This(), game_board: *Board) void {
+    fn playBoardCallback(player: *Player, game_board: *Board) void {
+        const self = @fieldParentPtr(ATD, "player", player);
         var pos = self.pickPos(game_board.*);
-        game_board.playPosition(self.play, pos);
+        game_board.playPosition(player.play, pos);
     }
 };
 
 /// Human Player definition
 pub const Human = struct {
-    play: Play,
-    name: []const u8 = "Human",
+    player: Player,
 
-    pub fn init(play: Play) Human {
+    pub fn init(play: Play, name: []const u8) Human {
         return Human{
-            .play = play,
+            .player = Player { 
+                .play = play,
+                .name = name,
+                .playBoardFn = playBoardCallback,
+            },
         };
     }
     
@@ -109,15 +128,16 @@ pub const Human = struct {
         }
     }
 
-    pub fn playBoard(self: @This(), game_board: *Board) void {
+    fn playBoardCallback(player: *Player, game_board: *Board) void {
+        const self = @fieldParentPtr(Human, "player", player);
         var pos = self.pickPos(game_board.*);
-        game_board.playPosition(self.play, pos);
+        game_board.playPosition(player.play, pos);
     }
 };
 
 test "Players: ATD empty board pick" {
     var b = Board.init();
-    var atd = ATD.init(Play.o);
+    var atd = ATD.init(Play.o, "atd");
     atd.reSeedRNG(42);
 
     var pos = atd.pickPos(b);
@@ -130,12 +150,12 @@ test "Players: ATD empty board pick" {
 
 test "Players: ATD pick till full" {
     var b = Board.init();
-    var atd = ATD.init(Play.o);
+    var atd = ATD.init(Play.o, "atd");
     atd.reSeedRNG(42);
 
     var i: u4 = 0;
     while (i < 9) {
-        atd.playBoard(&b);
+        atd.player.playBoard(&b);
         i += 1;
     }
     expect(b.numFreePositions() == 0);
@@ -143,16 +163,18 @@ test "Players: ATD pick till full" {
 
 test "Players: Two ATD pick till full" {
     var b = Board.init();
-    var atd_a = ATD.init(Play.o);
-    var atd_b = ATD.init(Play.x);
+    var atd_a = ATD.init(Play.o, "atd a");
+    var atd_b = ATD.init(Play.x, "atd b");
     atd_a.reSeedRNG(42);
     atd_b.reSeedRNG(43);
+    var player1 = &atd_a.player;
+    var player2 = &atd_b.player;
 
     for (b.positions) |_, turn| {
         if (@mod(turn, 2) == 0) {
-            atd_b.playBoard(&b);
+            player1.playBoard(&b);
         } else {
-            atd_a.playBoard(&b);
+            player2.playBoard(&b);
         }
     }
 

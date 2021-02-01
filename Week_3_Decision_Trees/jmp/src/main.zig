@@ -12,12 +12,24 @@ const Stats = struct {
     draw : u32,
 };
 
-fn game_loop(player1: anytype, player2: anytype, game_board: *board.Board) board.Play {
+fn game_loop(
+    player1: *player.Player, 
+    player2: *player.Player,
+    game_board: *board.Board) board.Play {
 
     game_board.reset();
+    game_board.printBoard();
+
+    var x_start_offset: u8 = undefined;
+    if ( player1.play == board.Play.x ) {
+        x_start_offset = 0;
+    } else {
+        // player 2 is X and thus goes first.
+        x_start_offset = 1;
+    }
 
     for (game_board.positions) |_, turn| {
-        if (@mod(turn, 2) == 0) {
+        if (@mod(turn, 2) == x_start_offset) {
             player1.playBoard(game_board);
         } else {
             player2.playBoard(game_board);
@@ -48,13 +60,35 @@ pub fn main() anyerror!void {
         .draw = 0,
     };
 
-    var player1 = player.ATD.init(board.Play.x);
-    var player2 = player.Human.init(board.Play.o);
+    var prng = std.rand.DefaultPrng.init(blk: {
+        var seed: u64 = undefined;
+        try std.os.getrandom(std.mem.asBytes(&seed));
+        break :blk seed;
+    });
+    const rand = &prng.random;
+    
+    var player1: *player.Player = undefined;
+    var player2: *player.Player = undefined;
 
     // Start a game loop until the player exits
     while (true) {
+
+        var player1_shape = board.Play.o;
+        var player2_shape = board.Play.x;
+        // Randomly pick who goes first (x)
+        if (rand.boolean()) {
+            player1_shape = board.Play.x;
+            player2_shape = board.Play.o;
+        }
+
+        // NOTE:
+        // If we don't take the address of player then we are just
+        // creating a Player type that is not associated with the
+        // wrapping Struct (ATD or Human, etc)
+        player1 = &player.ATD.init(player1_shape, "atd").player;
+        player2 = &player.Human.init(player2_shape, "human").player;
     
-        var winner = game_loop(&player1, &player2, &game_board);
+        var winner = game_loop(player1, player2, &game_board);
 
         if ( winner == player1.play) {
             std.debug.print("Winner is Player #1 ({s})\n", .{player1.name});
