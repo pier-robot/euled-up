@@ -10,11 +10,10 @@ fn nextLine(reader: anytype, buffer: []u8) !?[]const u8 {
 }
 
 pub fn readInput() []const u8 {
-
     const stdin = std.io.getStdIn().reader();
     var buffer: [100]u8 = undefined;
 
-    while ( true ) {
+    while (true) {
         var input = (nextLine(stdin, &buffer) catch {
             std.debug.print("Error reading input, try again\n", .{});
             continue;

@@ -30,3 +30,23 @@ test "General: accumulate at comptime" {
     }
 }
 
+test "General: slicing" {
+    const a = [_]u8{ 0, 1, 2, 3, 4 };
+    var slice = a[0..2];
+    expect(slice[slice.len - 1] == 1);
+    expect(@TypeOf(slice) == *const [2]u8);
+}
+
+test "General: list terminators" {
+    const a = [_:10]u8{ 0, 1, 2, 10, 4, 5, 6 };
+
+    var slice = a[0..:10];
+    expect(slice[slice.len - 1] == 6);
+
+    var last_item: u8 = undefined;
+    for(a) |item| {
+        last_item = item;
+    }
+    expect(last_item == 6);
+    expect(a[a.len] == 10);
+}

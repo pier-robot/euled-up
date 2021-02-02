@@ -7,7 +7,8 @@ pub const Play = enum {
     o,
 };
 
-const incidence_structure = [_][3]u4{
+/// aka "win lines"
+pub const incidence_structure = [_][3]u4{
     [_]u4{ 0, 1, 2 },
     [_]u4{ 3, 4, 5 },
     [_]u4{ 6, 7, 8 },
@@ -19,6 +20,9 @@ const incidence_structure = [_][3]u4{
     [_]u4{ 0, 4, 8 },
     [_]u4{ 2, 4, 6 },
 };
+pub const corners = [_]u4{ 0, 2, 6, 8 };
+pub const mid_sides = [_]u4{ 1, 3, 5, 7 };
+pub const middle = 4;
 
 pub const Board = struct {
     positions: [9]Play,
@@ -60,20 +64,25 @@ pub const Board = struct {
         };
     }
 
-    pub fn printBoard(self: @This()) void {
-        // Clear
-        std.debug.print("\x1B[2J", .{});
-        std.debug.print("{c}┃{c}┃{c}\n", .{play_to_char(self.positions[6]),
-                                           play_to_char(self.positions[7]),
-                                           play_to_char(self.positions[8])});
+    pub fn printBoard(self: @This(), clear: bool) void {
+        if (clear) std.debug.print("\x1B[2J", .{});
+        std.debug.print("{c}┃{c}┃{c}\n", .{
+            play_to_char(self.positions[6]),
+            play_to_char(self.positions[7]),
+            play_to_char(self.positions[8]),
+        });
         std.debug.print("━╋━╋━\n", .{});
-        std.debug.print("{c}┃{c}┃{c}\n", .{play_to_char(self.positions[3]),
-                                           play_to_char(self.positions[4]),
-                                           play_to_char(self.positions[5])});
+        std.debug.print("{c}┃{c}┃{c}\n", .{
+            play_to_char(self.positions[3]),
+            play_to_char(self.positions[4]),
+            play_to_char(self.positions[5]),
+        });
         std.debug.print("━╋━╋━\n", .{});
-        std.debug.print("{c}┃{c}┃{c}\n", .{play_to_char(self.positions[0]),
-                                           play_to_char(self.positions[1]),
-                                           play_to_char(self.positions[2])});
+        std.debug.print("{c}┃{c}┃{c}\n", .{
+            play_to_char(self.positions[0]),
+            play_to_char(self.positions[1]),
+            play_to_char(self.positions[2]),
+        });
     }
 
     pub fn winnerIs(self: @This()) Play {
