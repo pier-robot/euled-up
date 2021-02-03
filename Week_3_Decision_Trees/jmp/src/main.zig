@@ -6,7 +6,7 @@ const board = @import("board.zig");
 const player = @import("players.zig");
 const utils = @import("utils.zig");
 
-const game_limit: u32 = 5_000_000;
+const game_limit: u32 = 1_000_000;
 
 const Stats = struct {
     player1: u32,
@@ -69,12 +69,13 @@ pub fn main() anyerror!void {
 
     // TODO add opponent selector
     var player1 = player.Perfect.init(board.Play.o, "perfect");
+    //var player1 = player.Minimax.init(board.Play.o, "minimax");
     var player2 = player.ATD.init(board.Play.x, "atd");
     // var player2 = player.Human.init(board.Play.x, "human");
 
     // Is there a human? If not be quiet.
     var quiet = true;
-    if (@TypeOf(player1) == player.Human or @TypeOf(player2) == player.Human)
+    if (@TypeOf(player1) == @TypeOf(player.Human) or @TypeOf(player2) == @TypeOf(player.Human))
         quiet = false;
 
     var game_counter: u32 = 0;
@@ -103,8 +104,8 @@ pub fn main() anyerror!void {
         } else if (winner == player2.player.play) {
             if (!quiet) std.debug.print("Winner is {s}\n", .{player2.player.name});
             game_wins.player2 += 1;
-            // game_board.printPlays(true);
-            // break;
+            game_board.printPlays(true);
+            break;
         } else {
             if (!quiet) std.debug.print("Draw\n", .{});
             game_wins.draw += 1;

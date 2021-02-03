@@ -379,6 +379,116 @@ pub const Perfect = struct {
     }
 };
 
+/// Minimax Player definition
+pub const Minimax = struct {
+    player: Player,
+
+    pub fn init(play: Play, name: []const u8) Human {
+        return Human{
+            .player = Player{
+                .play = play,
+                .name = name,
+                .playBoardFn = playBoardCallback,
+            },
+        };
+    }
+
+    // TODO we could improve this by having the positions implementation
+    // as a field on a Board struct, that way we can separate the overall
+    // board functionality from the more compact position info.
+
+    fn winningPlayer(positions: [9]Play) Play {
+        // Are all three positions in a line the same and not empty?
+        for (board.incidence_structure) |line| {
+            if (positions[line[0]] == positions[line[1]] and
+                positions[line[0]] == positions[line[2]] and
+                positions[line[0]] != Play.empty)
+            {
+                return positions[line[0]];
+            }
+        }
+        return Play.empty;
+    }
+
+    fn numFreeSpots(positions: [9]Play) u4 {
+        var free_spots: u4 = 0;
+        for (positions) |position| {
+            if (position == Play.empty) free_spots += 1;
+        }
+        return free_spots;
+    }
+
+    const PositionValue = struct {
+        position: u4,
+        value: i8,
+    };
+
+    fn minimax(self: @This(), positions: [9]Play, player: Play, depth: i8) PositionValue {
+
+        var opponent: Play = if (self.player.play == Play.x) Play.o else Play.x;
+        var other_player = if (player == Play.x) Play.o else Play.x; 
+
+        var is_winner = winningPlayer(positions);
+        if (is_winner == self.player.play) {
+            return PositionValue {
+                .position = off_board,
+                .value = 10-depth,
+            };
+        }
+        if (is_winner == opponent) {
+            return PositionValue {
+                .position = off_board,
+                .value = -10+depth,
+            };
+        }
+        if (numFreeSpots(positions) == 0) {
+            return PositionValue {
+                .position = off_board,
+                .value = 0,
+            };
+        }
+        
+        var max_value: i8 = -100;
+        var min_value: i8 = 100;
+        var ranked_pos: u4 = off_board;
+
+        for (positions) |play,position| {
+            if (play != Play.empty) continue;
+            var new_positions = positions;
+            new_positions[position] = player;
+            var result = self.minimax(new_positions, other_player, depth+1).value; 
+
+            if (self.player.play == player and result > max_value) {
+                ranked_pos = @intCast(u4, position);
+                max_value = result;
+            } else if (self.player.play != player and result < min_value) {
+                ranked_pos = @intCast(u4, position);
+                min_value = result;
+            }
+        }
+
+        if (self.player.play == player) return PositionValue {
+            .position = ranked_pos,
+            .value = max_value
+        };
+        return PositionValue {
+            .position = ranked_pos,
+            .value = min_value,
+        };
+    }
+   
+    fn pickPos(self: @This(), game_board: Board) u4 {
+        return self.minimax(game_board.positions, self.player.play, 0).position;
+    }
+
+    /// Implement callback function for Player struct
+    fn playBoardCallback(player: *Player, game_board: *Board) void {
+        const self = @fieldParentPtr(Minimax, "player", player);
+        var pos = self.pickPos(game_board.*);
+        game_board.playPosition(player.play, pos);
+    }
+};
+
 /// Human Player definition
 pub const Human = struct {
     player: Player,
