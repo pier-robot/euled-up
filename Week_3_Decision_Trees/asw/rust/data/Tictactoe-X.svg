@@ -1,0 +1,1448 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.1">
+ <defs>
+  <style type="text/css">
+   .XO { /* general styling for Xs and Os */
+    fill: none;
+    stroke-linecap: butt;
+    stroke-linejoin: miter;
+    stroke-opacity: 1;
+   }
+   .XO_1 { /* level 1 X/O */
+    stroke-width: 27px;
+   }
+   .XO_2 { /* level 2 X/O */
+    stroke-width: 9px;
+   }
+   .XO_3 { /* level 3 X/O */
+    stroke-width: 3px;
+   }
+   .XO_4 { /* level 4 X/O */
+    stroke-width: 1px;
+   }
+   .XO_5 { /* level 5 X/O */
+    stroke-width: .33px;
+   }
+   .XO_sel { /* optimal move */
+    stroke: red;
+   }
+   .XO_unsel { /* already-placed move */
+    stroke: black;
+   }
+   .X { /* normal X */
+   }
+   .O { /* normal O */
+   }
+   .win3 { /* 3-in-a-row line */
+    fill: none;
+    stroke: black;
+    stroke-linecap: butt;
+    stroke-linejoin: miter;
+    stroke-opacity: 1;
+   }
+   .win3_2 { /* win line after 4 or 5 moves */
+    stroke-width: 6px;
+   }
+   .win3_3 { /* win line after 6 or 7 moves */
+    stroke-width: 2px;
+   }
+   .win3_4 { /* win line after 8 or 9 moves */
+    stroke-width: .66px;
+   }
+   .win3X { /* 3-in-a-row line for X */
+   }
+   .win3O { /* 3-in-a-row line for O */
+   }
+   .rect_win { /* rectangle for a win */
+    fill: none;
+    stroke: black;
+    stroke-width: 1px;
+    stroke-linecap: butt;
+    stroke-linejoin: miter;
+    stroke-opacity: 1;
+   }
+   .rect_draw { /* rectangle for a draw */
+    fill: none;
+    stroke: black;
+    stroke-width: 1px;
+    stroke-linecap: butt;
+    stroke-linejoin: miter;
+    stroke-opacity: 1;
+   }
+   .rect_subdiv { /* rectangle for an unresolved board */
+    fill: none;
+    stroke: none;
+   }
+   .rect_sel { /* rectangle for a single selected piece */
+    fill: #ccc;
+    stroke: none;
+   }
+   .rect_unsel { /* rectangle for a single unselected piece */
+    fill: none;
+    stroke: none;
+   }
+  </style>
+ </defs>
+<g id="g0">
+<rect x="0.000000" y="0.000000" width="1000.000000" height="1000.000000" id="r0" class="rect_subdiv" />
+ <rect x="6.666667" y="6.666667" width="320.000000" height="320.000000" id="r0_0" class="rect_sel" />
+ <path d="m 6.666667,6.666667 320.000000,320.000000 m 0.000000,-320.000000 -320.000000,320.000000" id="xo0_0" class="X XO XO_1 XO_sel" />
+ <g id="g013">
+ <rect x="340.000000" y="6.666667" width="320.000000" height="320.000000" id="r013" class="rect_subdiv" />
+  <rect x="342.133333" y="8.800000" width="102.400000" height="102.400000" id="r013_0" class="rect_unsel" />
+  <path d="m 342.133333,8.800000 102.400000,102.400000 m 0.000000,-102.400000 -102.400000,102.400000" id="xo013_0" class="X XO XO_2 XO_unsel" />
+  <rect x="448.800000" y="8.800000" width="102.400000" height="102.400000" id="r013_1" class="rect_unsel" />
+  <circle cx="500.000000" cy="60.000000" r="51.200000" id="xo013_1" class="O XO XO_2 XO_unsel" />
+  <rect x="342.133333" y="115.466667" width="102.400000" height="102.400000" id="r013_3" class="rect_sel" />
+  <path d="m 342.133333,115.466667 102.400000,102.400000 m 0.000000,-102.400000 -102.400000,102.400000" id="xo013_3" class="X XO XO_2 XO_sel" />
+  <g id="g01326">
+  <rect x="555.466667" y="8.800000" width="102.400000" height="102.400000" id="r01326" class="rect_win" />
+   <rect x="556.149333" y="9.482667" width="32.768000" height="32.768000" id="r01326_0" class="rect_unsel" />
+   <path d="m 556.149333,9.482667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo01326_0" class="X XO XO_3 XO_unsel" />
+   <rect x="590.282667" y="9.482667" width="32.768000" height="32.768000" id="r01326_1" class="rect_unsel" />
+   <circle cx="606.666667" cy="25.866667" r="16.384000" id="xo01326_1" class="O XO XO_3 XO_unsel" />
+   <rect x="624.416000" y="9.482667" width="32.768000" height="32.768000" id="r01326_2" class="rect_unsel" />
+   <circle cx="640.800000" cy="25.866667" r="16.384000" id="xo01326_2" class="O XO XO_3 XO_unsel" />
+   <rect x="556.149333" y="43.616000" width="32.768000" height="32.768000" id="r01326_3" class="rect_unsel" />
+   <path d="m 556.149333,43.616000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo01326_3" class="X XO XO_3 XO_unsel" />
+   <rect x="556.149333" y="77.749333" width="32.768000" height="32.768000" id="r01326_6" class="rect_sel" />
+   <path d="m 556.149333,77.749333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo01326_6" class="X XO XO_3 XO_sel" />
+   <line x1="572.533333" y1="8.800000" x2="572.533333" y2="111.200000" class="win3 win3_2 win3X" />
+  </g>
+  <g id="g01346">
+  <rect x="448.800000" y="115.466667" width="102.400000" height="102.400000" id="r01346" class="rect_win" />
+   <rect x="449.482667" y="116.149333" width="32.768000" height="32.768000" id="r01346_0" class="rect_unsel" />
+   <path d="m 449.482667,116.149333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo01346_0" class="X XO XO_3 XO_unsel" />
+   <rect x="483.616000" y="116.149333" width="32.768000" height="32.768000" id="r01346_1" class="rect_unsel" />
+   <circle cx="500.000000" cy="132.533333" r="16.384000" id="xo01346_1" class="O XO XO_3 XO_unsel" />
+   <rect x="449.482667" y="150.282667" width="32.768000" height="32.768000" id="r01346_3" class="rect_unsel" />
+   <path d="m 449.482667,150.282667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo01346_3" class="X XO XO_3 XO_unsel" />
+   <rect x="483.616000" y="150.282667" width="32.768000" height="32.768000" id="r01346_4" class="rect_unsel" />
+   <circle cx="500.000000" cy="166.666667" r="16.384000" id="xo01346_4" class="O XO XO_3 XO_unsel" />
+   <rect x="449.482667" y="184.416000" width="32.768000" height="32.768000" id="r01346_6" class="rect_sel" />
+   <path d="m 449.482667,184.416000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo01346_6" class="X XO XO_3 XO_sel" />
+   <line x1="465.866667" y1="115.466667" x2="465.866667" y2="217.866667" class="win3 win3_2 win3X" />
+  </g>
+  <g id="g01356">
+  <rect x="555.466667" y="115.466667" width="102.400000" height="102.400000" id="r01356" class="rect_win" />
+   <rect x="556.149333" y="116.149333" width="32.768000" height="32.768000" id="r01356_0" class="rect_unsel" />
+   <path d="m 556.149333,116.149333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo01356_0" class="X XO XO_3 XO_unsel" />
+   <rect x="590.282667" y="116.149333" width="32.768000" height="32.768000" id="r01356_1" class="rect_unsel" />
+   <circle cx="606.666667" cy="132.533333" r="16.384000" id="xo01356_1" class="O XO XO_3 XO_unsel" />
+   <rect x="556.149333" y="150.282667" width="32.768000" height="32.768000" id="r01356_3" class="rect_unsel" />
+   <path d="m 556.149333,150.282667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo01356_3" class="X XO XO_3 XO_unsel" />
+   <rect x="624.416000" y="150.282667" width="32.768000" height="32.768000" id="r01356_5" class="rect_unsel" />
+   <circle cx="640.800000" cy="166.666667" r="16.384000" id="xo01356_5" class="O XO XO_3 XO_unsel" />
+   <rect x="556.149333" y="184.416000" width="32.768000" height="32.768000" id="r01356_6" class="rect_sel" />
+   <path d="m 556.149333,184.416000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo01356_6" class="X XO XO_3 XO_sel" />
+   <line x1="572.533333" y1="115.466667" x2="572.533333" y2="217.866667" class="win3 win3_2 win3X" />
+  </g>
+  <g id="g01364">
+  <rect x="342.133333" y="222.133333" width="102.400000" height="102.400000" id="r01364" class="rect_subdiv" />
+   <rect x="342.816000" y="222.816000" width="32.768000" height="32.768000" id="r01364_0" class="rect_unsel" />
+   <path d="m 342.816000,222.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo01364_0" class="X XO XO_3 XO_unsel" />
+   <rect x="376.949333" y="222.816000" width="32.768000" height="32.768000" id="r01364_1" class="rect_unsel" />
+   <circle cx="393.333333" cy="239.200000" r="16.384000" id="xo01364_1" class="O XO XO_3 XO_unsel" />
+   <rect x="342.816000" y="256.949333" width="32.768000" height="32.768000" id="r01364_3" class="rect_unsel" />
+   <path d="m 342.816000,256.949333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo01364_3" class="X XO XO_3 XO_unsel" />
+   <rect x="376.949333" y="256.949333" width="32.768000" height="32.768000" id="r01364_4" class="rect_sel" />
+   <path d="m 376.949333,256.949333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo01364_4" class="X XO XO_3 XO_sel" />
+   <rect x="342.816000" y="291.082667" width="32.768000" height="32.768000" id="r01364_6" class="rect_unsel" />
+   <circle cx="359.200000" cy="307.466667" r="16.384000" id="xo01364_6" class="O XO XO_3 XO_unsel" />
+   <g id="g0136425">
+   <rect x="411.082667" y="222.816000" width="32.768000" height="32.768000" id="r0136425" class="rect_win" />
+    <rect x="411.301120" y="223.034453" width="10.485760" height="10.485760" id="r0136425_0" class="rect_unsel" />
+    <path d="m 411.301120,223.034453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0136425_0" class="X XO XO_4 XO_unsel" />
+    <rect x="422.223787" y="223.034453" width="10.485760" height="10.485760" id="r0136425_1" class="rect_unsel" />
+    <circle cx="427.466667" cy="228.277333" r="5.242880" id="xo0136425_1" class="O XO XO_4 XO_unsel" />
+    <rect x="433.146453" y="223.034453" width="10.485760" height="10.485760" id="r0136425_2" class="rect_unsel" />
+    <circle cx="438.389333" cy="228.277333" r="5.242880" id="xo0136425_2" class="O XO XO_4 XO_unsel" />
+    <rect x="411.301120" y="233.957120" width="10.485760" height="10.485760" id="r0136425_3" class="rect_unsel" />
+    <path d="m 411.301120,233.957120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0136425_3" class="X XO XO_4 XO_unsel" />
+    <rect x="422.223787" y="233.957120" width="10.485760" height="10.485760" id="r0136425_4" class="rect_unsel" />
+    <path d="m 422.223787,233.957120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0136425_4" class="X XO XO_4 XO_unsel" />
+    <rect x="433.146453" y="233.957120" width="10.485760" height="10.485760" id="r0136425_5" class="rect_sel" />
+    <path d="m 433.146453,233.957120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0136425_5" class="X XO XO_4 XO_sel" />
+    <rect x="411.301120" y="244.879787" width="10.485760" height="10.485760" id="r0136425_6" class="rect_unsel" />
+    <circle cx="416.544000" cy="250.122667" r="5.242880" id="xo0136425_6" class="O XO XO_4 XO_unsel" />
+    <line x1="411.082667" y1="239.200000" x2="443.850667" y2="239.200000" class="win3 win3_3 win3X" />
+   </g>
+   <g id="g0136458">
+   <rect x="411.082667" y="256.949333" width="32.768000" height="32.768000" id="r0136458" class="rect_win" />
+    <rect x="411.301120" y="257.167787" width="10.485760" height="10.485760" id="r0136458_0" class="rect_unsel" />
+    <path d="m 411.301120,257.167787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0136458_0" class="X XO XO_4 XO_unsel" />
+    <rect x="422.223787" y="257.167787" width="10.485760" height="10.485760" id="r0136458_1" class="rect_unsel" />
+    <circle cx="427.466667" cy="262.410667" r="5.242880" id="xo0136458_1" class="O XO XO_4 XO_unsel" />
+    <rect x="411.301120" y="268.090453" width="10.485760" height="10.485760" id="r0136458_3" class="rect_unsel" />
+    <path d="m 411.301120,268.090453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0136458_3" class="X XO XO_4 XO_unsel" />
+    <rect x="422.223787" y="268.090453" width="10.485760" height="10.485760" id="r0136458_4" class="rect_unsel" />
+    <path d="m 422.223787,268.090453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0136458_4" class="X XO XO_4 XO_unsel" />
+    <rect x="433.146453" y="268.090453" width="10.485760" height="10.485760" id="r0136458_5" class="rect_unsel" />
+    <circle cx="438.389333" cy="273.333333" r="5.242880" id="xo0136458_5" class="O XO XO_4 XO_unsel" />
+    <rect x="411.301120" y="279.013120" width="10.485760" height="10.485760" id="r0136458_6" class="rect_unsel" />
+    <circle cx="416.544000" cy="284.256000" r="5.242880" id="xo0136458_6" class="O XO XO_4 XO_unsel" />
+    <rect x="433.146453" y="279.013120" width="10.485760" height="10.485760" id="r0136458_8" class="rect_sel" />
+    <path d="m 433.146453,279.013120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0136458_8" class="X XO XO_4 XO_sel" />
+    <line x1="411.082667" y1="256.949333" x2="443.850667" y2="289.717333" class="win3 win3_3 win3X" />
+   </g>
+   <g id="g0136475">
+   <rect x="376.949333" y="291.082667" width="32.768000" height="32.768000" id="r0136475" class="rect_win" />
+    <rect x="377.167787" y="291.301120" width="10.485760" height="10.485760" id="r0136475_0" class="rect_unsel" />
+    <path d="m 377.167787,291.301120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0136475_0" class="X XO XO_4 XO_unsel" />
+    <rect x="388.090453" y="291.301120" width="10.485760" height="10.485760" id="r0136475_1" class="rect_unsel" />
+    <circle cx="393.333333" cy="296.544000" r="5.242880" id="xo0136475_1" class="O XO XO_4 XO_unsel" />
+    <rect x="377.167787" y="302.223787" width="10.485760" height="10.485760" id="r0136475_3" class="rect_unsel" />
+    <path d="m 377.167787,302.223787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0136475_3" class="X XO XO_4 XO_unsel" />
+    <rect x="388.090453" y="302.223787" width="10.485760" height="10.485760" id="r0136475_4" class="rect_unsel" />
+    <path d="m 388.090453,302.223787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0136475_4" class="X XO XO_4 XO_unsel" />
+    <rect x="399.013120" y="302.223787" width="10.485760" height="10.485760" id="r0136475_5" class="rect_sel" />
+    <path d="m 399.013120,302.223787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0136475_5" class="X XO XO_4 XO_sel" />
+    <rect x="377.167787" y="313.146453" width="10.485760" height="10.485760" id="r0136475_6" class="rect_unsel" />
+    <circle cx="382.410667" cy="318.389333" r="5.242880" id="xo0136475_6" class="O XO XO_4 XO_unsel" />
+    <rect x="388.090453" y="313.146453" width="10.485760" height="10.485760" id="r0136475_7" class="rect_unsel" />
+    <circle cx="393.333333" cy="318.389333" r="5.242880" id="xo0136475_7" class="O XO XO_4 XO_unsel" />
+    <line x1="376.949333" y1="307.466667" x2="409.717333" y2="307.466667" class="win3 win3_3 win3X" />
+   </g>
+   <g id="g0136485">
+   <rect x="411.082667" y="291.082667" width="32.768000" height="32.768000" id="r0136485" class="rect_win" />
+    <rect x="411.301120" y="291.301120" width="10.485760" height="10.485760" id="r0136485_0" class="rect_unsel" />
+    <path d="m 411.301120,291.301120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0136485_0" class="X XO XO_4 XO_unsel" />
+    <rect x="422.223787" y="291.301120" width="10.485760" height="10.485760" id="r0136485_1" class="rect_unsel" />
+    <circle cx="427.466667" cy="296.544000" r="5.242880" id="xo0136485_1" class="O XO XO_4 XO_unsel" />
+    <rect x="411.301120" y="302.223787" width="10.485760" height="10.485760" id="r0136485_3" class="rect_unsel" />
+    <path d="m 411.301120,302.223787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0136485_3" class="X XO XO_4 XO_unsel" />
+    <rect x="422.223787" y="302.223787" width="10.485760" height="10.485760" id="r0136485_4" class="rect_unsel" />
+    <path d="m 422.223787,302.223787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0136485_4" class="X XO XO_4 XO_unsel" />
+    <rect x="433.146453" y="302.223787" width="10.485760" height="10.485760" id="r0136485_5" class="rect_sel" />
+    <path d="m 433.146453,302.223787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0136485_5" class="X XO XO_4 XO_sel" />
+    <rect x="411.301120" y="313.146453" width="10.485760" height="10.485760" id="r0136485_6" class="rect_unsel" />
+    <circle cx="416.544000" cy="318.389333" r="5.242880" id="xo0136485_6" class="O XO XO_4 XO_unsel" />
+    <rect x="433.146453" y="313.146453" width="10.485760" height="10.485760" id="r0136485_8" class="rect_unsel" />
+    <circle cx="438.389333" cy="318.389333" r="5.242880" id="xo0136485_8" class="O XO XO_4 XO_unsel" />
+    <line x1="411.082667" y1="307.466667" x2="443.850667" y2="307.466667" class="win3 win3_3 win3X" />
+   </g>
+  </g>
+  <g id="g01376">
+  <rect x="448.800000" y="222.133333" width="102.400000" height="102.400000" id="r01376" class="rect_win" />
+   <rect x="449.482667" y="222.816000" width="32.768000" height="32.768000" id="r01376_0" class="rect_unsel" />
+   <path d="m 449.482667,222.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo01376_0" class="X XO XO_3 XO_unsel" />
+   <rect x="483.616000" y="222.816000" width="32.768000" height="32.768000" id="r01376_1" class="rect_unsel" />
+   <circle cx="500.000000" cy="239.200000" r="16.384000" id="xo01376_1" class="O XO XO_3 XO_unsel" />
+   <rect x="449.482667" y="256.949333" width="32.768000" height="32.768000" id="r01376_3" class="rect_unsel" />
+   <path d="m 449.482667,256.949333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo01376_3" class="X XO XO_3 XO_unsel" />
+   <rect x="449.482667" y="291.082667" width="32.768000" height="32.768000" id="r01376_6" class="rect_sel" />
+   <path d="m 449.482667,291.082667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo01376_6" class="X XO XO_3 XO_sel" />
+   <rect x="483.616000" y="291.082667" width="32.768000" height="32.768000" id="r01376_7" class="rect_unsel" />
+   <circle cx="500.000000" cy="307.466667" r="16.384000" id="xo01376_7" class="O XO XO_3 XO_unsel" />
+   <line x1="465.866667" y1="222.133333" x2="465.866667" y2="324.533333" class="win3 win3_2 win3X" />
+  </g>
+  <g id="g01386">
+  <rect x="555.466667" y="222.133333" width="102.400000" height="102.400000" id="r01386" class="rect_win" />
+   <rect x="556.149333" y="222.816000" width="32.768000" height="32.768000" id="r01386_0" class="rect_unsel" />
+   <path d="m 556.149333,222.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo01386_0" class="X XO XO_3 XO_unsel" />
+   <rect x="590.282667" y="222.816000" width="32.768000" height="32.768000" id="r01386_1" class="rect_unsel" />
+   <circle cx="606.666667" cy="239.200000" r="16.384000" id="xo01386_1" class="O XO XO_3 XO_unsel" />
+   <rect x="556.149333" y="256.949333" width="32.768000" height="32.768000" id="r01386_3" class="rect_unsel" />
+   <path d="m 556.149333,256.949333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo01386_3" class="X XO XO_3 XO_unsel" />
+   <rect x="556.149333" y="291.082667" width="32.768000" height="32.768000" id="r01386_6" class="rect_sel" />
+   <path d="m 556.149333,291.082667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo01386_6" class="X XO XO_3 XO_sel" />
+   <rect x="624.416000" y="291.082667" width="32.768000" height="32.768000" id="r01386_8" class="rect_unsel" />
+   <circle cx="640.800000" cy="307.466667" r="16.384000" id="xo01386_8" class="O XO XO_3 XO_unsel" />
+   <line x1="572.533333" y1="222.133333" x2="572.533333" y2="324.533333" class="win3 win3_2 win3X" />
+  </g>
+ </g>
+ <g id="g023">
+ <rect x="673.333333" y="6.666667" width="320.000000" height="320.000000" id="r023" class="rect_subdiv" />
+  <rect x="675.466667" y="8.800000" width="102.400000" height="102.400000" id="r023_0" class="rect_unsel" />
+  <path d="m 675.466667,8.800000 102.400000,102.400000 m 0.000000,-102.400000 -102.400000,102.400000" id="xo023_0" class="X XO XO_2 XO_unsel" />
+  <rect x="888.800000" y="8.800000" width="102.400000" height="102.400000" id="r023_2" class="rect_unsel" />
+  <circle cx="940.000000" cy="60.000000" r="51.200000" id="xo023_2" class="O XO XO_2 XO_unsel" />
+  <rect x="675.466667" y="115.466667" width="102.400000" height="102.400000" id="r023_3" class="rect_sel" />
+  <path d="m 675.466667,115.466667 102.400000,102.400000 m 0.000000,-102.400000 -102.400000,102.400000" id="xo023_3" class="X XO XO_2 XO_sel" />
+  <g id="g02316">
+  <rect x="782.133333" y="8.800000" width="102.400000" height="102.400000" id="r02316" class="rect_win" />
+   <rect x="782.816000" y="9.482667" width="32.768000" height="32.768000" id="r02316_0" class="rect_unsel" />
+   <path d="m 782.816000,9.482667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo02316_0" class="X XO XO_3 XO_unsel" />
+   <rect x="816.949333" y="9.482667" width="32.768000" height="32.768000" id="r02316_1" class="rect_unsel" />
+   <circle cx="833.333333" cy="25.866667" r="16.384000" id="xo02316_1" class="O XO XO_3 XO_unsel" />
+   <rect x="851.082667" y="9.482667" width="32.768000" height="32.768000" id="r02316_2" class="rect_unsel" />
+   <circle cx="867.466667" cy="25.866667" r="16.384000" id="xo02316_2" class="O XO XO_3 XO_unsel" />
+   <rect x="782.816000" y="43.616000" width="32.768000" height="32.768000" id="r02316_3" class="rect_unsel" />
+   <path d="m 782.816000,43.616000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo02316_3" class="X XO XO_3 XO_unsel" />
+   <rect x="782.816000" y="77.749333" width="32.768000" height="32.768000" id="r02316_6" class="rect_sel" />
+   <path d="m 782.816000,77.749333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo02316_6" class="X XO XO_3 XO_sel" />
+   <line x1="799.200000" y1="8.800000" x2="799.200000" y2="111.200000" class="win3 win3_2 win3X" />
+  </g>
+  <g id="g02346">
+  <rect x="782.133333" y="115.466667" width="102.400000" height="102.400000" id="r02346" class="rect_win" />
+   <rect x="782.816000" y="116.149333" width="32.768000" height="32.768000" id="r02346_0" class="rect_unsel" />
+   <path d="m 782.816000,116.149333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo02346_0" class="X XO XO_3 XO_unsel" />
+   <rect x="851.082667" y="116.149333" width="32.768000" height="32.768000" id="r02346_2" class="rect_unsel" />
+   <circle cx="867.466667" cy="132.533333" r="16.384000" id="xo02346_2" class="O XO XO_3 XO_unsel" />
+   <rect x="782.816000" y="150.282667" width="32.768000" height="32.768000" id="r02346_3" class="rect_unsel" />
+   <path d="m 782.816000,150.282667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo02346_3" class="X XO XO_3 XO_unsel" />
+   <rect x="816.949333" y="150.282667" width="32.768000" height="32.768000" id="r02346_4" class="rect_unsel" />
+   <circle cx="833.333333" cy="166.666667" r="16.384000" id="xo02346_4" class="O XO XO_3 XO_unsel" />
+   <rect x="782.816000" y="184.416000" width="32.768000" height="32.768000" id="r02346_6" class="rect_sel" />
+   <path d="m 782.816000,184.416000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo02346_6" class="X XO XO_3 XO_sel" />
+   <line x1="799.200000" y1="115.466667" x2="799.200000" y2="217.866667" class="win3 win3_2 win3X" />
+  </g>
+  <g id="g02356">
+  <rect x="888.800000" y="115.466667" width="102.400000" height="102.400000" id="r02356" class="rect_win" />
+   <rect x="889.482667" y="116.149333" width="32.768000" height="32.768000" id="r02356_0" class="rect_unsel" />
+   <path d="m 889.482667,116.149333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo02356_0" class="X XO XO_3 XO_unsel" />
+   <rect x="957.749333" y="116.149333" width="32.768000" height="32.768000" id="r02356_2" class="rect_unsel" />
+   <circle cx="974.133333" cy="132.533333" r="16.384000" id="xo02356_2" class="O XO XO_3 XO_unsel" />
+   <rect x="889.482667" y="150.282667" width="32.768000" height="32.768000" id="r02356_3" class="rect_unsel" />
+   <path d="m 889.482667,150.282667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo02356_3" class="X XO XO_3 XO_unsel" />
+   <rect x="957.749333" y="150.282667" width="32.768000" height="32.768000" id="r02356_5" class="rect_unsel" />
+   <circle cx="974.133333" cy="166.666667" r="16.384000" id="xo02356_5" class="O XO XO_3 XO_unsel" />
+   <rect x="889.482667" y="184.416000" width="32.768000" height="32.768000" id="r02356_6" class="rect_sel" />
+   <path d="m 889.482667,184.416000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo02356_6" class="X XO XO_3 XO_sel" />
+   <line x1="905.866667" y1="115.466667" x2="905.866667" y2="217.866667" class="win3 win3_2 win3X" />
+  </g>
+  <g id="g02364">
+  <rect x="675.466667" y="222.133333" width="102.400000" height="102.400000" id="r02364" class="rect_subdiv" />
+   <rect x="676.149333" y="222.816000" width="32.768000" height="32.768000" id="r02364_0" class="rect_unsel" />
+   <path d="m 676.149333,222.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo02364_0" class="X XO XO_3 XO_unsel" />
+   <rect x="744.416000" y="222.816000" width="32.768000" height="32.768000" id="r02364_2" class="rect_unsel" />
+   <circle cx="760.800000" cy="239.200000" r="16.384000" id="xo02364_2" class="O XO XO_3 XO_unsel" />
+   <rect x="676.149333" y="256.949333" width="32.768000" height="32.768000" id="r02364_3" class="rect_unsel" />
+   <path d="m 676.149333,256.949333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo02364_3" class="X XO XO_3 XO_unsel" />
+   <rect x="710.282667" y="256.949333" width="32.768000" height="32.768000" id="r02364_4" class="rect_sel" />
+   <path d="m 710.282667,256.949333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo02364_4" class="X XO XO_3 XO_sel" />
+   <rect x="676.149333" y="291.082667" width="32.768000" height="32.768000" id="r02364_6" class="rect_unsel" />
+   <circle cx="692.533333" cy="307.466667" r="16.384000" id="xo02364_6" class="O XO XO_3 XO_unsel" />
+   <g id="g0236415">
+   <rect x="710.282667" y="222.816000" width="32.768000" height="32.768000" id="r0236415" class="rect_win" />
+    <rect x="710.501120" y="223.034453" width="10.485760" height="10.485760" id="r0236415_0" class="rect_unsel" />
+    <path d="m 710.501120,223.034453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0236415_0" class="X XO XO_4 XO_unsel" />
+    <rect x="721.423787" y="223.034453" width="10.485760" height="10.485760" id="r0236415_1" class="rect_unsel" />
+    <circle cx="726.666667" cy="228.277333" r="5.242880" id="xo0236415_1" class="O XO XO_4 XO_unsel" />
+    <rect x="732.346453" y="223.034453" width="10.485760" height="10.485760" id="r0236415_2" class="rect_unsel" />
+    <circle cx="737.589333" cy="228.277333" r="5.242880" id="xo0236415_2" class="O XO XO_4 XO_unsel" />
+    <rect x="710.501120" y="233.957120" width="10.485760" height="10.485760" id="r0236415_3" class="rect_unsel" />
+    <path d="m 710.501120,233.957120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0236415_3" class="X XO XO_4 XO_unsel" />
+    <rect x="721.423787" y="233.957120" width="10.485760" height="10.485760" id="r0236415_4" class="rect_unsel" />
+    <path d="m 721.423787,233.957120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0236415_4" class="X XO XO_4 XO_unsel" />
+    <rect x="732.346453" y="233.957120" width="10.485760" height="10.485760" id="r0236415_5" class="rect_sel" />
+    <path d="m 732.346453,233.957120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0236415_5" class="X XO XO_4 XO_sel" />
+    <rect x="710.501120" y="244.879787" width="10.485760" height="10.485760" id="r0236415_6" class="rect_unsel" />
+    <circle cx="715.744000" cy="250.122667" r="5.242880" id="xo0236415_6" class="O XO XO_4 XO_unsel" />
+    <line x1="710.282667" y1="239.200000" x2="743.050667" y2="239.200000" class="win3 win3_3 win3X" />
+   </g>
+   <g id="g0236458">
+   <rect x="744.416000" y="256.949333" width="32.768000" height="32.768000" id="r0236458" class="rect_win" />
+    <rect x="744.634453" y="257.167787" width="10.485760" height="10.485760" id="r0236458_0" class="rect_unsel" />
+    <path d="m 744.634453,257.167787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0236458_0" class="X XO XO_4 XO_unsel" />
+    <rect x="766.479787" y="257.167787" width="10.485760" height="10.485760" id="r0236458_2" class="rect_unsel" />
+    <circle cx="771.722667" cy="262.410667" r="5.242880" id="xo0236458_2" class="O XO XO_4 XO_unsel" />
+    <rect x="744.634453" y="268.090453" width="10.485760" height="10.485760" id="r0236458_3" class="rect_unsel" />
+    <path d="m 744.634453,268.090453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0236458_3" class="X XO XO_4 XO_unsel" />
+    <rect x="755.557120" y="268.090453" width="10.485760" height="10.485760" id="r0236458_4" class="rect_unsel" />
+    <path d="m 755.557120,268.090453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0236458_4" class="X XO XO_4 XO_unsel" />
+    <rect x="766.479787" y="268.090453" width="10.485760" height="10.485760" id="r0236458_5" class="rect_unsel" />
+    <circle cx="771.722667" cy="273.333333" r="5.242880" id="xo0236458_5" class="O XO XO_4 XO_unsel" />
+    <rect x="744.634453" y="279.013120" width="10.485760" height="10.485760" id="r0236458_6" class="rect_unsel" />
+    <circle cx="749.877333" cy="284.256000" r="5.242880" id="xo0236458_6" class="O XO XO_4 XO_unsel" />
+    <rect x="766.479787" y="279.013120" width="10.485760" height="10.485760" id="r0236458_8" class="rect_sel" />
+    <path d="m 766.479787,279.013120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0236458_8" class="X XO XO_4 XO_sel" />
+    <line x1="744.416000" y1="256.949333" x2="777.184000" y2="289.717333" class="win3 win3_3 win3X" />
+   </g>
+   <g id="g0236475">
+   <rect x="710.282667" y="291.082667" width="32.768000" height="32.768000" id="r0236475" class="rect_win" />
+    <rect x="710.501120" y="291.301120" width="10.485760" height="10.485760" id="r0236475_0" class="rect_unsel" />
+    <path d="m 710.501120,291.301120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0236475_0" class="X XO XO_4 XO_unsel" />
+    <rect x="732.346453" y="291.301120" width="10.485760" height="10.485760" id="r0236475_2" class="rect_unsel" />
+    <circle cx="737.589333" cy="296.544000" r="5.242880" id="xo0236475_2" class="O XO XO_4 XO_unsel" />
+    <rect x="710.501120" y="302.223787" width="10.485760" height="10.485760" id="r0236475_3" class="rect_unsel" />
+    <path d="m 710.501120,302.223787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0236475_3" class="X XO XO_4 XO_unsel" />
+    <rect x="721.423787" y="302.223787" width="10.485760" height="10.485760" id="r0236475_4" class="rect_unsel" />
+    <path d="m 721.423787,302.223787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0236475_4" class="X XO XO_4 XO_unsel" />
+    <rect x="732.346453" y="302.223787" width="10.485760" height="10.485760" id="r0236475_5" class="rect_sel" />
+    <path d="m 732.346453,302.223787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0236475_5" class="X XO XO_4 XO_sel" />
+    <rect x="710.501120" y="313.146453" width="10.485760" height="10.485760" id="r0236475_6" class="rect_unsel" />
+    <circle cx="715.744000" cy="318.389333" r="5.242880" id="xo0236475_6" class="O XO XO_4 XO_unsel" />
+    <rect x="721.423787" y="313.146453" width="10.485760" height="10.485760" id="r0236475_7" class="rect_unsel" />
+    <circle cx="726.666667" cy="318.389333" r="5.242880" id="xo0236475_7" class="O XO XO_4 XO_unsel" />
+    <line x1="710.282667" y1="307.466667" x2="743.050667" y2="307.466667" class="win3 win3_3 win3X" />
+   </g>
+   <g id="g0236485">
+   <rect x="744.416000" y="291.082667" width="32.768000" height="32.768000" id="r0236485" class="rect_win" />
+    <rect x="744.634453" y="291.301120" width="10.485760" height="10.485760" id="r0236485_0" class="rect_unsel" />
+    <path d="m 744.634453,291.301120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0236485_0" class="X XO XO_4 XO_unsel" />
+    <rect x="766.479787" y="291.301120" width="10.485760" height="10.485760" id="r0236485_2" class="rect_unsel" />
+    <circle cx="771.722667" cy="296.544000" r="5.242880" id="xo0236485_2" class="O XO XO_4 XO_unsel" />
+    <rect x="744.634453" y="302.223787" width="10.485760" height="10.485760" id="r0236485_3" class="rect_unsel" />
+    <path d="m 744.634453,302.223787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0236485_3" class="X XO XO_4 XO_unsel" />
+    <rect x="755.557120" y="302.223787" width="10.485760" height="10.485760" id="r0236485_4" class="rect_unsel" />
+    <path d="m 755.557120,302.223787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0236485_4" class="X XO XO_4 XO_unsel" />
+    <rect x="766.479787" y="302.223787" width="10.485760" height="10.485760" id="r0236485_5" class="rect_sel" />
+    <path d="m 766.479787,302.223787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0236485_5" class="X XO XO_4 XO_sel" />
+    <rect x="744.634453" y="313.146453" width="10.485760" height="10.485760" id="r0236485_6" class="rect_unsel" />
+    <circle cx="749.877333" cy="318.389333" r="5.242880" id="xo0236485_6" class="O XO XO_4 XO_unsel" />
+    <rect x="766.479787" y="313.146453" width="10.485760" height="10.485760" id="r0236485_8" class="rect_unsel" />
+    <circle cx="771.722667" cy="318.389333" r="5.242880" id="xo0236485_8" class="O XO XO_4 XO_unsel" />
+    <line x1="744.416000" y1="307.466667" x2="777.184000" y2="307.466667" class="win3 win3_3 win3X" />
+   </g>
+  </g>
+  <g id="g02376">
+  <rect x="782.133333" y="222.133333" width="102.400000" height="102.400000" id="r02376" class="rect_win" />
+   <rect x="782.816000" y="222.816000" width="32.768000" height="32.768000" id="r02376_0" class="rect_unsel" />
+   <path d="m 782.816000,222.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo02376_0" class="X XO XO_3 XO_unsel" />
+   <rect x="851.082667" y="222.816000" width="32.768000" height="32.768000" id="r02376_2" class="rect_unsel" />
+   <circle cx="867.466667" cy="239.200000" r="16.384000" id="xo02376_2" class="O XO XO_3 XO_unsel" />
+   <rect x="782.816000" y="256.949333" width="32.768000" height="32.768000" id="r02376_3" class="rect_unsel" />
+   <path d="m 782.816000,256.949333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo02376_3" class="X XO XO_3 XO_unsel" />
+   <rect x="782.816000" y="291.082667" width="32.768000" height="32.768000" id="r02376_6" class="rect_sel" />
+   <path d="m 782.816000,291.082667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo02376_6" class="X XO XO_3 XO_sel" />
+   <rect x="816.949333" y="291.082667" width="32.768000" height="32.768000" id="r02376_7" class="rect_unsel" />
+   <circle cx="833.333333" cy="307.466667" r="16.384000" id="xo02376_7" class="O XO XO_3 XO_unsel" />
+   <line x1="799.200000" y1="222.133333" x2="799.200000" y2="324.533333" class="win3 win3_2 win3X" />
+  </g>
+  <g id="g02386">
+  <rect x="888.800000" y="222.133333" width="102.400000" height="102.400000" id="r02386" class="rect_win" />
+   <rect x="889.482667" y="222.816000" width="32.768000" height="32.768000" id="r02386_0" class="rect_unsel" />
+   <path d="m 889.482667,222.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo02386_0" class="X XO XO_3 XO_unsel" />
+   <rect x="957.749333" y="222.816000" width="32.768000" height="32.768000" id="r02386_2" class="rect_unsel" />
+   <circle cx="974.133333" cy="239.200000" r="16.384000" id="xo02386_2" class="O XO XO_3 XO_unsel" />
+   <rect x="889.482667" y="256.949333" width="32.768000" height="32.768000" id="r02386_3" class="rect_unsel" />
+   <path d="m 889.482667,256.949333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo02386_3" class="X XO XO_3 XO_unsel" />
+   <rect x="889.482667" y="291.082667" width="32.768000" height="32.768000" id="r02386_6" class="rect_sel" />
+   <path d="m 889.482667,291.082667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo02386_6" class="X XO XO_3 XO_sel" />
+   <rect x="957.749333" y="291.082667" width="32.768000" height="32.768000" id="r02386_8" class="rect_unsel" />
+   <circle cx="974.133333" cy="307.466667" r="16.384000" id="xo02386_8" class="O XO XO_3 XO_unsel" />
+   <line x1="905.866667" y1="222.133333" x2="905.866667" y2="324.533333" class="win3 win3_2 win3X" />
+  </g>
+ </g>
+ <g id="g031">
+ <rect x="6.666667" y="340.000000" width="320.000000" height="320.000000" id="r031" class="rect_subdiv" />
+  <rect x="8.800000" y="342.133333" width="102.400000" height="102.400000" id="r031_0" class="rect_unsel" />
+  <path d="m 8.800000,342.133333 102.400000,102.400000 m 0.000000,-102.400000 -102.400000,102.400000" id="xo031_0" class="X XO XO_2 XO_unsel" />
+  <rect x="115.466667" y="342.133333" width="102.400000" height="102.400000" id="r031_1" class="rect_sel" />
+  <path d="m 115.466667,342.133333 102.400000,102.400000 m 0.000000,-102.400000 -102.400000,102.400000" id="xo031_1" class="X XO XO_2 XO_sel" />
+  <rect x="8.800000" y="448.800000" width="102.400000" height="102.400000" id="r031_3" class="rect_unsel" />
+  <circle cx="60.000000" cy="500.000000" r="51.200000" id="xo031_3" class="O XO XO_2 XO_unsel" />
+  <g id="g03124">
+  <rect x="222.133333" y="342.133333" width="102.400000" height="102.400000" id="r03124" class="rect_subdiv" />
+   <rect x="222.816000" y="342.816000" width="32.768000" height="32.768000" id="r03124_0" class="rect_unsel" />
+   <path d="m 222.816000,342.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo03124_0" class="X XO XO_3 XO_unsel" />
+   <rect x="256.949333" y="342.816000" width="32.768000" height="32.768000" id="r03124_1" class="rect_unsel" />
+   <path d="m 256.949333,342.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo03124_1" class="X XO XO_3 XO_unsel" />
+   <rect x="291.082667" y="342.816000" width="32.768000" height="32.768000" id="r03124_2" class="rect_unsel" />
+   <circle cx="307.466667" cy="359.200000" r="16.384000" id="xo03124_2" class="O XO XO_3 XO_unsel" />
+   <rect x="222.816000" y="376.949333" width="32.768000" height="32.768000" id="r03124_3" class="rect_unsel" />
+   <circle cx="239.200000" cy="393.333333" r="16.384000" id="xo03124_3" class="O XO XO_3 XO_unsel" />
+   <rect x="256.949333" y="376.949333" width="32.768000" height="32.768000" id="r03124_4" class="rect_sel" />
+   <path d="m 256.949333,376.949333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo03124_4" class="X XO XO_3 XO_sel" />
+   <g id="g0312457">
+   <rect x="291.082667" y="376.949333" width="32.768000" height="32.768000" id="r0312457" class="rect_win" />
+    <rect x="291.301120" y="377.167787" width="10.485760" height="10.485760" id="r0312457_0" class="rect_unsel" />
+    <path d="m 291.301120,377.167787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0312457_0" class="X XO XO_4 XO_unsel" />
+    <rect x="302.223787" y="377.167787" width="10.485760" height="10.485760" id="r0312457_1" class="rect_unsel" />
+    <path d="m 302.223787,377.167787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0312457_1" class="X XO XO_4 XO_unsel" />
+    <rect x="313.146453" y="377.167787" width="10.485760" height="10.485760" id="r0312457_2" class="rect_unsel" />
+    <circle cx="318.389333" cy="382.410667" r="5.242880" id="xo0312457_2" class="O XO XO_4 XO_unsel" />
+    <rect x="291.301120" y="388.090453" width="10.485760" height="10.485760" id="r0312457_3" class="rect_unsel" />
+    <circle cx="296.544000" cy="393.333333" r="5.242880" id="xo0312457_3" class="O XO XO_4 XO_unsel" />
+    <rect x="302.223787" y="388.090453" width="10.485760" height="10.485760" id="r0312457_4" class="rect_unsel" />
+    <path d="m 302.223787,388.090453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0312457_4" class="X XO XO_4 XO_unsel" />
+    <rect x="313.146453" y="388.090453" width="10.485760" height="10.485760" id="r0312457_5" class="rect_unsel" />
+    <circle cx="318.389333" cy="393.333333" r="5.242880" id="xo0312457_5" class="O XO XO_4 XO_unsel" />
+    <rect x="302.223787" y="399.013120" width="10.485760" height="10.485760" id="r0312457_7" class="rect_sel" />
+    <path d="m 302.223787,399.013120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0312457_7" class="X XO XO_4 XO_sel" />
+    <line x1="307.466667" y1="376.949333" x2="307.466667" y2="409.717333" class="win3 win3_3 win3X" />
+   </g>
+   <g id="g0312467">
+   <rect x="222.816000" y="411.082667" width="32.768000" height="32.768000" id="r0312467" class="rect_win" />
+    <rect x="223.034453" y="411.301120" width="10.485760" height="10.485760" id="r0312467_0" class="rect_unsel" />
+    <path d="m 223.034453,411.301120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0312467_0" class="X XO XO_4 XO_unsel" />
+    <rect x="233.957120" y="411.301120" width="10.485760" height="10.485760" id="r0312467_1" class="rect_unsel" />
+    <path d="m 233.957120,411.301120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0312467_1" class="X XO XO_4 XO_unsel" />
+    <rect x="244.879787" y="411.301120" width="10.485760" height="10.485760" id="r0312467_2" class="rect_unsel" />
+    <circle cx="250.122667" cy="416.544000" r="5.242880" id="xo0312467_2" class="O XO XO_4 XO_unsel" />
+    <rect x="223.034453" y="422.223787" width="10.485760" height="10.485760" id="r0312467_3" class="rect_unsel" />
+    <circle cx="228.277333" cy="427.466667" r="5.242880" id="xo0312467_3" class="O XO XO_4 XO_unsel" />
+    <rect x="233.957120" y="422.223787" width="10.485760" height="10.485760" id="r0312467_4" class="rect_unsel" />
+    <path d="m 233.957120,422.223787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0312467_4" class="X XO XO_4 XO_unsel" />
+    <rect x="223.034453" y="433.146453" width="10.485760" height="10.485760" id="r0312467_6" class="rect_unsel" />
+    <circle cx="228.277333" cy="438.389333" r="5.242880" id="xo0312467_6" class="O XO XO_4 XO_unsel" />
+    <rect x="233.957120" y="433.146453" width="10.485760" height="10.485760" id="r0312467_7" class="rect_sel" />
+    <path d="m 233.957120,433.146453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0312467_7" class="X XO XO_4 XO_sel" />
+    <line x1="239.200000" y1="411.082667" x2="239.200000" y2="443.850667" class="win3 win3_3 win3X" />
+   </g>
+   <g id="g0312478">
+   <rect x="256.949333" y="411.082667" width="32.768000" height="32.768000" id="r0312478" class="rect_win" />
+    <rect x="257.167787" y="411.301120" width="10.485760" height="10.485760" id="r0312478_0" class="rect_unsel" />
+    <path d="m 257.167787,411.301120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0312478_0" class="X XO XO_4 XO_unsel" />
+    <rect x="268.090453" y="411.301120" width="10.485760" height="10.485760" id="r0312478_1" class="rect_unsel" />
+    <path d="m 268.090453,411.301120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0312478_1" class="X XO XO_4 XO_unsel" />
+    <rect x="279.013120" y="411.301120" width="10.485760" height="10.485760" id="r0312478_2" class="rect_unsel" />
+    <circle cx="284.256000" cy="416.544000" r="5.242880" id="xo0312478_2" class="O XO XO_4 XO_unsel" />
+    <rect x="257.167787" y="422.223787" width="10.485760" height="10.485760" id="r0312478_3" class="rect_unsel" />
+    <circle cx="262.410667" cy="427.466667" r="5.242880" id="xo0312478_3" class="O XO XO_4 XO_unsel" />
+    <rect x="268.090453" y="422.223787" width="10.485760" height="10.485760" id="r0312478_4" class="rect_unsel" />
+    <path d="m 268.090453,422.223787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0312478_4" class="X XO XO_4 XO_unsel" />
+    <rect x="268.090453" y="433.146453" width="10.485760" height="10.485760" id="r0312478_7" class="rect_unsel" />
+    <circle cx="273.333333" cy="438.389333" r="5.242880" id="xo0312478_7" class="O XO XO_4 XO_unsel" />
+    <rect x="279.013120" y="433.146453" width="10.485760" height="10.485760" id="r0312478_8" class="rect_sel" />
+    <path d="m 279.013120,433.146453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0312478_8" class="X XO XO_4 XO_sel" />
+    <line x1="256.949333" y1="411.082667" x2="289.717333" y2="443.850667" class="win3 win3_3 win3X" />
+   </g>
+   <g id="g0312487">
+   <rect x="291.082667" y="411.082667" width="32.768000" height="32.768000" id="r0312487" class="rect_win" />
+    <rect x="291.301120" y="411.301120" width="10.485760" height="10.485760" id="r0312487_0" class="rect_unsel" />
+    <path d="m 291.301120,411.301120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0312487_0" class="X XO XO_4 XO_unsel" />
+    <rect x="302.223787" y="411.301120" width="10.485760" height="10.485760" id="r0312487_1" class="rect_unsel" />
+    <path d="m 302.223787,411.301120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0312487_1" class="X XO XO_4 XO_unsel" />
+    <rect x="313.146453" y="411.301120" width="10.485760" height="10.485760" id="r0312487_2" class="rect_unsel" />
+    <circle cx="318.389333" cy="416.544000" r="5.242880" id="xo0312487_2" class="O XO XO_4 XO_unsel" />
+    <rect x="291.301120" y="422.223787" width="10.485760" height="10.485760" id="r0312487_3" class="rect_unsel" />
+    <circle cx="296.544000" cy="427.466667" r="5.242880" id="xo0312487_3" class="O XO XO_4 XO_unsel" />
+    <rect x="302.223787" y="422.223787" width="10.485760" height="10.485760" id="r0312487_4" class="rect_unsel" />
+    <path d="m 302.223787,422.223787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0312487_4" class="X XO XO_4 XO_unsel" />
+    <rect x="302.223787" y="433.146453" width="10.485760" height="10.485760" id="r0312487_7" class="rect_sel" />
+    <path d="m 302.223787,433.146453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0312487_7" class="X XO XO_4 XO_sel" />
+    <rect x="313.146453" y="433.146453" width="10.485760" height="10.485760" id="r0312487_8" class="rect_unsel" />
+    <circle cx="318.389333" cy="438.389333" r="5.242880" id="xo0312487_8" class="O XO XO_4 XO_unsel" />
+    <line x1="307.466667" y1="411.082667" x2="307.466667" y2="443.850667" class="win3 win3_3 win3X" />
+   </g>
+  </g>
+  <g id="g03142">
+  <rect x="115.466667" y="448.800000" width="102.400000" height="102.400000" id="r03142" class="rect_win" />
+   <rect x="116.149333" y="449.482667" width="32.768000" height="32.768000" id="r03142_0" class="rect_unsel" />
+   <path d="m 116.149333,449.482667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo03142_0" class="X XO XO_3 XO_unsel" />
+   <rect x="150.282667" y="449.482667" width="32.768000" height="32.768000" id="r03142_1" class="rect_unsel" />
+   <path d="m 150.282667,449.482667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo03142_1" class="X XO XO_3 XO_unsel" />
+   <rect x="184.416000" y="449.482667" width="32.768000" height="32.768000" id="r03142_2" class="rect_sel" />
+   <path d="m 184.416000,449.482667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo03142_2" class="X XO XO_3 XO_sel" />
+   <rect x="116.149333" y="483.616000" width="32.768000" height="32.768000" id="r03142_3" class="rect_unsel" />
+   <circle cx="132.533333" cy="500.000000" r="16.384000" id="xo03142_3" class="O XO XO_3 XO_unsel" />
+   <rect x="150.282667" y="483.616000" width="32.768000" height="32.768000" id="r03142_4" class="rect_unsel" />
+   <circle cx="166.666667" cy="500.000000" r="16.384000" id="xo03142_4" class="O XO XO_3 XO_unsel" />
+   <line x1="115.466667" y1="465.866667" x2="217.866667" y2="465.866667" class="win3 win3_2 win3X" />
+  </g>
+  <g id="g03152">
+  <rect x="222.133333" y="448.800000" width="102.400000" height="102.400000" id="r03152" class="rect_win" />
+   <rect x="222.816000" y="449.482667" width="32.768000" height="32.768000" id="r03152_0" class="rect_unsel" />
+   <path d="m 222.816000,449.482667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo03152_0" class="X XO XO_3 XO_unsel" />
+   <rect x="256.949333" y="449.482667" width="32.768000" height="32.768000" id="r03152_1" class="rect_unsel" />
+   <path d="m 256.949333,449.482667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo03152_1" class="X XO XO_3 XO_unsel" />
+   <rect x="291.082667" y="449.482667" width="32.768000" height="32.768000" id="r03152_2" class="rect_sel" />
+   <path d="m 291.082667,449.482667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo03152_2" class="X XO XO_3 XO_sel" />
+   <rect x="222.816000" y="483.616000" width="32.768000" height="32.768000" id="r03152_3" class="rect_unsel" />
+   <circle cx="239.200000" cy="500.000000" r="16.384000" id="xo03152_3" class="O XO XO_3 XO_unsel" />
+   <rect x="291.082667" y="483.616000" width="32.768000" height="32.768000" id="r03152_5" class="rect_unsel" />
+   <circle cx="307.466667" cy="500.000000" r="16.384000" id="xo03152_5" class="O XO XO_3 XO_unsel" />
+   <line x1="222.133333" y1="465.866667" x2="324.533333" y2="465.866667" class="win3 win3_2 win3X" />
+  </g>
+  <g id="g03162">
+  <rect x="8.800000" y="555.466667" width="102.400000" height="102.400000" id="r03162" class="rect_win" />
+   <rect x="9.482667" y="556.149333" width="32.768000" height="32.768000" id="r03162_0" class="rect_unsel" />
+   <path d="m 9.482667,556.149333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo03162_0" class="X XO XO_3 XO_unsel" />
+   <rect x="43.616000" y="556.149333" width="32.768000" height="32.768000" id="r03162_1" class="rect_unsel" />
+   <path d="m 43.616000,556.149333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo03162_1" class="X XO XO_3 XO_unsel" />
+   <rect x="77.749333" y="556.149333" width="32.768000" height="32.768000" id="r03162_2" class="rect_sel" />
+   <path d="m 77.749333,556.149333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo03162_2" class="X XO XO_3 XO_sel" />
+   <rect x="9.482667" y="590.282667" width="32.768000" height="32.768000" id="r03162_3" class="rect_unsel" />
+   <circle cx="25.866667" cy="606.666667" r="16.384000" id="xo03162_3" class="O XO XO_3 XO_unsel" />
+   <rect x="9.482667" y="624.416000" width="32.768000" height="32.768000" id="r03162_6" class="rect_unsel" />
+   <circle cx="25.866667" cy="640.800000" r="16.384000" id="xo03162_6" class="O XO XO_3 XO_unsel" />
+   <line x1="8.800000" y1="572.533333" x2="111.200000" y2="572.533333" class="win3 win3_2 win3X" />
+  </g>
+  <g id="g03172">
+  <rect x="115.466667" y="555.466667" width="102.400000" height="102.400000" id="r03172" class="rect_win" />
+   <rect x="116.149333" y="556.149333" width="32.768000" height="32.768000" id="r03172_0" class="rect_unsel" />
+   <path d="m 116.149333,556.149333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo03172_0" class="X XO XO_3 XO_unsel" />
+   <rect x="150.282667" y="556.149333" width="32.768000" height="32.768000" id="r03172_1" class="rect_unsel" />
+   <path d="m 150.282667,556.149333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo03172_1" class="X XO XO_3 XO_unsel" />
+   <rect x="184.416000" y="556.149333" width="32.768000" height="32.768000" id="r03172_2" class="rect_sel" />
+   <path d="m 184.416000,556.149333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo03172_2" class="X XO XO_3 XO_sel" />
+   <rect x="116.149333" y="590.282667" width="32.768000" height="32.768000" id="r03172_3" class="rect_unsel" />
+   <circle cx="132.533333" cy="606.666667" r="16.384000" id="xo03172_3" class="O XO XO_3 XO_unsel" />
+   <rect x="150.282667" y="624.416000" width="32.768000" height="32.768000" id="r03172_7" class="rect_unsel" />
+   <circle cx="166.666667" cy="640.800000" r="16.384000" id="xo03172_7" class="O XO XO_3 XO_unsel" />
+   <line x1="115.466667" y1="572.533333" x2="217.866667" y2="572.533333" class="win3 win3_2 win3X" />
+  </g>
+  <g id="g03182">
+  <rect x="222.133333" y="555.466667" width="102.400000" height="102.400000" id="r03182" class="rect_win" />
+   <rect x="222.816000" y="556.149333" width="32.768000" height="32.768000" id="r03182_0" class="rect_unsel" />
+   <path d="m 222.816000,556.149333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo03182_0" class="X XO XO_3 XO_unsel" />
+   <rect x="256.949333" y="556.149333" width="32.768000" height="32.768000" id="r03182_1" class="rect_unsel" />
+   <path d="m 256.949333,556.149333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo03182_1" class="X XO XO_3 XO_unsel" />
+   <rect x="291.082667" y="556.149333" width="32.768000" height="32.768000" id="r03182_2" class="rect_sel" />
+   <path d="m 291.082667,556.149333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo03182_2" class="X XO XO_3 XO_sel" />
+   <rect x="222.816000" y="590.282667" width="32.768000" height="32.768000" id="r03182_3" class="rect_unsel" />
+   <circle cx="239.200000" cy="606.666667" r="16.384000" id="xo03182_3" class="O XO XO_3 XO_unsel" />
+   <rect x="291.082667" y="624.416000" width="32.768000" height="32.768000" id="r03182_8" class="rect_unsel" />
+   <circle cx="307.466667" cy="640.800000" r="16.384000" id="xo03182_8" class="O XO XO_3 XO_unsel" />
+   <line x1="222.133333" y1="572.533333" x2="324.533333" y2="572.533333" class="win3 win3_2 win3X" />
+  </g>
+ </g>
+ <g id="g041">
+ <rect x="340.000000" y="340.000000" width="320.000000" height="320.000000" id="r041" class="rect_subdiv" />
+  <rect x="342.133333" y="342.133333" width="102.400000" height="102.400000" id="r041_0" class="rect_unsel" />
+  <path d="m 342.133333,342.133333 102.400000,102.400000 m 0.000000,-102.400000 -102.400000,102.400000" id="xo041_0" class="X XO XO_2 XO_unsel" />
+  <rect x="448.800000" y="342.133333" width="102.400000" height="102.400000" id="r041_1" class="rect_sel" />
+  <path d="m 448.800000,342.133333 102.400000,102.400000 m 0.000000,-102.400000 -102.400000,102.400000" id="xo041_1" class="X XO XO_2 XO_sel" />
+  <rect x="448.800000" y="448.800000" width="102.400000" height="102.400000" id="r041_4" class="rect_unsel" />
+  <circle cx="500.000000" cy="500.000000" r="51.200000" id="xo041_4" class="O XO XO_2 XO_unsel" />
+  <g id="g04126">
+  <rect x="555.466667" y="342.133333" width="102.400000" height="102.400000" id="r04126" class="rect_subdiv" />
+   <rect x="556.149333" y="342.816000" width="32.768000" height="32.768000" id="r04126_0" class="rect_unsel" />
+   <path d="m 556.149333,342.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo04126_0" class="X XO XO_3 XO_unsel" />
+   <rect x="590.282667" y="342.816000" width="32.768000" height="32.768000" id="r04126_1" class="rect_unsel" />
+   <path d="m 590.282667,342.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo04126_1" class="X XO XO_3 XO_unsel" />
+   <rect x="624.416000" y="342.816000" width="32.768000" height="32.768000" id="r04126_2" class="rect_unsel" />
+   <circle cx="640.800000" cy="359.200000" r="16.384000" id="xo04126_2" class="O XO XO_3 XO_unsel" />
+   <rect x="590.282667" y="376.949333" width="32.768000" height="32.768000" id="r04126_4" class="rect_unsel" />
+   <circle cx="606.666667" cy="393.333333" r="16.384000" id="xo04126_4" class="O XO XO_3 XO_unsel" />
+   <rect x="556.149333" y="411.082667" width="32.768000" height="32.768000" id="r04126_6" class="rect_sel" />
+   <path d="m 556.149333,411.082667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo04126_6" class="X XO XO_3 XO_sel" />
+   <g id="g0412635">
+   <rect x="556.149333" y="376.949333" width="32.768000" height="32.768000" id="r0412635" class="rect_subdiv" />
+    <rect x="556.367787" y="377.167787" width="10.485760" height="10.485760" id="r0412635_0" class="rect_unsel" />
+    <path d="m 556.367787,377.167787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0412635_0" class="X XO XO_4 XO_unsel" />
+    <rect x="567.290453" y="377.167787" width="10.485760" height="10.485760" id="r0412635_1" class="rect_unsel" />
+    <path d="m 567.290453,377.167787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0412635_1" class="X XO XO_4 XO_unsel" />
+    <rect x="578.213120" y="377.167787" width="10.485760" height="10.485760" id="r0412635_2" class="rect_unsel" />
+    <circle cx="583.456000" cy="382.410667" r="5.242880" id="xo0412635_2" class="O XO XO_4 XO_unsel" />
+    <rect x="556.367787" y="388.090453" width="10.485760" height="10.485760" id="r0412635_3" class="rect_unsel" />
+    <circle cx="561.610667" cy="393.333333" r="5.242880" id="xo0412635_3" class="O XO XO_4 XO_unsel" />
+    <rect x="567.290453" y="388.090453" width="10.485760" height="10.485760" id="r0412635_4" class="rect_unsel" />
+    <circle cx="572.533333" cy="393.333333" r="5.242880" id="xo0412635_4" class="O XO XO_4 XO_unsel" />
+    <rect x="578.213120" y="388.090453" width="10.485760" height="10.485760" id="r0412635_5" class="rect_sel" />
+    <path d="m 578.213120,388.090453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0412635_5" class="X XO XO_4 XO_sel" />
+    <rect x="556.367787" y="399.013120" width="10.485760" height="10.485760" id="r0412635_6" class="rect_unsel" />
+    <path d="m 556.367787,399.013120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0412635_6" class="X XO XO_4 XO_unsel" />
+    <g id="g041263578">
+    <rect x="567.290453" y="399.013120" width="10.485760" height="10.485760" id="r041263578" class="rect_draw" />
+     <rect x="567.360358" y="399.083025" width="3.355443" height="3.355443" id="r041263578_0" class="rect_unsel" />
+     <path d="m 567.360358,399.083025 3.355443,3.355443 m 0.000000,-3.355443 -3.355443,3.355443" id="xo041263578_0" class="X XO XO_5 XO_unsel" />
+     <rect x="570.855612" y="399.083025" width="3.355443" height="3.355443" id="r041263578_1" class="rect_unsel" />
+     <path d="m 570.855612,399.083025 3.355443,3.355443 m 0.000000,-3.355443 -3.355443,3.355443" id="xo041263578_1" class="X XO XO_5 XO_unsel" />
+     <rect x="574.350865" y="399.083025" width="3.355443" height="3.355443" id="r041263578_2" class="rect_unsel" />
+     <circle cx="576.028587" cy="400.760747" r="1.677722" id="xo041263578_2" class="O XO XO_5 XO_unsel" />
+     <rect x="567.360358" y="402.578278" width="3.355443" height="3.355443" id="r041263578_3" class="rect_unsel" />
+     <circle cx="569.038080" cy="404.256000" r="1.677722" id="xo041263578_3" class="O XO XO_5 XO_unsel" />
+     <rect x="570.855612" y="402.578278" width="3.355443" height="3.355443" id="r041263578_4" class="rect_unsel" />
+     <circle cx="572.533333" cy="404.256000" r="1.677722" id="xo041263578_4" class="O XO XO_5 XO_unsel" />
+     <rect x="574.350865" y="402.578278" width="3.355443" height="3.355443" id="r041263578_5" class="rect_unsel" />
+     <path d="m 574.350865,402.578278 3.355443,3.355443 m 0.000000,-3.355443 -3.355443,3.355443" id="xo041263578_5" class="X XO XO_5 XO_unsel" />
+     <rect x="567.360358" y="406.073532" width="3.355443" height="3.355443" id="r041263578_6" class="rect_unsel" />
+     <path d="m 567.360358,406.073532 3.355443,3.355443 m 0.000000,-3.355443 -3.355443,3.355443" id="xo041263578_6" class="X XO XO_5 XO_unsel" />
+     <rect x="570.855612" y="406.073532" width="3.355443" height="3.355443" id="r041263578_7" class="rect_unsel" />
+     <circle cx="572.533333" cy="407.751253" r="1.677722" id="xo041263578_7" class="O XO XO_5 XO_unsel" />
+     <rect x="574.350865" y="406.073532" width="3.355443" height="3.355443" id="r041263578_8" class="rect_sel" />
+     <path d="m 574.350865,406.073532 3.355443,3.355443 m 0.000000,-3.355443 -3.355443,3.355443" id="xo041263578_8" class="X XO XO_5 XO_sel" />
+    </g>
+    <g id="g041263587">
+    <rect x="578.213120" y="399.013120" width="10.485760" height="10.485760" id="r041263587" class="rect_draw" />
+     <rect x="578.283025" y="399.083025" width="3.355443" height="3.355443" id="r041263587_0" class="rect_unsel" />
+     <path d="m 578.283025,399.083025 3.355443,3.355443 m 0.000000,-3.355443 -3.355443,3.355443" id="xo041263587_0" class="X XO XO_5 XO_unsel" />
+     <rect x="581.778278" y="399.083025" width="3.355443" height="3.355443" id="r041263587_1" class="rect_unsel" />
+     <path d="m 581.778278,399.083025 3.355443,3.355443 m 0.000000,-3.355443 -3.355443,3.355443" id="xo041263587_1" class="X XO XO_5 XO_unsel" />
+     <rect x="585.273532" y="399.083025" width="3.355443" height="3.355443" id="r041263587_2" class="rect_unsel" />
+     <circle cx="586.951253" cy="400.760747" r="1.677722" id="xo041263587_2" class="O XO XO_5 XO_unsel" />
+     <rect x="578.283025" y="402.578278" width="3.355443" height="3.355443" id="r041263587_3" class="rect_unsel" />
+     <circle cx="579.960747" cy="404.256000" r="1.677722" id="xo041263587_3" class="O XO XO_5 XO_unsel" />
+     <rect x="581.778278" y="402.578278" width="3.355443" height="3.355443" id="r041263587_4" class="rect_unsel" />
+     <circle cx="583.456000" cy="404.256000" r="1.677722" id="xo041263587_4" class="O XO XO_5 XO_unsel" />
+     <rect x="585.273532" y="402.578278" width="3.355443" height="3.355443" id="r041263587_5" class="rect_unsel" />
+     <path d="m 585.273532,402.578278 3.355443,3.355443 m 0.000000,-3.355443 -3.355443,3.355443" id="xo041263587_5" class="X XO XO_5 XO_unsel" />
+     <rect x="578.283025" y="406.073532" width="3.355443" height="3.355443" id="r041263587_6" class="rect_unsel" />
+     <path d="m 578.283025,406.073532 3.355443,3.355443 m 0.000000,-3.355443 -3.355443,3.355443" id="xo041263587_6" class="X XO XO_5 XO_unsel" />
+     <rect x="581.778278" y="406.073532" width="3.355443" height="3.355443" id="r041263587_7" class="rect_sel" />
+     <path d="m 581.778278,406.073532 3.355443,3.355443 m 0.000000,-3.355443 -3.355443,3.355443" id="xo041263587_7" class="X XO XO_5 XO_sel" />
+     <rect x="585.273532" y="406.073532" width="3.355443" height="3.355443" id="r041263587_8" class="rect_unsel" />
+     <circle cx="586.951253" cy="407.751253" r="1.677722" id="xo041263587_8" class="O XO XO_5 XO_unsel" />
+    </g>
+   </g>
+   <g id="g0412653">
+   <rect x="624.416000" y="376.949333" width="32.768000" height="32.768000" id="r0412653" class="rect_win" />
+    <rect x="624.634453" y="377.167787" width="10.485760" height="10.485760" id="r0412653_0" class="rect_unsel" />
+    <path d="m 624.634453,377.167787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0412653_0" class="X XO XO_4 XO_unsel" />
+    <rect x="635.557120" y="377.167787" width="10.485760" height="10.485760" id="r0412653_1" class="rect_unsel" />
+    <path d="m 635.557120,377.167787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0412653_1" class="X XO XO_4 XO_unsel" />
+    <rect x="646.479787" y="377.167787" width="10.485760" height="10.485760" id="r0412653_2" class="rect_unsel" />
+    <circle cx="651.722667" cy="382.410667" r="5.242880" id="xo0412653_2" class="O XO XO_4 XO_unsel" />
+    <rect x="624.634453" y="388.090453" width="10.485760" height="10.485760" id="r0412653_3" class="rect_sel" />
+    <path d="m 624.634453,388.090453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0412653_3" class="X XO XO_4 XO_sel" />
+    <rect x="635.557120" y="388.090453" width="10.485760" height="10.485760" id="r0412653_4" class="rect_unsel" />
+    <circle cx="640.800000" cy="393.333333" r="5.242880" id="xo0412653_4" class="O XO XO_4 XO_unsel" />
+    <rect x="646.479787" y="388.090453" width="10.485760" height="10.485760" id="r0412653_5" class="rect_unsel" />
+    <circle cx="651.722667" cy="393.333333" r="5.242880" id="xo0412653_5" class="O XO XO_4 XO_unsel" />
+    <rect x="624.634453" y="399.013120" width="10.485760" height="10.485760" id="r0412653_6" class="rect_unsel" />
+    <path d="m 624.634453,399.013120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0412653_6" class="X XO XO_4 XO_unsel" />
+    <line x1="629.877333" y1="376.949333" x2="629.877333" y2="409.717333" class="win3 win3_3 win3X" />
+   </g>
+   <g id="g0412673">
+   <rect x="590.282667" y="411.082667" width="32.768000" height="32.768000" id="r0412673" class="rect_win" />
+    <rect x="590.501120" y="411.301120" width="10.485760" height="10.485760" id="r0412673_0" class="rect_unsel" />
+    <path d="m 590.501120,411.301120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0412673_0" class="X XO XO_4 XO_unsel" />
+    <rect x="601.423787" y="411.301120" width="10.485760" height="10.485760" id="r0412673_1" class="rect_unsel" />
+    <path d="m 601.423787,411.301120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0412673_1" class="X XO XO_4 XO_unsel" />
+    <rect x="612.346453" y="411.301120" width="10.485760" height="10.485760" id="r0412673_2" class="rect_unsel" />
+    <circle cx="617.589333" cy="416.544000" r="5.242880" id="xo0412673_2" class="O XO XO_4 XO_unsel" />
+    <rect x="590.501120" y="422.223787" width="10.485760" height="10.485760" id="r0412673_3" class="rect_sel" />
+    <path d="m 590.501120,422.223787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0412673_3" class="X XO XO_4 XO_sel" />
+    <rect x="601.423787" y="422.223787" width="10.485760" height="10.485760" id="r0412673_4" class="rect_unsel" />
+    <circle cx="606.666667" cy="427.466667" r="5.242880" id="xo0412673_4" class="O XO XO_4 XO_unsel" />
+    <rect x="590.501120" y="433.146453" width="10.485760" height="10.485760" id="r0412673_6" class="rect_unsel" />
+    <path d="m 590.501120,433.146453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0412673_6" class="X XO XO_4 XO_unsel" />
+    <rect x="601.423787" y="433.146453" width="10.485760" height="10.485760" id="r0412673_7" class="rect_unsel" />
+    <circle cx="606.666667" cy="438.389333" r="5.242880" id="xo0412673_7" class="O XO XO_4 XO_unsel" />
+    <line x1="595.744000" y1="411.082667" x2="595.744000" y2="443.850667" class="win3 win3_3 win3X" />
+   </g>
+   <g id="g0412683">
+   <rect x="624.416000" y="411.082667" width="32.768000" height="32.768000" id="r0412683" class="rect_win" />
+    <rect x="624.634453" y="411.301120" width="10.485760" height="10.485760" id="r0412683_0" class="rect_unsel" />
+    <path d="m 624.634453,411.301120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0412683_0" class="X XO XO_4 XO_unsel" />
+    <rect x="635.557120" y="411.301120" width="10.485760" height="10.485760" id="r0412683_1" class="rect_unsel" />
+    <path d="m 635.557120,411.301120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0412683_1" class="X XO XO_4 XO_unsel" />
+    <rect x="646.479787" y="411.301120" width="10.485760" height="10.485760" id="r0412683_2" class="rect_unsel" />
+    <circle cx="651.722667" cy="416.544000" r="5.242880" id="xo0412683_2" class="O XO XO_4 XO_unsel" />
+    <rect x="624.634453" y="422.223787" width="10.485760" height="10.485760" id="r0412683_3" class="rect_sel" />
+    <path d="m 624.634453,422.223787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0412683_3" class="X XO XO_4 XO_sel" />
+    <rect x="635.557120" y="422.223787" width="10.485760" height="10.485760" id="r0412683_4" class="rect_unsel" />
+    <circle cx="640.800000" cy="427.466667" r="5.242880" id="xo0412683_4" class="O XO XO_4 XO_unsel" />
+    <rect x="624.634453" y="433.146453" width="10.485760" height="10.485760" id="r0412683_6" class="rect_unsel" />
+    <path d="m 624.634453,433.146453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0412683_6" class="X XO XO_4 XO_unsel" />
+    <rect x="646.479787" y="433.146453" width="10.485760" height="10.485760" id="r0412683_8" class="rect_unsel" />
+    <circle cx="651.722667" cy="438.389333" r="5.242880" id="xo0412683_8" class="O XO XO_4 XO_unsel" />
+    <line x1="629.877333" y1="411.082667" x2="629.877333" y2="443.850667" class="win3 win3_3 win3X" />
+   </g>
+  </g>
+  <g id="g04132">
+  <rect x="342.133333" y="448.800000" width="102.400000" height="102.400000" id="r04132" class="rect_win" />
+   <rect x="342.816000" y="449.482667" width="32.768000" height="32.768000" id="r04132_0" class="rect_unsel" />
+   <path d="m 342.816000,449.482667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo04132_0" class="X XO XO_3 XO_unsel" />
+   <rect x="376.949333" y="449.482667" width="32.768000" height="32.768000" id="r04132_1" class="rect_unsel" />
+   <path d="m 376.949333,449.482667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo04132_1" class="X XO XO_3 XO_unsel" />
+   <rect x="411.082667" y="449.482667" width="32.768000" height="32.768000" id="r04132_2" class="rect_sel" />
+   <path d="m 411.082667,449.482667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo04132_2" class="X XO XO_3 XO_sel" />
+   <rect x="342.816000" y="483.616000" width="32.768000" height="32.768000" id="r04132_3" class="rect_unsel" />
+   <circle cx="359.200000" cy="500.000000" r="16.384000" id="xo04132_3" class="O XO XO_3 XO_unsel" />
+   <rect x="376.949333" y="483.616000" width="32.768000" height="32.768000" id="r04132_4" class="rect_unsel" />
+   <circle cx="393.333333" cy="500.000000" r="16.384000" id="xo04132_4" class="O XO XO_3 XO_unsel" />
+   <line x1="342.133333" y1="465.866667" x2="444.533333" y2="465.866667" class="win3 win3_2 win3X" />
+  </g>
+  <g id="g04152">
+  <rect x="555.466667" y="448.800000" width="102.400000" height="102.400000" id="r04152" class="rect_win" />
+   <rect x="556.149333" y="449.482667" width="32.768000" height="32.768000" id="r04152_0" class="rect_unsel" />
+   <path d="m 556.149333,449.482667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo04152_0" class="X XO XO_3 XO_unsel" />
+   <rect x="590.282667" y="449.482667" width="32.768000" height="32.768000" id="r04152_1" class="rect_unsel" />
+   <path d="m 590.282667,449.482667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo04152_1" class="X XO XO_3 XO_unsel" />
+   <rect x="624.416000" y="449.482667" width="32.768000" height="32.768000" id="r04152_2" class="rect_sel" />
+   <path d="m 624.416000,449.482667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo04152_2" class="X XO XO_3 XO_sel" />
+   <rect x="590.282667" y="483.616000" width="32.768000" height="32.768000" id="r04152_4" class="rect_unsel" />
+   <circle cx="606.666667" cy="500.000000" r="16.384000" id="xo04152_4" class="O XO XO_3 XO_unsel" />
+   <rect x="624.416000" y="483.616000" width="32.768000" height="32.768000" id="r04152_5" class="rect_unsel" />
+   <circle cx="640.800000" cy="500.000000" r="16.384000" id="xo04152_5" class="O XO XO_3 XO_unsel" />
+   <line x1="555.466667" y1="465.866667" x2="657.866667" y2="465.866667" class="win3 win3_2 win3X" />
+  </g>
+  <g id="g04162">
+  <rect x="342.133333" y="555.466667" width="102.400000" height="102.400000" id="r04162" class="rect_win" />
+   <rect x="342.816000" y="556.149333" width="32.768000" height="32.768000" id="r04162_0" class="rect_unsel" />
+   <path d="m 342.816000,556.149333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo04162_0" class="X XO XO_3 XO_unsel" />
+   <rect x="376.949333" y="556.149333" width="32.768000" height="32.768000" id="r04162_1" class="rect_unsel" />
+   <path d="m 376.949333,556.149333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo04162_1" class="X XO XO_3 XO_unsel" />
+   <rect x="411.082667" y="556.149333" width="32.768000" height="32.768000" id="r04162_2" class="rect_sel" />
+   <path d="m 411.082667,556.149333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo04162_2" class="X XO XO_3 XO_sel" />
+   <rect x="376.949333" y="590.282667" width="32.768000" height="32.768000" id="r04162_4" class="rect_unsel" />
+   <circle cx="393.333333" cy="606.666667" r="16.384000" id="xo04162_4" class="O XO XO_3 XO_unsel" />
+   <rect x="342.816000" y="624.416000" width="32.768000" height="32.768000" id="r04162_6" class="rect_unsel" />
+   <circle cx="359.200000" cy="640.800000" r="16.384000" id="xo04162_6" class="O XO XO_3 XO_unsel" />
+   <line x1="342.133333" y1="572.533333" x2="444.533333" y2="572.533333" class="win3 win3_2 win3X" />
+  </g>
+  <g id="g04172">
+  <rect x="448.800000" y="555.466667" width="102.400000" height="102.400000" id="r04172" class="rect_win" />
+   <rect x="449.482667" y="556.149333" width="32.768000" height="32.768000" id="r04172_0" class="rect_unsel" />
+   <path d="m 449.482667,556.149333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo04172_0" class="X XO XO_3 XO_unsel" />
+   <rect x="483.616000" y="556.149333" width="32.768000" height="32.768000" id="r04172_1" class="rect_unsel" />
+   <path d="m 483.616000,556.149333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo04172_1" class="X XO XO_3 XO_unsel" />
+   <rect x="517.749333" y="556.149333" width="32.768000" height="32.768000" id="r04172_2" class="rect_sel" />
+   <path d="m 517.749333,556.149333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo04172_2" class="X XO XO_3 XO_sel" />
+   <rect x="483.616000" y="590.282667" width="32.768000" height="32.768000" id="r04172_4" class="rect_unsel" />
+   <circle cx="500.000000" cy="606.666667" r="16.384000" id="xo04172_4" class="O XO XO_3 XO_unsel" />
+   <rect x="483.616000" y="624.416000" width="32.768000" height="32.768000" id="r04172_7" class="rect_unsel" />
+   <circle cx="500.000000" cy="640.800000" r="16.384000" id="xo04172_7" class="O XO XO_3 XO_unsel" />
+   <line x1="448.800000" y1="572.533333" x2="551.200000" y2="572.533333" class="win3 win3_2 win3X" />
+  </g>
+  <g id="g04182">
+  <rect x="555.466667" y="555.466667" width="102.400000" height="102.400000" id="r04182" class="rect_win" />
+   <rect x="556.149333" y="556.149333" width="32.768000" height="32.768000" id="r04182_0" class="rect_unsel" />
+   <path d="m 556.149333,556.149333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo04182_0" class="X XO XO_3 XO_unsel" />
+   <rect x="590.282667" y="556.149333" width="32.768000" height="32.768000" id="r04182_1" class="rect_unsel" />
+   <path d="m 590.282667,556.149333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo04182_1" class="X XO XO_3 XO_unsel" />
+   <rect x="624.416000" y="556.149333" width="32.768000" height="32.768000" id="r04182_2" class="rect_sel" />
+   <path d="m 624.416000,556.149333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo04182_2" class="X XO XO_3 XO_sel" />
+   <rect x="590.282667" y="590.282667" width="32.768000" height="32.768000" id="r04182_4" class="rect_unsel" />
+   <circle cx="606.666667" cy="606.666667" r="16.384000" id="xo04182_4" class="O XO XO_3 XO_unsel" />
+   <rect x="624.416000" y="624.416000" width="32.768000" height="32.768000" id="r04182_8" class="rect_unsel" />
+   <circle cx="640.800000" cy="640.800000" r="16.384000" id="xo04182_8" class="O XO XO_3 XO_unsel" />
+   <line x1="555.466667" y1="572.533333" x2="657.866667" y2="572.533333" class="win3 win3_2 win3X" />
+  </g>
+ </g>
+ <g id="g054">
+ <rect x="673.333333" y="340.000000" width="320.000000" height="320.000000" id="r054" class="rect_subdiv" />
+  <rect x="675.466667" y="342.133333" width="102.400000" height="102.400000" id="r054_0" class="rect_unsel" />
+  <path d="m 675.466667,342.133333 102.400000,102.400000 m 0.000000,-102.400000 -102.400000,102.400000" id="xo054_0" class="X XO XO_2 XO_unsel" />
+  <rect x="782.133333" y="448.800000" width="102.400000" height="102.400000" id="r054_4" class="rect_sel" />
+  <path d="m 782.133333,448.800000 102.400000,102.400000 m 0.000000,-102.400000 -102.400000,102.400000" id="xo054_4" class="X XO XO_2 XO_sel" />
+  <rect x="888.800000" y="448.800000" width="102.400000" height="102.400000" id="r054_5" class="rect_unsel" />
+  <circle cx="940.000000" cy="500.000000" r="51.200000" id="xo054_5" class="O XO XO_2 XO_unsel" />
+  <g id="g05418">
+  <rect x="782.133333" y="342.133333" width="102.400000" height="102.400000" id="r05418" class="rect_win" />
+   <rect x="782.816000" y="342.816000" width="32.768000" height="32.768000" id="r05418_0" class="rect_unsel" />
+   <path d="m 782.816000,342.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo05418_0" class="X XO XO_3 XO_unsel" />
+   <rect x="816.949333" y="342.816000" width="32.768000" height="32.768000" id="r05418_1" class="rect_unsel" />
+   <circle cx="833.333333" cy="359.200000" r="16.384000" id="xo05418_1" class="O XO XO_3 XO_unsel" />
+   <rect x="816.949333" y="376.949333" width="32.768000" height="32.768000" id="r05418_4" class="rect_unsel" />
+   <path d="m 816.949333,376.949333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo05418_4" class="X XO XO_3 XO_unsel" />
+   <rect x="851.082667" y="376.949333" width="32.768000" height="32.768000" id="r05418_5" class="rect_unsel" />
+   <circle cx="867.466667" cy="393.333333" r="16.384000" id="xo05418_5" class="O XO XO_3 XO_unsel" />
+   <rect x="851.082667" y="411.082667" width="32.768000" height="32.768000" id="r05418_8" class="rect_sel" />
+   <path d="m 851.082667,411.082667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo05418_8" class="X XO XO_3 XO_sel" />
+   <line x1="782.133333" y1="342.133333" x2="884.533333" y2="444.533333" class="win3 win3_2 win3X" />
+  </g>
+  <g id="g05428">
+  <rect x="888.800000" y="342.133333" width="102.400000" height="102.400000" id="r05428" class="rect_win" />
+   <rect x="889.482667" y="342.816000" width="32.768000" height="32.768000" id="r05428_0" class="rect_unsel" />
+   <path d="m 889.482667,342.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo05428_0" class="X XO XO_3 XO_unsel" />
+   <rect x="957.749333" y="342.816000" width="32.768000" height="32.768000" id="r05428_2" class="rect_unsel" />
+   <circle cx="974.133333" cy="359.200000" r="16.384000" id="xo05428_2" class="O XO XO_3 XO_unsel" />
+   <rect x="923.616000" y="376.949333" width="32.768000" height="32.768000" id="r05428_4" class="rect_unsel" />
+   <path d="m 923.616000,376.949333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo05428_4" class="X XO XO_3 XO_unsel" />
+   <rect x="957.749333" y="376.949333" width="32.768000" height="32.768000" id="r05428_5" class="rect_unsel" />
+   <circle cx="974.133333" cy="393.333333" r="16.384000" id="xo05428_5" class="O XO XO_3 XO_unsel" />
+   <rect x="957.749333" y="411.082667" width="32.768000" height="32.768000" id="r05428_8" class="rect_sel" />
+   <path d="m 957.749333,411.082667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo05428_8" class="X XO XO_3 XO_sel" />
+   <line x1="888.800000" y1="342.133333" x2="991.200000" y2="444.533333" class="win3 win3_2 win3X" />
+  </g>
+  <g id="g05438">
+  <rect x="675.466667" y="448.800000" width="102.400000" height="102.400000" id="r05438" class="rect_win" />
+   <rect x="676.149333" y="449.482667" width="32.768000" height="32.768000" id="r05438_0" class="rect_unsel" />
+   <path d="m 676.149333,449.482667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo05438_0" class="X XO XO_3 XO_unsel" />
+   <rect x="676.149333" y="483.616000" width="32.768000" height="32.768000" id="r05438_3" class="rect_unsel" />
+   <circle cx="692.533333" cy="500.000000" r="16.384000" id="xo05438_3" class="O XO XO_3 XO_unsel" />
+   <rect x="710.282667" y="483.616000" width="32.768000" height="32.768000" id="r05438_4" class="rect_unsel" />
+   <path d="m 710.282667,483.616000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo05438_4" class="X XO XO_3 XO_unsel" />
+   <rect x="744.416000" y="483.616000" width="32.768000" height="32.768000" id="r05438_5" class="rect_unsel" />
+   <circle cx="760.800000" cy="500.000000" r="16.384000" id="xo05438_5" class="O XO XO_3 XO_unsel" />
+   <rect x="744.416000" y="517.749333" width="32.768000" height="32.768000" id="r05438_8" class="rect_sel" />
+   <path d="m 744.416000,517.749333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo05438_8" class="X XO XO_3 XO_sel" />
+   <line x1="675.466667" y1="448.800000" x2="777.866667" y2="551.200000" class="win3 win3_2 win3X" />
+  </g>
+  <g id="g05468">
+  <rect x="675.466667" y="555.466667" width="102.400000" height="102.400000" id="r05468" class="rect_win" />
+   <rect x="676.149333" y="556.149333" width="32.768000" height="32.768000" id="r05468_0" class="rect_unsel" />
+   <path d="m 676.149333,556.149333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo05468_0" class="X XO XO_3 XO_unsel" />
+   <rect x="710.282667" y="590.282667" width="32.768000" height="32.768000" id="r05468_4" class="rect_unsel" />
+   <path d="m 710.282667,590.282667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo05468_4" class="X XO XO_3 XO_unsel" />
+   <rect x="744.416000" y="590.282667" width="32.768000" height="32.768000" id="r05468_5" class="rect_unsel" />
+   <circle cx="760.800000" cy="606.666667" r="16.384000" id="xo05468_5" class="O XO XO_3 XO_unsel" />
+   <rect x="676.149333" y="624.416000" width="32.768000" height="32.768000" id="r05468_6" class="rect_unsel" />
+   <circle cx="692.533333" cy="640.800000" r="16.384000" id="xo05468_6" class="O XO XO_3 XO_unsel" />
+   <rect x="744.416000" y="624.416000" width="32.768000" height="32.768000" id="r05468_8" class="rect_sel" />
+   <path d="m 744.416000,624.416000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo05468_8" class="X XO XO_3 XO_sel" />
+   <line x1="675.466667" y1="555.466667" x2="777.866667" y2="657.866667" class="win3 win3_2 win3X" />
+  </g>
+  <g id="g05478">
+  <rect x="782.133333" y="555.466667" width="102.400000" height="102.400000" id="r05478" class="rect_win" />
+   <rect x="782.816000" y="556.149333" width="32.768000" height="32.768000" id="r05478_0" class="rect_unsel" />
+   <path d="m 782.816000,556.149333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo05478_0" class="X XO XO_3 XO_unsel" />
+   <rect x="816.949333" y="590.282667" width="32.768000" height="32.768000" id="r05478_4" class="rect_unsel" />
+   <path d="m 816.949333,590.282667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo05478_4" class="X XO XO_3 XO_unsel" />
+   <rect x="851.082667" y="590.282667" width="32.768000" height="32.768000" id="r05478_5" class="rect_unsel" />
+   <circle cx="867.466667" cy="606.666667" r="16.384000" id="xo05478_5" class="O XO XO_3 XO_unsel" />
+   <rect x="816.949333" y="624.416000" width="32.768000" height="32.768000" id="r05478_7" class="rect_unsel" />
+   <circle cx="833.333333" cy="640.800000" r="16.384000" id="xo05478_7" class="O XO XO_3 XO_unsel" />
+   <rect x="851.082667" y="624.416000" width="32.768000" height="32.768000" id="r05478_8" class="rect_sel" />
+   <path d="m 851.082667,624.416000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo05478_8" class="X XO XO_3 XO_sel" />
+   <line x1="782.133333" y1="555.466667" x2="884.533333" y2="657.866667" class="win3 win3_2 win3X" />
+  </g>
+  <g id="g05482">
+  <rect x="888.800000" y="555.466667" width="102.400000" height="102.400000" id="r05482" class="rect_subdiv" />
+   <rect x="889.482667" y="556.149333" width="32.768000" height="32.768000" id="r05482_0" class="rect_unsel" />
+   <path d="m 889.482667,556.149333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo05482_0" class="X XO XO_3 XO_unsel" />
+   <rect x="957.749333" y="556.149333" width="32.768000" height="32.768000" id="r05482_2" class="rect_sel" />
+   <path d="m 957.749333,556.149333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo05482_2" class="X XO XO_3 XO_sel" />
+   <rect x="923.616000" y="590.282667" width="32.768000" height="32.768000" id="r05482_4" class="rect_unsel" />
+   <path d="m 923.616000,590.282667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo05482_4" class="X XO XO_3 XO_unsel" />
+   <rect x="957.749333" y="590.282667" width="32.768000" height="32.768000" id="r05482_5" class="rect_unsel" />
+   <circle cx="974.133333" cy="606.666667" r="16.384000" id="xo05482_5" class="O XO XO_3 XO_unsel" />
+   <rect x="957.749333" y="624.416000" width="32.768000" height="32.768000" id="r05482_8" class="rect_unsel" />
+   <circle cx="974.133333" cy="640.800000" r="16.384000" id="xo05482_8" class="O XO XO_3 XO_unsel" />
+   <g id="g0548216">
+   <rect x="923.616000" y="556.149333" width="32.768000" height="32.768000" id="r0548216" class="rect_win" />
+    <rect x="923.834453" y="556.367787" width="10.485760" height="10.485760" id="r0548216_0" class="rect_unsel" />
+    <path d="m 923.834453,556.367787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0548216_0" class="X XO XO_4 XO_unsel" />
+    <rect x="934.757120" y="556.367787" width="10.485760" height="10.485760" id="r0548216_1" class="rect_unsel" />
+    <circle cx="940.000000" cy="561.610667" r="5.242880" id="xo0548216_1" class="O XO XO_4 XO_unsel" />
+    <rect x="945.679787" y="556.367787" width="10.485760" height="10.485760" id="r0548216_2" class="rect_unsel" />
+    <path d="m 945.679787,556.367787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0548216_2" class="X XO XO_4 XO_unsel" />
+    <rect x="934.757120" y="567.290453" width="10.485760" height="10.485760" id="r0548216_4" class="rect_unsel" />
+    <path d="m 934.757120,567.290453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0548216_4" class="X XO XO_4 XO_unsel" />
+    <rect x="945.679787" y="567.290453" width="10.485760" height="10.485760" id="r0548216_5" class="rect_unsel" />
+    <circle cx="950.922667" cy="572.533333" r="5.242880" id="xo0548216_5" class="O XO XO_4 XO_unsel" />
+    <rect x="923.834453" y="578.213120" width="10.485760" height="10.485760" id="r0548216_6" class="rect_sel" />
+    <path d="m 923.834453,578.213120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0548216_6" class="X XO XO_4 XO_sel" />
+    <rect x="945.679787" y="578.213120" width="10.485760" height="10.485760" id="r0548216_8" class="rect_unsel" />
+    <circle cx="950.922667" cy="583.456000" r="5.242880" id="xo0548216_8" class="O XO XO_4 XO_unsel" />
+    <line x1="956.384000" y1="556.149333" x2="923.616000" y2="588.917333" class="win3 win3_3 win3X" />
+   </g>
+   <g id="g0548231">
+   <rect x="889.482667" y="590.282667" width="32.768000" height="32.768000" id="r0548231" class="rect_win" />
+    <rect x="889.701120" y="590.501120" width="10.485760" height="10.485760" id="r0548231_0" class="rect_unsel" />
+    <path d="m 889.701120,590.501120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0548231_0" class="X XO XO_4 XO_unsel" />
+    <rect x="900.623787" y="590.501120" width="10.485760" height="10.485760" id="r0548231_1" class="rect_sel" />
+    <path d="m 900.623787,590.501120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0548231_1" class="X XO XO_4 XO_sel" />
+    <rect x="911.546453" y="590.501120" width="10.485760" height="10.485760" id="r0548231_2" class="rect_unsel" />
+    <path d="m 911.546453,590.501120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0548231_2" class="X XO XO_4 XO_unsel" />
+    <rect x="889.701120" y="601.423787" width="10.485760" height="10.485760" id="r0548231_3" class="rect_unsel" />
+    <circle cx="894.944000" cy="606.666667" r="5.242880" id="xo0548231_3" class="O XO XO_4 XO_unsel" />
+    <rect x="900.623787" y="601.423787" width="10.485760" height="10.485760" id="r0548231_4" class="rect_unsel" />
+    <path d="m 900.623787,601.423787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0548231_4" class="X XO XO_4 XO_unsel" />
+    <rect x="911.546453" y="601.423787" width="10.485760" height="10.485760" id="r0548231_5" class="rect_unsel" />
+    <circle cx="916.789333" cy="606.666667" r="5.242880" id="xo0548231_5" class="O XO XO_4 XO_unsel" />
+    <rect x="911.546453" y="612.346453" width="10.485760" height="10.485760" id="r0548231_8" class="rect_unsel" />
+    <circle cx="916.789333" cy="617.589333" r="5.242880" id="xo0548231_8" class="O XO XO_4 XO_unsel" />
+    <line x1="889.482667" y1="595.744000" x2="922.250667" y2="595.744000" class="win3 win3_3 win3X" />
+   </g>
+   <g id="g0548261">
+   <rect x="889.482667" y="624.416000" width="32.768000" height="32.768000" id="r0548261" class="rect_win" />
+    <rect x="889.701120" y="624.634453" width="10.485760" height="10.485760" id="r0548261_0" class="rect_unsel" />
+    <path d="m 889.701120,624.634453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0548261_0" class="X XO XO_4 XO_unsel" />
+    <rect x="900.623787" y="624.634453" width="10.485760" height="10.485760" id="r0548261_1" class="rect_sel" />
+    <path d="m 900.623787,624.634453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0548261_1" class="X XO XO_4 XO_sel" />
+    <rect x="911.546453" y="624.634453" width="10.485760" height="10.485760" id="r0548261_2" class="rect_unsel" />
+    <path d="m 911.546453,624.634453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0548261_2" class="X XO XO_4 XO_unsel" />
+    <rect x="900.623787" y="635.557120" width="10.485760" height="10.485760" id="r0548261_4" class="rect_unsel" />
+    <path d="m 900.623787,635.557120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0548261_4" class="X XO XO_4 XO_unsel" />
+    <rect x="911.546453" y="635.557120" width="10.485760" height="10.485760" id="r0548261_5" class="rect_unsel" />
+    <circle cx="916.789333" cy="640.800000" r="5.242880" id="xo0548261_5" class="O XO XO_4 XO_unsel" />
+    <rect x="889.701120" y="646.479787" width="10.485760" height="10.485760" id="r0548261_6" class="rect_unsel" />
+    <circle cx="894.944000" cy="651.722667" r="5.242880" id="xo0548261_6" class="O XO XO_4 XO_unsel" />
+    <rect x="911.546453" y="646.479787" width="10.485760" height="10.485760" id="r0548261_8" class="rect_unsel" />
+    <circle cx="916.789333" cy="651.722667" r="5.242880" id="xo0548261_8" class="O XO XO_4 XO_unsel" />
+    <line x1="889.482667" y1="629.877333" x2="922.250667" y2="629.877333" class="win3 win3_3 win3X" />
+   </g>
+   <g id="g0548271">
+   <rect x="923.616000" y="624.416000" width="32.768000" height="32.768000" id="r0548271" class="rect_win" />
+    <rect x="923.834453" y="624.634453" width="10.485760" height="10.485760" id="r0548271_0" class="rect_unsel" />
+    <path d="m 923.834453,624.634453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0548271_0" class="X XO XO_4 XO_unsel" />
+    <rect x="934.757120" y="624.634453" width="10.485760" height="10.485760" id="r0548271_1" class="rect_sel" />
+    <path d="m 934.757120,624.634453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0548271_1" class="X XO XO_4 XO_sel" />
+    <rect x="945.679787" y="624.634453" width="10.485760" height="10.485760" id="r0548271_2" class="rect_unsel" />
+    <path d="m 945.679787,624.634453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0548271_2" class="X XO XO_4 XO_unsel" />
+    <rect x="934.757120" y="635.557120" width="10.485760" height="10.485760" id="r0548271_4" class="rect_unsel" />
+    <path d="m 934.757120,635.557120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0548271_4" class="X XO XO_4 XO_unsel" />
+    <rect x="945.679787" y="635.557120" width="10.485760" height="10.485760" id="r0548271_5" class="rect_unsel" />
+    <circle cx="950.922667" cy="640.800000" r="5.242880" id="xo0548271_5" class="O XO XO_4 XO_unsel" />
+    <rect x="934.757120" y="646.479787" width="10.485760" height="10.485760" id="r0548271_7" class="rect_unsel" />
+    <circle cx="940.000000" cy="651.722667" r="5.242880" id="xo0548271_7" class="O XO XO_4 XO_unsel" />
+    <rect x="945.679787" y="646.479787" width="10.485760" height="10.485760" id="r0548271_8" class="rect_unsel" />
+    <circle cx="950.922667" cy="651.722667" r="5.242880" id="xo0548271_8" class="O XO XO_4 XO_unsel" />
+    <line x1="923.616000" y1="629.877333" x2="956.384000" y2="629.877333" class="win3 win3_3 win3X" />
+   </g>
+  </g>
+ </g>
+ <g id="g061">
+ <rect x="6.666667" y="673.333333" width="320.000000" height="320.000000" id="r061" class="rect_subdiv" />
+  <rect x="8.800000" y="675.466667" width="102.400000" height="102.400000" id="r061_0" class="rect_unsel" />
+  <path d="m 8.800000,675.466667 102.400000,102.400000 m 0.000000,-102.400000 -102.400000,102.400000" id="xo061_0" class="X XO XO_2 XO_unsel" />
+  <rect x="115.466667" y="675.466667" width="102.400000" height="102.400000" id="r061_1" class="rect_sel" />
+  <path d="m 115.466667,675.466667 102.400000,102.400000 m 0.000000,-102.400000 -102.400000,102.400000" id="xo061_1" class="X XO XO_2 XO_sel" />
+  <rect x="8.800000" y="888.800000" width="102.400000" height="102.400000" id="r061_6" class="rect_unsel" />
+  <circle cx="60.000000" cy="940.000000" r="51.200000" id="xo061_6" class="O XO XO_2 XO_unsel" />
+  <g id="g06124">
+  <rect x="222.133333" y="675.466667" width="102.400000" height="102.400000" id="r06124" class="rect_subdiv" />
+   <rect x="222.816000" y="676.149333" width="32.768000" height="32.768000" id="r06124_0" class="rect_unsel" />
+   <path d="m 222.816000,676.149333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo06124_0" class="X XO XO_3 XO_unsel" />
+   <rect x="256.949333" y="676.149333" width="32.768000" height="32.768000" id="r06124_1" class="rect_unsel" />
+   <path d="m 256.949333,676.149333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo06124_1" class="X XO XO_3 XO_unsel" />
+   <rect x="291.082667" y="676.149333" width="32.768000" height="32.768000" id="r06124_2" class="rect_unsel" />
+   <circle cx="307.466667" cy="692.533333" r="16.384000" id="xo06124_2" class="O XO XO_3 XO_unsel" />
+   <rect x="256.949333" y="710.282667" width="32.768000" height="32.768000" id="r06124_4" class="rect_sel" />
+   <path d="m 256.949333,710.282667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo06124_4" class="X XO XO_3 XO_sel" />
+   <rect x="222.816000" y="744.416000" width="32.768000" height="32.768000" id="r06124_6" class="rect_unsel" />
+   <circle cx="239.200000" cy="760.800000" r="16.384000" id="xo06124_6" class="O XO XO_3 XO_unsel" />
+   <g id="g0612437">
+   <rect x="222.816000" y="710.282667" width="32.768000" height="32.768000" id="r0612437" class="rect_win" />
+    <rect x="223.034453" y="710.501120" width="10.485760" height="10.485760" id="r0612437_0" class="rect_unsel" />
+    <path d="m 223.034453,710.501120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0612437_0" class="X XO XO_4 XO_unsel" />
+    <rect x="233.957120" y="710.501120" width="10.485760" height="10.485760" id="r0612437_1" class="rect_unsel" />
+    <path d="m 233.957120,710.501120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0612437_1" class="X XO XO_4 XO_unsel" />
+    <rect x="244.879787" y="710.501120" width="10.485760" height="10.485760" id="r0612437_2" class="rect_unsel" />
+    <circle cx="250.122667" cy="715.744000" r="5.242880" id="xo0612437_2" class="O XO XO_4 XO_unsel" />
+    <rect x="223.034453" y="721.423787" width="10.485760" height="10.485760" id="r0612437_3" class="rect_unsel" />
+    <circle cx="228.277333" cy="726.666667" r="5.242880" id="xo0612437_3" class="O XO XO_4 XO_unsel" />
+    <rect x="233.957120" y="721.423787" width="10.485760" height="10.485760" id="r0612437_4" class="rect_unsel" />
+    <path d="m 233.957120,721.423787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0612437_4" class="X XO XO_4 XO_unsel" />
+    <rect x="223.034453" y="732.346453" width="10.485760" height="10.485760" id="r0612437_6" class="rect_unsel" />
+    <circle cx="228.277333" cy="737.589333" r="5.242880" id="xo0612437_6" class="O XO XO_4 XO_unsel" />
+    <rect x="233.957120" y="732.346453" width="10.485760" height="10.485760" id="r0612437_7" class="rect_sel" />
+    <path d="m 233.957120,732.346453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0612437_7" class="X XO XO_4 XO_sel" />
+    <line x1="239.200000" y1="710.282667" x2="239.200000" y2="743.050667" class="win3 win3_3 win3X" />
+   </g>
+   <g id="g0612457">
+   <rect x="291.082667" y="710.282667" width="32.768000" height="32.768000" id="r0612457" class="rect_win" />
+    <rect x="291.301120" y="710.501120" width="10.485760" height="10.485760" id="r0612457_0" class="rect_unsel" />
+    <path d="m 291.301120,710.501120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0612457_0" class="X XO XO_4 XO_unsel" />
+    <rect x="302.223787" y="710.501120" width="10.485760" height="10.485760" id="r0612457_1" class="rect_unsel" />
+    <path d="m 302.223787,710.501120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0612457_1" class="X XO XO_4 XO_unsel" />
+    <rect x="313.146453" y="710.501120" width="10.485760" height="10.485760" id="r0612457_2" class="rect_unsel" />
+    <circle cx="318.389333" cy="715.744000" r="5.242880" id="xo0612457_2" class="O XO XO_4 XO_unsel" />
+    <rect x="302.223787" y="721.423787" width="10.485760" height="10.485760" id="r0612457_4" class="rect_unsel" />
+    <path d="m 302.223787,721.423787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0612457_4" class="X XO XO_4 XO_unsel" />
+    <rect x="313.146453" y="721.423787" width="10.485760" height="10.485760" id="r0612457_5" class="rect_unsel" />
+    <circle cx="318.389333" cy="726.666667" r="5.242880" id="xo0612457_5" class="O XO XO_4 XO_unsel" />
+    <rect x="291.301120" y="732.346453" width="10.485760" height="10.485760" id="r0612457_6" class="rect_unsel" />
+    <circle cx="296.544000" cy="737.589333" r="5.242880" id="xo0612457_6" class="O XO XO_4 XO_unsel" />
+    <rect x="302.223787" y="732.346453" width="10.485760" height="10.485760" id="r0612457_7" class="rect_sel" />
+    <path d="m 302.223787,732.346453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0612457_7" class="X XO XO_4 XO_sel" />
+    <line x1="307.466667" y1="710.282667" x2="307.466667" y2="743.050667" class="win3 win3_3 win3X" />
+   </g>
+   <g id="g0612478">
+   <rect x="256.949333" y="744.416000" width="32.768000" height="32.768000" id="r0612478" class="rect_win" />
+    <rect x="257.167787" y="744.634453" width="10.485760" height="10.485760" id="r0612478_0" class="rect_unsel" />
+    <path d="m 257.167787,744.634453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0612478_0" class="X XO XO_4 XO_unsel" />
+    <rect x="268.090453" y="744.634453" width="10.485760" height="10.485760" id="r0612478_1" class="rect_unsel" />
+    <path d="m 268.090453,744.634453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0612478_1" class="X XO XO_4 XO_unsel" />
+    <rect x="279.013120" y="744.634453" width="10.485760" height="10.485760" id="r0612478_2" class="rect_unsel" />
+    <circle cx="284.256000" cy="749.877333" r="5.242880" id="xo0612478_2" class="O XO XO_4 XO_unsel" />
+    <rect x="268.090453" y="755.557120" width="10.485760" height="10.485760" id="r0612478_4" class="rect_unsel" />
+    <path d="m 268.090453,755.557120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0612478_4" class="X XO XO_4 XO_unsel" />
+    <rect x="257.167787" y="766.479787" width="10.485760" height="10.485760" id="r0612478_6" class="rect_unsel" />
+    <circle cx="262.410667" cy="771.722667" r="5.242880" id="xo0612478_6" class="O XO XO_4 XO_unsel" />
+    <rect x="268.090453" y="766.479787" width="10.485760" height="10.485760" id="r0612478_7" class="rect_unsel" />
+    <circle cx="273.333333" cy="771.722667" r="5.242880" id="xo0612478_7" class="O XO XO_4 XO_unsel" />
+    <rect x="279.013120" y="766.479787" width="10.485760" height="10.485760" id="r0612478_8" class="rect_sel" />
+    <path d="m 279.013120,766.479787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0612478_8" class="X XO XO_4 XO_sel" />
+    <line x1="256.949333" y1="744.416000" x2="289.717333" y2="777.184000" class="win3 win3_3 win3X" />
+   </g>
+   <g id="g0612487">
+   <rect x="291.082667" y="744.416000" width="32.768000" height="32.768000" id="r0612487" class="rect_win" />
+    <rect x="291.301120" y="744.634453" width="10.485760" height="10.485760" id="r0612487_0" class="rect_unsel" />
+    <path d="m 291.301120,744.634453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0612487_0" class="X XO XO_4 XO_unsel" />
+    <rect x="302.223787" y="744.634453" width="10.485760" height="10.485760" id="r0612487_1" class="rect_unsel" />
+    <path d="m 302.223787,744.634453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0612487_1" class="X XO XO_4 XO_unsel" />
+    <rect x="313.146453" y="744.634453" width="10.485760" height="10.485760" id="r0612487_2" class="rect_unsel" />
+    <circle cx="318.389333" cy="749.877333" r="5.242880" id="xo0612487_2" class="O XO XO_4 XO_unsel" />
+    <rect x="302.223787" y="755.557120" width="10.485760" height="10.485760" id="r0612487_4" class="rect_unsel" />
+    <path d="m 302.223787,755.557120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0612487_4" class="X XO XO_4 XO_unsel" />
+    <rect x="291.301120" y="766.479787" width="10.485760" height="10.485760" id="r0612487_6" class="rect_unsel" />
+    <circle cx="296.544000" cy="771.722667" r="5.242880" id="xo0612487_6" class="O XO XO_4 XO_unsel" />
+    <rect x="302.223787" y="766.479787" width="10.485760" height="10.485760" id="r0612487_7" class="rect_sel" />
+    <path d="m 302.223787,766.479787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0612487_7" class="X XO XO_4 XO_sel" />
+    <rect x="313.146453" y="766.479787" width="10.485760" height="10.485760" id="r0612487_8" class="rect_unsel" />
+    <circle cx="318.389333" cy="771.722667" r="5.242880" id="xo0612487_8" class="O XO XO_4 XO_unsel" />
+    <line x1="307.466667" y1="744.416000" x2="307.466667" y2="777.184000" class="win3 win3_3 win3X" />
+   </g>
+  </g>
+  <g id="g06132">
+  <rect x="8.800000" y="782.133333" width="102.400000" height="102.400000" id="r06132" class="rect_win" />
+   <rect x="9.482667" y="782.816000" width="32.768000" height="32.768000" id="r06132_0" class="rect_unsel" />
+   <path d="m 9.482667,782.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo06132_0" class="X XO XO_3 XO_unsel" />
+   <rect x="43.616000" y="782.816000" width="32.768000" height="32.768000" id="r06132_1" class="rect_unsel" />
+   <path d="m 43.616000,782.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo06132_1" class="X XO XO_3 XO_unsel" />
+   <rect x="77.749333" y="782.816000" width="32.768000" height="32.768000" id="r06132_2" class="rect_sel" />
+   <path d="m 77.749333,782.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo06132_2" class="X XO XO_3 XO_sel" />
+   <rect x="9.482667" y="816.949333" width="32.768000" height="32.768000" id="r06132_3" class="rect_unsel" />
+   <circle cx="25.866667" cy="833.333333" r="16.384000" id="xo06132_3" class="O XO XO_3 XO_unsel" />
+   <rect x="9.482667" y="851.082667" width="32.768000" height="32.768000" id="r06132_6" class="rect_unsel" />
+   <circle cx="25.866667" cy="867.466667" r="16.384000" id="xo06132_6" class="O XO XO_3 XO_unsel" />
+   <line x1="8.800000" y1="799.200000" x2="111.200000" y2="799.200000" class="win3 win3_2 win3X" />
+  </g>
+  <g id="g06142">
+  <rect x="115.466667" y="782.133333" width="102.400000" height="102.400000" id="r06142" class="rect_win" />
+   <rect x="116.149333" y="782.816000" width="32.768000" height="32.768000" id="r06142_0" class="rect_unsel" />
+   <path d="m 116.149333,782.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo06142_0" class="X XO XO_3 XO_unsel" />
+   <rect x="150.282667" y="782.816000" width="32.768000" height="32.768000" id="r06142_1" class="rect_unsel" />
+   <path d="m 150.282667,782.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo06142_1" class="X XO XO_3 XO_unsel" />
+   <rect x="184.416000" y="782.816000" width="32.768000" height="32.768000" id="r06142_2" class="rect_sel" />
+   <path d="m 184.416000,782.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo06142_2" class="X XO XO_3 XO_sel" />
+   <rect x="150.282667" y="816.949333" width="32.768000" height="32.768000" id="r06142_4" class="rect_unsel" />
+   <circle cx="166.666667" cy="833.333333" r="16.384000" id="xo06142_4" class="O XO XO_3 XO_unsel" />
+   <rect x="116.149333" y="851.082667" width="32.768000" height="32.768000" id="r06142_6" class="rect_unsel" />
+   <circle cx="132.533333" cy="867.466667" r="16.384000" id="xo06142_6" class="O XO XO_3 XO_unsel" />
+   <line x1="115.466667" y1="799.200000" x2="217.866667" y2="799.200000" class="win3 win3_2 win3X" />
+  </g>
+  <g id="g06152">
+  <rect x="222.133333" y="782.133333" width="102.400000" height="102.400000" id="r06152" class="rect_win" />
+   <rect x="222.816000" y="782.816000" width="32.768000" height="32.768000" id="r06152_0" class="rect_unsel" />
+   <path d="m 222.816000,782.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo06152_0" class="X XO XO_3 XO_unsel" />
+   <rect x="256.949333" y="782.816000" width="32.768000" height="32.768000" id="r06152_1" class="rect_unsel" />
+   <path d="m 256.949333,782.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo06152_1" class="X XO XO_3 XO_unsel" />
+   <rect x="291.082667" y="782.816000" width="32.768000" height="32.768000" id="r06152_2" class="rect_sel" />
+   <path d="m 291.082667,782.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo06152_2" class="X XO XO_3 XO_sel" />
+   <rect x="291.082667" y="816.949333" width="32.768000" height="32.768000" id="r06152_5" class="rect_unsel" />
+   <circle cx="307.466667" cy="833.333333" r="16.384000" id="xo06152_5" class="O XO XO_3 XO_unsel" />
+   <rect x="222.816000" y="851.082667" width="32.768000" height="32.768000" id="r06152_6" class="rect_unsel" />
+   <circle cx="239.200000" cy="867.466667" r="16.384000" id="xo06152_6" class="O XO XO_3 XO_unsel" />
+   <line x1="222.133333" y1="799.200000" x2="324.533333" y2="799.200000" class="win3 win3_2 win3X" />
+  </g>
+  <g id="g06172">
+  <rect x="115.466667" y="888.800000" width="102.400000" height="102.400000" id="r06172" class="rect_win" />
+   <rect x="116.149333" y="889.482667" width="32.768000" height="32.768000" id="r06172_0" class="rect_unsel" />
+   <path d="m 116.149333,889.482667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo06172_0" class="X XO XO_3 XO_unsel" />
+   <rect x="150.282667" y="889.482667" width="32.768000" height="32.768000" id="r06172_1" class="rect_unsel" />
+   <path d="m 150.282667,889.482667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo06172_1" class="X XO XO_3 XO_unsel" />
+   <rect x="184.416000" y="889.482667" width="32.768000" height="32.768000" id="r06172_2" class="rect_sel" />
+   <path d="m 184.416000,889.482667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo06172_2" class="X XO XO_3 XO_sel" />
+   <rect x="116.149333" y="957.749333" width="32.768000" height="32.768000" id="r06172_6" class="rect_unsel" />
+   <circle cx="132.533333" cy="974.133333" r="16.384000" id="xo06172_6" class="O XO XO_3 XO_unsel" />
+   <rect x="150.282667" y="957.749333" width="32.768000" height="32.768000" id="r06172_7" class="rect_unsel" />
+   <circle cx="166.666667" cy="974.133333" r="16.384000" id="xo06172_7" class="O XO XO_3 XO_unsel" />
+   <line x1="115.466667" y1="905.866667" x2="217.866667" y2="905.866667" class="win3 win3_2 win3X" />
+  </g>
+  <g id="g06182">
+  <rect x="222.133333" y="888.800000" width="102.400000" height="102.400000" id="r06182" class="rect_win" />
+   <rect x="222.816000" y="889.482667" width="32.768000" height="32.768000" id="r06182_0" class="rect_unsel" />
+   <path d="m 222.816000,889.482667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo06182_0" class="X XO XO_3 XO_unsel" />
+   <rect x="256.949333" y="889.482667" width="32.768000" height="32.768000" id="r06182_1" class="rect_unsel" />
+   <path d="m 256.949333,889.482667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo06182_1" class="X XO XO_3 XO_unsel" />
+   <rect x="291.082667" y="889.482667" width="32.768000" height="32.768000" id="r06182_2" class="rect_sel" />
+   <path d="m 291.082667,889.482667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo06182_2" class="X XO XO_3 XO_sel" />
+   <rect x="222.816000" y="957.749333" width="32.768000" height="32.768000" id="r06182_6" class="rect_unsel" />
+   <circle cx="239.200000" cy="974.133333" r="16.384000" id="xo06182_6" class="O XO XO_3 XO_unsel" />
+   <rect x="291.082667" y="957.749333" width="32.768000" height="32.768000" id="r06182_8" class="rect_unsel" />
+   <circle cx="307.466667" cy="974.133333" r="16.384000" id="xo06182_8" class="O XO XO_3 XO_unsel" />
+   <line x1="222.133333" y1="905.866667" x2="324.533333" y2="905.866667" class="win3 win3_2 win3X" />
+  </g>
+ </g>
+ <g id="g072">
+ <rect x="340.000000" y="673.333333" width="320.000000" height="320.000000" id="r072" class="rect_subdiv" />
+  <rect x="342.133333" y="675.466667" width="102.400000" height="102.400000" id="r072_0" class="rect_unsel" />
+  <path d="m 342.133333,675.466667 102.400000,102.400000 m 0.000000,-102.400000 -102.400000,102.400000" id="xo072_0" class="X XO XO_2 XO_unsel" />
+  <rect x="555.466667" y="675.466667" width="102.400000" height="102.400000" id="r072_2" class="rect_sel" />
+  <path d="m 555.466667,675.466667 102.400000,102.400000 m 0.000000,-102.400000 -102.400000,102.400000" id="xo072_2" class="X XO XO_2 XO_sel" />
+  <rect x="448.800000" y="888.800000" width="102.400000" height="102.400000" id="r072_7" class="rect_unsel" />
+  <circle cx="500.000000" cy="940.000000" r="51.200000" id="xo072_7" class="O XO XO_2 XO_unsel" />
+  <g id="g07214">
+  <rect x="448.800000" y="675.466667" width="102.400000" height="102.400000" id="r07214" class="rect_subdiv" />
+   <rect x="449.482667" y="676.149333" width="32.768000" height="32.768000" id="r07214_0" class="rect_unsel" />
+   <path d="m 449.482667,676.149333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo07214_0" class="X XO XO_3 XO_unsel" />
+   <rect x="483.616000" y="676.149333" width="32.768000" height="32.768000" id="r07214_1" class="rect_unsel" />
+   <circle cx="500.000000" cy="692.533333" r="16.384000" id="xo07214_1" class="O XO XO_3 XO_unsel" />
+   <rect x="517.749333" y="676.149333" width="32.768000" height="32.768000" id="r07214_2" class="rect_unsel" />
+   <path d="m 517.749333,676.149333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo07214_2" class="X XO XO_3 XO_unsel" />
+   <rect x="483.616000" y="710.282667" width="32.768000" height="32.768000" id="r07214_4" class="rect_sel" />
+   <path d="m 483.616000,710.282667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo07214_4" class="X XO XO_3 XO_sel" />
+   <rect x="483.616000" y="744.416000" width="32.768000" height="32.768000" id="r07214_7" class="rect_unsel" />
+   <circle cx="500.000000" cy="760.800000" r="16.384000" id="xo07214_7" class="O XO XO_3 XO_unsel" />
+   <g id="g0721436">
+   <rect x="449.482667" y="710.282667" width="32.768000" height="32.768000" id="r0721436" class="rect_win" />
+    <rect x="449.701120" y="710.501120" width="10.485760" height="10.485760" id="r0721436_0" class="rect_unsel" />
+    <path d="m 449.701120,710.501120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0721436_0" class="X XO XO_4 XO_unsel" />
+    <rect x="460.623787" y="710.501120" width="10.485760" height="10.485760" id="r0721436_1" class="rect_unsel" />
+    <circle cx="465.866667" cy="715.744000" r="5.242880" id="xo0721436_1" class="O XO XO_4 XO_unsel" />
+    <rect x="471.546453" y="710.501120" width="10.485760" height="10.485760" id="r0721436_2" class="rect_unsel" />
+    <path d="m 471.546453,710.501120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0721436_2" class="X XO XO_4 XO_unsel" />
+    <rect x="449.701120" y="721.423787" width="10.485760" height="10.485760" id="r0721436_3" class="rect_unsel" />
+    <circle cx="454.944000" cy="726.666667" r="5.242880" id="xo0721436_3" class="O XO XO_4 XO_unsel" />
+    <rect x="460.623787" y="721.423787" width="10.485760" height="10.485760" id="r0721436_4" class="rect_unsel" />
+    <path d="m 460.623787,721.423787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0721436_4" class="X XO XO_4 XO_unsel" />
+    <rect x="449.701120" y="732.346453" width="10.485760" height="10.485760" id="r0721436_6" class="rect_sel" />
+    <path d="m 449.701120,732.346453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0721436_6" class="X XO XO_4 XO_sel" />
+    <rect x="460.623787" y="732.346453" width="10.485760" height="10.485760" id="r0721436_7" class="rect_unsel" />
+    <circle cx="465.866667" cy="737.589333" r="5.242880" id="xo0721436_7" class="O XO XO_4 XO_unsel" />
+    <line x1="482.250667" y1="710.282667" x2="449.482667" y2="743.050667" class="win3 win3_3 win3X" />
+   </g>
+   <g id="g0721456">
+   <rect x="517.749333" y="710.282667" width="32.768000" height="32.768000" id="r0721456" class="rect_win" />
+    <rect x="517.967787" y="710.501120" width="10.485760" height="10.485760" id="r0721456_0" class="rect_unsel" />
+    <path d="m 517.967787,710.501120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0721456_0" class="X XO XO_4 XO_unsel" />
+    <rect x="528.890453" y="710.501120" width="10.485760" height="10.485760" id="r0721456_1" class="rect_unsel" />
+    <circle cx="534.133333" cy="715.744000" r="5.242880" id="xo0721456_1" class="O XO XO_4 XO_unsel" />
+    <rect x="539.813120" y="710.501120" width="10.485760" height="10.485760" id="r0721456_2" class="rect_unsel" />
+    <path d="m 539.813120,710.501120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0721456_2" class="X XO XO_4 XO_unsel" />
+    <rect x="528.890453" y="721.423787" width="10.485760" height="10.485760" id="r0721456_4" class="rect_unsel" />
+    <path d="m 528.890453,721.423787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0721456_4" class="X XO XO_4 XO_unsel" />
+    <rect x="539.813120" y="721.423787" width="10.485760" height="10.485760" id="r0721456_5" class="rect_unsel" />
+    <circle cx="545.056000" cy="726.666667" r="5.242880" id="xo0721456_5" class="O XO XO_4 XO_unsel" />
+    <rect x="517.967787" y="732.346453" width="10.485760" height="10.485760" id="r0721456_6" class="rect_sel" />
+    <path d="m 517.967787,732.346453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0721456_6" class="X XO XO_4 XO_sel" />
+    <rect x="528.890453" y="732.346453" width="10.485760" height="10.485760" id="r0721456_7" class="rect_unsel" />
+    <circle cx="534.133333" cy="737.589333" r="5.242880" id="xo0721456_7" class="O XO XO_4 XO_unsel" />
+    <line x1="550.517333" y1="710.282667" x2="517.749333" y2="743.050667" class="win3 win3_3 win3X" />
+   </g>
+   <g id="g0721468">
+   <rect x="449.482667" y="744.416000" width="32.768000" height="32.768000" id="r0721468" class="rect_win" />
+    <rect x="449.701120" y="744.634453" width="10.485760" height="10.485760" id="r0721468_0" class="rect_unsel" />
+    <path d="m 449.701120,744.634453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0721468_0" class="X XO XO_4 XO_unsel" />
+    <rect x="460.623787" y="744.634453" width="10.485760" height="10.485760" id="r0721468_1" class="rect_unsel" />
+    <circle cx="465.866667" cy="749.877333" r="5.242880" id="xo0721468_1" class="O XO XO_4 XO_unsel" />
+    <rect x="471.546453" y="744.634453" width="10.485760" height="10.485760" id="r0721468_2" class="rect_unsel" />
+    <path d="m 471.546453,744.634453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0721468_2" class="X XO XO_4 XO_unsel" />
+    <rect x="460.623787" y="755.557120" width="10.485760" height="10.485760" id="r0721468_4" class="rect_unsel" />
+    <path d="m 460.623787,755.557120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0721468_4" class="X XO XO_4 XO_unsel" />
+    <rect x="449.701120" y="766.479787" width="10.485760" height="10.485760" id="r0721468_6" class="rect_unsel" />
+    <circle cx="454.944000" cy="771.722667" r="5.242880" id="xo0721468_6" class="O XO XO_4 XO_unsel" />
+    <rect x="460.623787" y="766.479787" width="10.485760" height="10.485760" id="r0721468_7" class="rect_unsel" />
+    <circle cx="465.866667" cy="771.722667" r="5.242880" id="xo0721468_7" class="O XO XO_4 XO_unsel" />
+    <rect x="471.546453" y="766.479787" width="10.485760" height="10.485760" id="r0721468_8" class="rect_sel" />
+    <path d="m 471.546453,766.479787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0721468_8" class="X XO XO_4 XO_sel" />
+    <line x1="449.482667" y1="744.416000" x2="482.250667" y2="777.184000" class="win3 win3_3 win3X" />
+   </g>
+   <g id="g0721486">
+   <rect x="517.749333" y="744.416000" width="32.768000" height="32.768000" id="r0721486" class="rect_win" />
+    <rect x="517.967787" y="744.634453" width="10.485760" height="10.485760" id="r0721486_0" class="rect_unsel" />
+    <path d="m 517.967787,744.634453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0721486_0" class="X XO XO_4 XO_unsel" />
+    <rect x="528.890453" y="744.634453" width="10.485760" height="10.485760" id="r0721486_1" class="rect_unsel" />
+    <circle cx="534.133333" cy="749.877333" r="5.242880" id="xo0721486_1" class="O XO XO_4 XO_unsel" />
+    <rect x="539.813120" y="744.634453" width="10.485760" height="10.485760" id="r0721486_2" class="rect_unsel" />
+    <path d="m 539.813120,744.634453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0721486_2" class="X XO XO_4 XO_unsel" />
+    <rect x="528.890453" y="755.557120" width="10.485760" height="10.485760" id="r0721486_4" class="rect_unsel" />
+    <path d="m 528.890453,755.557120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0721486_4" class="X XO XO_4 XO_unsel" />
+    <rect x="517.967787" y="766.479787" width="10.485760" height="10.485760" id="r0721486_6" class="rect_sel" />
+    <path d="m 517.967787,766.479787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0721486_6" class="X XO XO_4 XO_sel" />
+    <rect x="528.890453" y="766.479787" width="10.485760" height="10.485760" id="r0721486_7" class="rect_unsel" />
+    <circle cx="534.133333" cy="771.722667" r="5.242880" id="xo0721486_7" class="O XO XO_4 XO_unsel" />
+    <rect x="539.813120" y="766.479787" width="10.485760" height="10.485760" id="r0721486_8" class="rect_unsel" />
+    <circle cx="545.056000" cy="771.722667" r="5.242880" id="xo0721486_8" class="O XO XO_4 XO_unsel" />
+    <line x1="550.517333" y1="744.416000" x2="517.749333" y2="777.184000" class="win3 win3_3 win3X" />
+   </g>
+  </g>
+  <g id="g07231">
+  <rect x="342.133333" y="782.133333" width="102.400000" height="102.400000" id="r07231" class="rect_win" />
+   <rect x="342.816000" y="782.816000" width="32.768000" height="32.768000" id="r07231_0" class="rect_unsel" />
+   <path d="m 342.816000,782.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo07231_0" class="X XO XO_3 XO_unsel" />
+   <rect x="376.949333" y="782.816000" width="32.768000" height="32.768000" id="r07231_1" class="rect_sel" />
+   <path d="m 376.949333,782.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo07231_1" class="X XO XO_3 XO_sel" />
+   <rect x="411.082667" y="782.816000" width="32.768000" height="32.768000" id="r07231_2" class="rect_unsel" />
+   <path d="m 411.082667,782.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo07231_2" class="X XO XO_3 XO_unsel" />
+   <rect x="342.816000" y="816.949333" width="32.768000" height="32.768000" id="r07231_3" class="rect_unsel" />
+   <circle cx="359.200000" cy="833.333333" r="16.384000" id="xo07231_3" class="O XO XO_3 XO_unsel" />
+   <rect x="376.949333" y="851.082667" width="32.768000" height="32.768000" id="r07231_7" class="rect_unsel" />
+   <circle cx="393.333333" cy="867.466667" r="16.384000" id="xo07231_7" class="O XO XO_3 XO_unsel" />
+   <line x1="342.133333" y1="799.200000" x2="444.533333" y2="799.200000" class="win3 win3_2 win3X" />
+  </g>
+  <g id="g07241">
+  <rect x="448.800000" y="782.133333" width="102.400000" height="102.400000" id="r07241" class="rect_win" />
+   <rect x="449.482667" y="782.816000" width="32.768000" height="32.768000" id="r07241_0" class="rect_unsel" />
+   <path d="m 449.482667,782.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo07241_0" class="X XO XO_3 XO_unsel" />
+   <rect x="483.616000" y="782.816000" width="32.768000" height="32.768000" id="r07241_1" class="rect_sel" />
+   <path d="m 483.616000,782.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo07241_1" class="X XO XO_3 XO_sel" />
+   <rect x="517.749333" y="782.816000" width="32.768000" height="32.768000" id="r07241_2" class="rect_unsel" />
+   <path d="m 517.749333,782.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo07241_2" class="X XO XO_3 XO_unsel" />
+   <rect x="483.616000" y="816.949333" width="32.768000" height="32.768000" id="r07241_4" class="rect_unsel" />
+   <circle cx="500.000000" cy="833.333333" r="16.384000" id="xo07241_4" class="O XO XO_3 XO_unsel" />
+   <rect x="483.616000" y="851.082667" width="32.768000" height="32.768000" id="r07241_7" class="rect_unsel" />
+   <circle cx="500.000000" cy="867.466667" r="16.384000" id="xo07241_7" class="O XO XO_3 XO_unsel" />
+   <line x1="448.800000" y1="799.200000" x2="551.200000" y2="799.200000" class="win3 win3_2 win3X" />
+  </g>
+  <g id="g07251">
+  <rect x="555.466667" y="782.133333" width="102.400000" height="102.400000" id="r07251" class="rect_win" />
+   <rect x="556.149333" y="782.816000" width="32.768000" height="32.768000" id="r07251_0" class="rect_unsel" />
+   <path d="m 556.149333,782.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo07251_0" class="X XO XO_3 XO_unsel" />
+   <rect x="590.282667" y="782.816000" width="32.768000" height="32.768000" id="r07251_1" class="rect_sel" />
+   <path d="m 590.282667,782.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo07251_1" class="X XO XO_3 XO_sel" />
+   <rect x="624.416000" y="782.816000" width="32.768000" height="32.768000" id="r07251_2" class="rect_unsel" />
+   <path d="m 624.416000,782.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo07251_2" class="X XO XO_3 XO_unsel" />
+   <rect x="624.416000" y="816.949333" width="32.768000" height="32.768000" id="r07251_5" class="rect_unsel" />
+   <circle cx="640.800000" cy="833.333333" r="16.384000" id="xo07251_5" class="O XO XO_3 XO_unsel" />
+   <rect x="590.282667" y="851.082667" width="32.768000" height="32.768000" id="r07251_7" class="rect_unsel" />
+   <circle cx="606.666667" cy="867.466667" r="16.384000" id="xo07251_7" class="O XO XO_3 XO_unsel" />
+   <line x1="555.466667" y1="799.200000" x2="657.866667" y2="799.200000" class="win3 win3_2 win3X" />
+  </g>
+  <g id="g07261">
+  <rect x="342.133333" y="888.800000" width="102.400000" height="102.400000" id="r07261" class="rect_win" />
+   <rect x="342.816000" y="889.482667" width="32.768000" height="32.768000" id="r07261_0" class="rect_unsel" />
+   <path d="m 342.816000,889.482667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo07261_0" class="X XO XO_3 XO_unsel" />
+   <rect x="376.949333" y="889.482667" width="32.768000" height="32.768000" id="r07261_1" class="rect_sel" />
+   <path d="m 376.949333,889.482667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo07261_1" class="X XO XO_3 XO_sel" />
+   <rect x="411.082667" y="889.482667" width="32.768000" height="32.768000" id="r07261_2" class="rect_unsel" />
+   <path d="m 411.082667,889.482667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo07261_2" class="X XO XO_3 XO_unsel" />
+   <rect x="342.816000" y="957.749333" width="32.768000" height="32.768000" id="r07261_6" class="rect_unsel" />
+   <circle cx="359.200000" cy="974.133333" r="16.384000" id="xo07261_6" class="O XO XO_3 XO_unsel" />
+   <rect x="376.949333" y="957.749333" width="32.768000" height="32.768000" id="r07261_7" class="rect_unsel" />
+   <circle cx="393.333333" cy="974.133333" r="16.384000" id="xo07261_7" class="O XO XO_3 XO_unsel" />
+   <line x1="342.133333" y1="905.866667" x2="444.533333" y2="905.866667" class="win3 win3_2 win3X" />
+  </g>
+  <g id="g07281">
+  <rect x="555.466667" y="888.800000" width="102.400000" height="102.400000" id="r07281" class="rect_win" />
+   <rect x="556.149333" y="889.482667" width="32.768000" height="32.768000" id="r07281_0" class="rect_unsel" />
+   <path d="m 556.149333,889.482667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo07281_0" class="X XO XO_3 XO_unsel" />
+   <rect x="590.282667" y="889.482667" width="32.768000" height="32.768000" id="r07281_1" class="rect_sel" />
+   <path d="m 590.282667,889.482667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo07281_1" class="X XO XO_3 XO_sel" />
+   <rect x="624.416000" y="889.482667" width="32.768000" height="32.768000" id="r07281_2" class="rect_unsel" />
+   <path d="m 624.416000,889.482667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo07281_2" class="X XO XO_3 XO_unsel" />
+   <rect x="590.282667" y="957.749333" width="32.768000" height="32.768000" id="r07281_7" class="rect_unsel" />
+   <circle cx="606.666667" cy="974.133333" r="16.384000" id="xo07281_7" class="O XO XO_3 XO_unsel" />
+   <rect x="624.416000" y="957.749333" width="32.768000" height="32.768000" id="r07281_8" class="rect_unsel" />
+   <circle cx="640.800000" cy="974.133333" r="16.384000" id="xo07281_8" class="O XO XO_3 XO_unsel" />
+   <line x1="555.466667" y1="905.866667" x2="657.866667" y2="905.866667" class="win3 win3_2 win3X" />
+  </g>
+ </g>
+ <g id="g082">
+ <rect x="673.333333" y="673.333333" width="320.000000" height="320.000000" id="r082" class="rect_subdiv" />
+  <rect x="675.466667" y="675.466667" width="102.400000" height="102.400000" id="r082_0" class="rect_unsel" />
+  <path d="m 675.466667,675.466667 102.400000,102.400000 m 0.000000,-102.400000 -102.400000,102.400000" id="xo082_0" class="X XO XO_2 XO_unsel" />
+  <rect x="888.800000" y="675.466667" width="102.400000" height="102.400000" id="r082_2" class="rect_sel" />
+  <path d="m 888.800000,675.466667 102.400000,102.400000 m 0.000000,-102.400000 -102.400000,102.400000" id="xo082_2" class="X XO XO_2 XO_sel" />
+  <rect x="888.800000" y="888.800000" width="102.400000" height="102.400000" id="r082_8" class="rect_unsel" />
+  <circle cx="940.000000" cy="940.000000" r="51.200000" id="xo082_8" class="O XO XO_2 XO_unsel" />
+  <g id="g08216">
+  <rect x="782.133333" y="675.466667" width="102.400000" height="102.400000" id="r08216" class="rect_subdiv" />
+   <rect x="782.816000" y="676.149333" width="32.768000" height="32.768000" id="r08216_0" class="rect_unsel" />
+   <path d="m 782.816000,676.149333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo08216_0" class="X XO XO_3 XO_unsel" />
+   <rect x="816.949333" y="676.149333" width="32.768000" height="32.768000" id="r08216_1" class="rect_unsel" />
+   <circle cx="833.333333" cy="692.533333" r="16.384000" id="xo08216_1" class="O XO XO_3 XO_unsel" />
+   <rect x="851.082667" y="676.149333" width="32.768000" height="32.768000" id="r08216_2" class="rect_unsel" />
+   <path d="m 851.082667,676.149333 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo08216_2" class="X XO XO_3 XO_unsel" />
+   <rect x="782.816000" y="744.416000" width="32.768000" height="32.768000" id="r08216_6" class="rect_sel" />
+   <path d="m 782.816000,744.416000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo08216_6" class="X XO XO_3 XO_sel" />
+   <rect x="851.082667" y="744.416000" width="32.768000" height="32.768000" id="r08216_8" class="rect_unsel" />
+   <circle cx="867.466667" cy="760.800000" r="16.384000" id="xo08216_8" class="O XO XO_3 XO_unsel" />
+   <g id="g0821634">
+   <rect x="782.816000" y="710.282667" width="32.768000" height="32.768000" id="r0821634" class="rect_win" />
+    <rect x="783.034453" y="710.501120" width="10.485760" height="10.485760" id="r0821634_0" class="rect_unsel" />
+    <path d="m 783.034453,710.501120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0821634_0" class="X XO XO_4 XO_unsel" />
+    <rect x="793.957120" y="710.501120" width="10.485760" height="10.485760" id="r0821634_1" class="rect_unsel" />
+    <circle cx="799.200000" cy="715.744000" r="5.242880" id="xo0821634_1" class="O XO XO_4 XO_unsel" />
+    <rect x="804.879787" y="710.501120" width="10.485760" height="10.485760" id="r0821634_2" class="rect_unsel" />
+    <path d="m 804.879787,710.501120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0821634_2" class="X XO XO_4 XO_unsel" />
+    <rect x="783.034453" y="721.423787" width="10.485760" height="10.485760" id="r0821634_3" class="rect_unsel" />
+    <circle cx="788.277333" cy="726.666667" r="5.242880" id="xo0821634_3" class="O XO XO_4 XO_unsel" />
+    <rect x="793.957120" y="721.423787" width="10.485760" height="10.485760" id="r0821634_4" class="rect_sel" />
+    <path d="m 793.957120,721.423787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0821634_4" class="X XO XO_4 XO_sel" />
+    <rect x="783.034453" y="732.346453" width="10.485760" height="10.485760" id="r0821634_6" class="rect_unsel" />
+    <path d="m 783.034453,732.346453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0821634_6" class="X XO XO_4 XO_unsel" />
+    <rect x="804.879787" y="732.346453" width="10.485760" height="10.485760" id="r0821634_8" class="rect_unsel" />
+    <circle cx="810.122667" cy="737.589333" r="5.242880" id="xo0821634_8" class="O XO XO_4 XO_unsel" />
+    <line x1="815.584000" y1="710.282667" x2="782.816000" y2="743.050667" class="win3 win3_3 win3X" />
+   </g>
+   <g id="g0821643">
+   <rect x="816.949333" y="710.282667" width="32.768000" height="32.768000" id="r0821643" class="rect_win" />
+    <rect x="817.167787" y="710.501120" width="10.485760" height="10.485760" id="r0821643_0" class="rect_unsel" />
+    <path d="m 817.167787,710.501120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0821643_0" class="X XO XO_4 XO_unsel" />
+    <rect x="828.090453" y="710.501120" width="10.485760" height="10.485760" id="r0821643_1" class="rect_unsel" />
+    <circle cx="833.333333" cy="715.744000" r="5.242880" id="xo0821643_1" class="O XO XO_4 XO_unsel" />
+    <rect x="839.013120" y="710.501120" width="10.485760" height="10.485760" id="r0821643_2" class="rect_unsel" />
+    <path d="m 839.013120,710.501120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0821643_2" class="X XO XO_4 XO_unsel" />
+    <rect x="817.167787" y="721.423787" width="10.485760" height="10.485760" id="r0821643_3" class="rect_sel" />
+    <path d="m 817.167787,721.423787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0821643_3" class="X XO XO_4 XO_sel" />
+    <rect x="828.090453" y="721.423787" width="10.485760" height="10.485760" id="r0821643_4" class="rect_unsel" />
+    <circle cx="833.333333" cy="726.666667" r="5.242880" id="xo0821643_4" class="O XO XO_4 XO_unsel" />
+    <rect x="817.167787" y="732.346453" width="10.485760" height="10.485760" id="r0821643_6" class="rect_unsel" />
+    <path d="m 817.167787,732.346453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0821643_6" class="X XO XO_4 XO_unsel" />
+    <rect x="839.013120" y="732.346453" width="10.485760" height="10.485760" id="r0821643_8" class="rect_unsel" />
+    <circle cx="844.256000" cy="737.589333" r="5.242880" id="xo0821643_8" class="O XO XO_4 XO_unsel" />
+    <line x1="822.410667" y1="710.282667" x2="822.410667" y2="743.050667" class="win3 win3_3 win3X" />
+   </g>
+   <g id="g0821653">
+   <rect x="851.082667" y="710.282667" width="32.768000" height="32.768000" id="r0821653" class="rect_win" />
+    <rect x="851.301120" y="710.501120" width="10.485760" height="10.485760" id="r0821653_0" class="rect_unsel" />
+    <path d="m 851.301120,710.501120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0821653_0" class="X XO XO_4 XO_unsel" />
+    <rect x="862.223787" y="710.501120" width="10.485760" height="10.485760" id="r0821653_1" class="rect_unsel" />
+    <circle cx="867.466667" cy="715.744000" r="5.242880" id="xo0821653_1" class="O XO XO_4 XO_unsel" />
+    <rect x="873.146453" y="710.501120" width="10.485760" height="10.485760" id="r0821653_2" class="rect_unsel" />
+    <path d="m 873.146453,710.501120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0821653_2" class="X XO XO_4 XO_unsel" />
+    <rect x="851.301120" y="721.423787" width="10.485760" height="10.485760" id="r0821653_3" class="rect_sel" />
+    <path d="m 851.301120,721.423787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0821653_3" class="X XO XO_4 XO_sel" />
+    <rect x="873.146453" y="721.423787" width="10.485760" height="10.485760" id="r0821653_5" class="rect_unsel" />
+    <circle cx="878.389333" cy="726.666667" r="5.242880" id="xo0821653_5" class="O XO XO_4 XO_unsel" />
+    <rect x="851.301120" y="732.346453" width="10.485760" height="10.485760" id="r0821653_6" class="rect_unsel" />
+    <path d="m 851.301120,732.346453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0821653_6" class="X XO XO_4 XO_unsel" />
+    <rect x="873.146453" y="732.346453" width="10.485760" height="10.485760" id="r0821653_8" class="rect_unsel" />
+    <circle cx="878.389333" cy="737.589333" r="5.242880" id="xo0821653_8" class="O XO XO_4 XO_unsel" />
+    <line x1="856.544000" y1="710.282667" x2="856.544000" y2="743.050667" class="win3 win3_3 win3X" />
+   </g>
+   <g id="g0821673">
+   <rect x="816.949333" y="744.416000" width="32.768000" height="32.768000" id="r0821673" class="rect_win" />
+    <rect x="817.167787" y="744.634453" width="10.485760" height="10.485760" id="r0821673_0" class="rect_unsel" />
+    <path d="m 817.167787,744.634453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0821673_0" class="X XO XO_4 XO_unsel" />
+    <rect x="828.090453" y="744.634453" width="10.485760" height="10.485760" id="r0821673_1" class="rect_unsel" />
+    <circle cx="833.333333" cy="749.877333" r="5.242880" id="xo0821673_1" class="O XO XO_4 XO_unsel" />
+    <rect x="839.013120" y="744.634453" width="10.485760" height="10.485760" id="r0821673_2" class="rect_unsel" />
+    <path d="m 839.013120,744.634453 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0821673_2" class="X XO XO_4 XO_unsel" />
+    <rect x="817.167787" y="755.557120" width="10.485760" height="10.485760" id="r0821673_3" class="rect_sel" />
+    <path d="m 817.167787,755.557120 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0821673_3" class="X XO XO_4 XO_sel" />
+    <rect x="817.167787" y="766.479787" width="10.485760" height="10.485760" id="r0821673_6" class="rect_unsel" />
+    <path d="m 817.167787,766.479787 10.485760,10.485760 m 0.000000,-10.485760 -10.485760,10.485760" id="xo0821673_6" class="X XO XO_4 XO_unsel" />
+    <rect x="828.090453" y="766.479787" width="10.485760" height="10.485760" id="r0821673_7" class="rect_unsel" />
+    <circle cx="833.333333" cy="771.722667" r="5.242880" id="xo0821673_7" class="O XO XO_4 XO_unsel" />
+    <rect x="839.013120" y="766.479787" width="10.485760" height="10.485760" id="r0821673_8" class="rect_unsel" />
+    <circle cx="844.256000" cy="771.722667" r="5.242880" id="xo0821673_8" class="O XO XO_4 XO_unsel" />
+    <line x1="822.410667" y1="744.416000" x2="822.410667" y2="777.184000" class="win3 win3_3 win3X" />
+   </g>
+  </g>
+  <g id="g08231">
+  <rect x="675.466667" y="782.133333" width="102.400000" height="102.400000" id="r08231" class="rect_win" />
+   <rect x="676.149333" y="782.816000" width="32.768000" height="32.768000" id="r08231_0" class="rect_unsel" />
+   <path d="m 676.149333,782.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo08231_0" class="X XO XO_3 XO_unsel" />
+   <rect x="710.282667" y="782.816000" width="32.768000" height="32.768000" id="r08231_1" class="rect_sel" />
+   <path d="m 710.282667,782.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo08231_1" class="X XO XO_3 XO_sel" />
+   <rect x="744.416000" y="782.816000" width="32.768000" height="32.768000" id="r08231_2" class="rect_unsel" />
+   <path d="m 744.416000,782.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo08231_2" class="X XO XO_3 XO_unsel" />
+   <rect x="676.149333" y="816.949333" width="32.768000" height="32.768000" id="r08231_3" class="rect_unsel" />
+   <circle cx="692.533333" cy="833.333333" r="16.384000" id="xo08231_3" class="O XO XO_3 XO_unsel" />
+   <rect x="744.416000" y="851.082667" width="32.768000" height="32.768000" id="r08231_8" class="rect_unsel" />
+   <circle cx="760.800000" cy="867.466667" r="16.384000" id="xo08231_8" class="O XO XO_3 XO_unsel" />
+   <line x1="675.466667" y1="799.200000" x2="777.866667" y2="799.200000" class="win3 win3_2 win3X" />
+  </g>
+  <g id="g08241">
+  <rect x="782.133333" y="782.133333" width="102.400000" height="102.400000" id="r08241" class="rect_win" />
+   <rect x="782.816000" y="782.816000" width="32.768000" height="32.768000" id="r08241_0" class="rect_unsel" />
+   <path d="m 782.816000,782.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo08241_0" class="X XO XO_3 XO_unsel" />
+   <rect x="816.949333" y="782.816000" width="32.768000" height="32.768000" id="r08241_1" class="rect_sel" />
+   <path d="m 816.949333,782.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo08241_1" class="X XO XO_3 XO_sel" />
+   <rect x="851.082667" y="782.816000" width="32.768000" height="32.768000" id="r08241_2" class="rect_unsel" />
+   <path d="m 851.082667,782.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo08241_2" class="X XO XO_3 XO_unsel" />
+   <rect x="816.949333" y="816.949333" width="32.768000" height="32.768000" id="r08241_4" class="rect_unsel" />
+   <circle cx="833.333333" cy="833.333333" r="16.384000" id="xo08241_4" class="O XO XO_3 XO_unsel" />
+   <rect x="851.082667" y="851.082667" width="32.768000" height="32.768000" id="r08241_8" class="rect_unsel" />
+   <circle cx="867.466667" cy="867.466667" r="16.384000" id="xo08241_8" class="O XO XO_3 XO_unsel" />
+   <line x1="782.133333" y1="799.200000" x2="884.533333" y2="799.200000" class="win3 win3_2 win3X" />
+  </g>
+  <g id="g08251">
+  <rect x="888.800000" y="782.133333" width="102.400000" height="102.400000" id="r08251" class="rect_win" />
+   <rect x="889.482667" y="782.816000" width="32.768000" height="32.768000" id="r08251_0" class="rect_unsel" />
+   <path d="m 889.482667,782.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo08251_0" class="X XO XO_3 XO_unsel" />
+   <rect x="923.616000" y="782.816000" width="32.768000" height="32.768000" id="r08251_1" class="rect_sel" />
+   <path d="m 923.616000,782.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo08251_1" class="X XO XO_3 XO_sel" />
+   <rect x="957.749333" y="782.816000" width="32.768000" height="32.768000" id="r08251_2" class="rect_unsel" />
+   <path d="m 957.749333,782.816000 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo08251_2" class="X XO XO_3 XO_unsel" />
+   <rect x="957.749333" y="816.949333" width="32.768000" height="32.768000" id="r08251_5" class="rect_unsel" />
+   <circle cx="974.133333" cy="833.333333" r="16.384000" id="xo08251_5" class="O XO XO_3 XO_unsel" />
+   <rect x="957.749333" y="851.082667" width="32.768000" height="32.768000" id="r08251_8" class="rect_unsel" />
+   <circle cx="974.133333" cy="867.466667" r="16.384000" id="xo08251_8" class="O XO XO_3 XO_unsel" />
+   <line x1="888.800000" y1="799.200000" x2="991.200000" y2="799.200000" class="win3 win3_2 win3X" />
+  </g>
+  <g id="g08261">
+  <rect x="675.466667" y="888.800000" width="102.400000" height="102.400000" id="r08261" class="rect_win" />
+   <rect x="676.149333" y="889.482667" width="32.768000" height="32.768000" id="r08261_0" class="rect_unsel" />
+   <path d="m 676.149333,889.482667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo08261_0" class="X XO XO_3 XO_unsel" />
+   <rect x="710.282667" y="889.482667" width="32.768000" height="32.768000" id="r08261_1" class="rect_sel" />
+   <path d="m 710.282667,889.482667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo08261_1" class="X XO XO_3 XO_sel" />
+   <rect x="744.416000" y="889.482667" width="32.768000" height="32.768000" id="r08261_2" class="rect_unsel" />
+   <path d="m 744.416000,889.482667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo08261_2" class="X XO XO_3 XO_unsel" />
+   <rect x="676.149333" y="957.749333" width="32.768000" height="32.768000" id="r08261_6" class="rect_unsel" />
+   <circle cx="692.533333" cy="974.133333" r="16.384000" id="xo08261_6" class="O XO XO_3 XO_unsel" />
+   <rect x="744.416000" y="957.749333" width="32.768000" height="32.768000" id="r08261_8" class="rect_unsel" />
+   <circle cx="760.800000" cy="974.133333" r="16.384000" id="xo08261_8" class="O XO XO_3 XO_unsel" />
+   <line x1="675.466667" y1="905.866667" x2="777.866667" y2="905.866667" class="win3 win3_2 win3X" />
+  </g>
+  <g id="g08271">
+  <rect x="782.133333" y="888.800000" width="102.400000" height="102.400000" id="r08271" class="rect_win" />
+   <rect x="782.816000" y="889.482667" width="32.768000" height="32.768000" id="r08271_0" class="rect_unsel" />
+   <path d="m 782.816000,889.482667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo08271_0" class="X XO XO_3 XO_unsel" />
+   <rect x="816.949333" y="889.482667" width="32.768000" height="32.768000" id="r08271_1" class="rect_sel" />
+   <path d="m 816.949333,889.482667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo08271_1" class="X XO XO_3 XO_sel" />
+   <rect x="851.082667" y="889.482667" width="32.768000" height="32.768000" id="r08271_2" class="rect_unsel" />
+   <path d="m 851.082667,889.482667 32.768000,32.768000 m 0.000000,-32.768000 -32.768000,32.768000" id="xo08271_2" class="X XO XO_3 XO_unsel" />
+   <rect x="816.949333" y="957.749333" width="32.768000" height="32.768000" id="r08271_7" class="rect_unsel" />
+   <circle cx="833.333333" cy="974.133333" r="16.384000" id="xo08271_7" class="O XO XO_3 XO_unsel" />
+   <rect x="851.082667" y="957.749333" width="32.768000" height="32.768000" id="r08271_8" class="rect_unsel" />
+   <circle cx="867.466667" cy="974.133333" r="16.384000" id="xo08271_8" class="O XO XO_3 XO_unsel" />
+   <line x1="782.133333" y1="905.866667" x2="884.533333" y2="905.866667" class="win3 win3_2 win3X" />
+  </g>
+ </g>
+</g>
+
+</svg>
