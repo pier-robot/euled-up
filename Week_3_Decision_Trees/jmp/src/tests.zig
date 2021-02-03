@@ -44,9 +44,16 @@ test "General: list terminators" {
     expect(slice[slice.len - 1] == 6);
 
     var last_item: u8 = undefined;
-    for(a) |item| {
+    for (a) |item| {
         last_item = item;
     }
     expect(last_item == 6);
     expect(a[a.len] == 10);
+}
+
+test "General: array copying" {
+    var a = [_]u8{1} ** 5;
+    var b = a;
+    b[3] = 2;
+    expect(a[3] == 1);
 }

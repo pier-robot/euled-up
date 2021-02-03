@@ -9,6 +9,7 @@ fn nextLine(reader: anytype, buffer: []u8) !?[]const u8 {
     return line;
 }
 
+/// Read input from stdin till a new line
 pub fn readInput() []const u8 {
     const stdin = std.io.getStdIn().reader();
     var buffer: [100]u8 = undefined;

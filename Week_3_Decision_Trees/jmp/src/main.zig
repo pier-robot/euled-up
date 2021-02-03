@@ -6,8 +6,7 @@ const board = @import("board.zig");
 const player = @import("players.zig");
 const utils = @import("utils.zig");
 
-const game_limit: u32 = 10_000_000;
-const quiet = true;
+const game_limit: u32 = 5_000_000;
 
 const Stats = struct {
     player1: u32,
@@ -15,7 +14,7 @@ const Stats = struct {
     draw: u32,
 };
 
-fn game_loop(player1: *player.Player, player2: *player.Player, game_board: *board.Board) board.Play {
+fn game_loop(player1: *player.Player, player2: *player.Player, game_board: *board.Board, quiet: bool) board.Play {
     game_board.reset();
     if (!quiet) game_board.printBoard(true);
 
@@ -68,10 +67,15 @@ pub fn main() anyerror!void {
     });
     const rand = &prng.random;
 
-    
+    // TODO add opponent selector
     var player1 = player.Perfect.init(board.Play.o, "perfect");
     var player2 = player.ATD.init(board.Play.x, "atd");
-    //var player2 = player.Human.init(player2_shape, "human");
+    // var player2 = player.Human.init(board.Play.x, "human");
+
+    // Is there a human? If not be quiet.
+    var quiet = true;
+    if (@TypeOf(player1) == player.Human or @TypeOf(player2) == player.Human)
+        quiet = false;
 
     var game_counter: u32 = 0;
 
@@ -91,7 +95,7 @@ pub fn main() anyerror!void {
         // If we don't take the address of player then we are just
         // creating a Player type that is not associated with the
         // wrapping Struct (ATD or Human, etc)
-        var winner = game_loop(&player1.player, &player2.player, &game_board);
+        var winner = game_loop(&player1.player, &player2.player, &game_board, quiet);
 
         if (winner == player1.player.play) {
             if (!quiet) std.debug.print("Winner is {s}\n", .{player1.player.name});
@@ -99,6 +103,8 @@ pub fn main() anyerror!void {
         } else if (winner == player2.player.play) {
             if (!quiet) std.debug.print("Winner is {s}\n", .{player2.player.name});
             game_wins.player2 += 1;
+            // game_board.printPlays(true);
+            // break;
         } else {
             if (!quiet) std.debug.print("Draw\n", .{});
             game_wins.draw += 1;
@@ -111,18 +117,22 @@ pub fn main() anyerror!void {
                 " Draws: {}\n", .{ player1.player.name, game_wins.player1, player2.player.name, game_wins.player2, game_wins.draw });
         }
 
-        // std.debug.print("\nPress 'q' to quit or any other key to continue", .{});
+        if (!quiet) {
+            std.debug.print("\nPress 'q' to quit or any other key to continue", .{});
 
-        //var input = utils.readInput();
-        //if (std.ascii.eqlIgnoreCase(input, "q")) {
-        //    break;
-        //}
+            var input = utils.readInput();
+            if (std.ascii.eqlIgnoreCase(input, "q")) break;
+        }
 
         game_counter += 1;
     }
 
-    std.debug.print("\nWin Stats:\n" ++
-        " {s}: {}\n" ++
-        " {s}: {}\n" ++
-        " Draws: {}\n", .{ player1.player.name, game_wins.player1, player2.player.name, game_wins.player2, game_wins.draw });
+    var total_games = game_wins.player1 + game_wins.player2 + game_wins.draw;
+    var player1_pct = @intToFloat(f64, game_wins.player1) / @intToFloat(f64, total_games) * 100.0;
+    var player2_pct = @intToFloat(f64, game_wins.player2) / @intToFloat(f64, total_games) * 100.0;
+    var draw_pct = @intToFloat(f64, game_wins.draw) / @intToFloat(f64, total_games) * 100.0;
+    std.debug.print("\nWin Stats:\n", .{});
+    std.debug.print(" {s}: {} ({d:.1}%)\n", .{ player1.player.name, game_wins.player1, player1_pct });
+    std.debug.print(" {s}: {} ({d:.1}%)\n", .{ player2.player.name, game_wins.player2, player2_pct });
+    std.debug.print(" Draw: {} ({d:.1}%)\n", .{ game_wins.draw, draw_pct });
 }
