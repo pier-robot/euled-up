@@ -4,6 +4,22 @@ For this project went a bit all out in an attempt to have different
 modules working together to try to get a feel for how working with
 bigger projects in Zig would be.
 
+# Table of Contents
+* [Overview](#overview)
+* [The Players](#the-players)
+    * [The ATD](#the-atd-random)
+    * [The Human](#the-human-you)
+    * [The Perfect](#the-perfect-player-newell-and-simons-algorithm)
+        * [References](#references)
+    * [The Minimax](#the-minimax-with-alpha---beta-pruning)
+        * [References](#references1)
+* [Things I Learned About Zig](#things-i-learned-about-zig)
+    * [Errors](#errors)
+    * [Tests](#tests)
+    * [Struct Callbacks](#struct-callbacks)
+* [Algorithm Stats](#algorithm-stats)
+    * [Raw Data](#raw-data)
+
 ## The Players
 
 ### The ATD (Random)
@@ -75,20 +91,20 @@ of time was invested in learning.
 
 ## Errors
 In previous weeks I just try/catch'd errors and more or less ignored them. This week
-I wanted to create and "raise" my own. This was only done in one place, in setting
-marks on the board. I wanted to verify that the position wasn't out of bounds and 
+I wanted to create and "raise" my own. This was only place errors are returned
+is within the board update logic. I wanted to verify that the position wasn't out of bounds and 
 was in an empty square.
 ```zig
-    /// Play a position on the board, and record it in the list of plays.
-    pub fn playPosition(self: *@This(), play: Play, pos: u4) BoardError!void {
+/// Play a position on the board, and record it in the list of plays.
+pub fn playPosition(self: *@This(), play: Play, pos: u4) BoardError!void {
 
-        if ( pos > 8 ) return error.PositionOffBoard;
-        if ( self.positions[pos] != Play.empty ) return error.OccupiedPosition;
+    if ( pos > 8 ) return error.PositionOffBoard;
+    if ( self.positions[pos] != Play.empty ) return error.OccupiedPosition;
 
-        self.positions[pos] = play;
-        self.plays[self.turn_num - 1] = BoardPlay{ .position = pos, .play = play };
-        self.turn_num += 1;
-    }
+    self.positions[pos] = play;
+    self.plays[self.turn_num - 1] = BoardPlay{ .position = pos, .play = play };
+    self.turn_num += 1;
+}
 ```
 
 Two different errors are returned depending on the condition, `error.PositionOffBoard` and
@@ -128,7 +144,7 @@ As expected, setting the 4th element in array b to 2, doesn't affect array a.
 Zig is strongly typed. Which I love, however it means writing generic code requires more
 planning. One example of this is how I designed players.
 
-```
+```zig
 var player1 = Perfect.init(board.Play.o, "perfect");
 var player2 = ATD.init(board.Play.x, "atd");
 ```
@@ -153,9 +169,9 @@ fn gameLoopPerfectATD(player1: *Perfect, player2: *ATD, game_board: *board.Board
 fn gameLoopATDPerfect(player1: *ATD, player2: *Perfect, game_board: *board.Board)
 ...
 if (player1 == @typeOf(Perfect) and player2 == @typeOf(ATD)
-	gameLoopPerfectATD(player1, player2);
+    gameLoopPerfectATD(player1, player2);
 else if (player1 == @typeOf(ATD) and player2 == @typeOf(Perfect)
-	gameLoopATDPerfect(player1, player2);
+    gameLoopATDPerfect(player1, player2);
 ```
 Omg this sucks. So much for being generic. So what can we do?
 
@@ -166,17 +182,17 @@ implementations. Not exactly a mixin, but a similar idea.
 First let's define our generic Player.
 ```zig
 pub const Player = struct {
-	// Play field is whether it's an "x" or "o"
+    // Play field is whether it's an "x" or "o"
     play: Play,
-	// Just a name for the player like "lul720n0scopeRailshotgitgud"
+    // Just a name for the player like "lul720n0scopeRailshotgitgud"
     name: []const u8,
-	// This is a field called playBoardFn, but instead of the type being an
-	// unsigned int or other "standard" type, the type is actually a function
-	// definition. (That's right, function defintions are types too.)
+    // This is a field called playBoardFn, but instead of the type being an
+    // unsigned int or other "standard" type, the type is actually a function
+    // definition. (That's right, function defintions are types too.)
     playBoardFn: fn (player: *Player, game_board: *Board) BoardError!void,
 
-	// And last, we have a function that calls our playBoardFn field defined
-	// above.
+    // And last, we have a function that calls our playBoardFn field defined
+    // above.
     pub fn playBoard(self: *Player, game_board: *Board) BoardError!void {
         try self.playBoardFn(self, game_board);
     }
@@ -188,63 +204,63 @@ Guess where we are going to get that implementation? That's right, the other pla
 Let's define our ATD,
 ```zig
 pub const ATD = struct {
-	// So here we are creating a field of type Player, which is what we defined above.
-	// Inside our ATD struct, we have a field to place our generic Player.
+    // So here we are creating a field of type Player, which is what we defined above.
+    // Inside our ATD struct, we have a field to place our generic Player.
     player: Player,
 
-	// for the random number generation.
+    // for the random number generation.
     rand: std.rand.DefaultPrng,
 
     /// This function will initialize the ATD, and this is where the magic happens.
     pub fn init(play: Play, name: []const u8) ATD {
-		// define the rng seed.
+        // define the rng seed.
         var seed: u64 = undefined;
         std.os.getrandom(std.mem.asBytes(&seed)) catch |err| {
             std.debug.print("Unable to seed random, defaulting to 0\n", .{});
             seed = 0;
         };
 
-		// Now create the ATD struct and populate all it's fields.
+        // Now create the ATD struct and populate all it's fields.
         return ATD{
-			// The first field of ATD, is the generic Player, so we have to now define that.
+            // The first field of ATD, is the generic Player, so we have to now define that.
             .player = Player{
-				// as above, we assignign the .play field whatever value play is.
+                // as above, we assignign the .play field whatever value play is.
                 .play = play,
-				// same goes for the name.
+                // same goes for the name.
                 .name = name,
-				// And here is the magic, defined below is a function called playBoardCallback
-				// we are assigning ATD.playBoardCallback to Player.playBoardFn.
-				// Which means whenever Player.playBoardFn is called, it's actually calling
-				// ATD.playBoardCallback's unique implementation.
-				// But how does this playBoardCallback (or playBoardFn) know to how to access
-				// data/implementations from a specific instance of ATD? See below!
+                // And here is the magic, defined below is a function called playBoardCallback
+                // we are assigning ATD.playBoardCallback to Player.playBoardFn.
+                // Which means whenever Player.playBoardFn is called, it's actually calling
+                // ATD.playBoardCallback's unique implementation.
+                // But how does this playBoardCallback (or playBoardFn) know to how to access
+                // data/implementations from a specific instance of ATD? See below!
                 .playBoardFn = playBoardCallback,
             },
             .rand = std.rand.DefaultPrng.init(seed),
         };
     }
     
-	// This is the last big magic. This is ATD's definition for the playBoardCallback.
+    // This is the last big magic. This is ATD's definition for the playBoardCallback.
     fn playBoardCallback(player: *Player, game_board: *Board) BoardError!void {
 
-		// Remember at this point this function is actually being called from within
-		// Player! We can't use our standard @This() because the is only valid at compile
-		// time, and we need to determine this at runtime.
+        // Remember at this point this function is actually being called from within
+        // Player! We can't use our standard @This() because the is only valid at compile
+        // time, and we need to determine this at runtime.
 
-		// Now for the most imporatant bit. This is what ties this function to a specific
-		// instance of ATD. The @fieldParentPtr does what it says, and it's a bit like
-		// Python's super(). Given a type, ATD in this case, a field name and a pointer
-		// to that field, find the address of this instance. Which we assign to self.
+        // Now for the most imporatant bit. This is what ties this function to a specific
+        // instance of ATD. The @fieldParentPtr does what it says, and it's a bit like
+        // Python's super(). Given a type, ATD in this case, a field name and a pointer
+        // to that field, find the address of this instance. Which we assign to self.
         const self = @fieldParentPtr(ATD, "player", player);
-		
-		// Now that self points to the correct ATD instance we can call
+        
+        // Now that self points to the correct ATD instance we can call
         var pos = self.pickPos(game_board.*);
         try game_board.playPosition(player.play, pos);
     }
 
-	// do fancy stuff
-	fn pickPos(self: *@This(), game_board: Board) u4 {
-		...
+    // do fancy stuff
+    fn pickPos(self: *@This(), game_board: Board) u4 {
+        ...
 ```
 
 With all of that done above, what does that buy us? We'll let's change our gameLoop function
