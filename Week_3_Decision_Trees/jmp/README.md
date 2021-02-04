@@ -12,7 +12,7 @@ bigger projects in Zig would be.
     * [The Perfect](#the-perfect-player-newell-and-simons-algorithm)
         * [References](#references)
     * [The Minimax](#the-minimax-with-alpha---beta-pruning)
-        * [References](#references1)
+        * [References](#references-1)
 * [Things I Learned About Zig](#things-i-learned-about-zig)
     * [Errors](#errors)
     * [Tests](#tests)
