@@ -382,14 +382,16 @@ pub const Perfect = struct {
 /// Minimax Player definition
 pub const Minimax = struct {
     player: Player,
+    alpha_beta_pruning: bool,
 
-    pub fn init(play: Play, name: []const u8) Human {
-        return Human{
+    pub fn init(play: Play, name: []const u8, pruning: bool) Minimax {
+        return Minimax{
             .player = Player{
                 .play = play,
                 .name = name,
                 .playBoardFn = playBoardCallback,
             },
+            .alpha_beta_pruning = pruning,
         };
     }
 
@@ -423,11 +425,30 @@ pub const Minimax = struct {
         value: i8,
     };
 
-    fn minimax(self: @This(), positions: [9]Play, player: Play, depth: i8) PositionValue {
+    /// For storing the state of our purne values
+    const AlphaBetaPrune = struct {
+        alpha: i8,
+        beta: i8,
+        enabled: bool,
+    };
 
+    /// Implementation of the Minimax with optional alpha beta pruning
+
+    /// Background on the Minimax algorithm
+    /// https://medium.com/ai-in-plain-english/coding-the-perfect-tic-tac-toe-bot-a0827e966a74
+
+    /// Background on Alpha Beta purning
+    /// https://medium.com/ai-in-plain-english/optimizing-our-perfect-tic-tac-toe-bot-763226eff450
+    fn minimax(self: @This(), positions: [9]Play, player: Play, depth: i8, prune: AlphaBetaPrune) PositionValue {
+
+        // To determine our min and max we need to keep track of the turn of the player.
+        // This is store in player and other_player, but we also need to know 
+        // which player is the minimax player as well as the opponent so we know who to
+        // reward.
         var opponent: Play = if (self.player.play == Play.x) Play.o else Play.x;
         var other_player = if (player == Play.x) Play.o else Play.x; 
 
+        // Handling for various termination states (wins or draws)
         var is_winner = winningPlayer(positions);
         if (is_winner == self.player.play) {
             return PositionValue {
@@ -451,19 +472,55 @@ pub const Minimax = struct {
         var max_value: i8 = -100;
         var min_value: i8 = 100;
         var ranked_pos: u4 = off_board;
+        var new_prune = prune;
 
-        for (positions) |play,position| {
+        // Loop through all non-empty positions and compute their score, depth first.
+        for (positions) |play,index| {
             if (play != Play.empty) continue;
+
+            var position = @intCast(u4, index);
+
+            // We make copies of the board's positions as well be added the players' positions
+            // as we explore plays.
             var new_positions = positions;
             new_positions[position] = player;
-            var result = self.minimax(new_positions, other_player, depth+1).value; 
+            var result = self.minimax(new_positions, other_player, depth+1, new_prune).value; 
 
-            if (self.player.play == player and result > max_value) {
-                ranked_pos = @intCast(u4, position);
-                max_value = result;
-            } else if (self.player.play != player and result < min_value) {
-                ranked_pos = @intCast(u4, position);
-                min_value = result;
+            // If the current turn matches the Minimax player, then we'll calcuate for the max
+            if (self.player.play == player) {
+
+                // Pruning is optional, so we check to see if it's enabled here.
+                if (new_prune.enabled) {
+                    new_prune.alpha = std.math.max(new_prune.alpha, result);
+                    if (new_prune.alpha >= new_prune.beta) {
+                        return PositionValue {
+                            .position = position,
+                            .value = result,
+                        };
+                    }
+                }
+
+                if ( result > max_value ) {
+                    ranked_pos = position;
+                    max_value = result;
+                }
+            // otherwise for the other player we'll calculate for the min
+            } else {
+                
+                if (new_prune.enabled) {
+                    new_prune.beta = std.math.min(new_prune.beta, result);
+                    if (new_prune.alpha >= new_prune.beta) {
+                        return PositionValue {
+                            .position = position,
+                            .value = result,
+                        };
+                    }
+                }
+
+                if (result < min_value) {
+                    ranked_pos = position;
+                    min_value = result;
+                }
             }
         }
 
@@ -478,7 +535,12 @@ pub const Minimax = struct {
     }
    
     fn pickPos(self: @This(), game_board: Board) u4 {
-        return self.minimax(game_board.positions, self.player.play, 0).position;
+        var ab_prune = AlphaBetaPrune {
+            .alpha = -100,
+            .beta = 100,
+            .enabled = self.alpha_beta_pruning,
+        };
+        return self.minimax(game_board.positions, self.player.play, 0, ab_prune).position;
     }
 
     /// Implement callback function for Player struct

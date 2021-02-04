@@ -69,7 +69,8 @@ pub fn main() anyerror!void {
 
     // TODO add opponent selector
     var player1 = player.Perfect.init(board.Play.o, "perfect");
-    //var player1 = player.Minimax.init(board.Play.o, "minimax");
+    //var player1 = player.Minimax.init(board.Play.o, "minimax", false);
+    //var player1 = player.Minimax.init(board.Play.o, "minimax with pruning", true);
     var player2 = player.ATD.init(board.Play.x, "atd");
     // var player2 = player.Human.init(board.Play.x, "human");
 
@@ -125,6 +126,8 @@ pub fn main() anyerror!void {
             if (std.ascii.eqlIgnoreCase(input, "q")) break;
         }
 
+        //if (game_counter % 10000 == 0 and game_counter > 1 ) 
+        //    std.debug.print("{}\n", .{game_counter});
         game_counter += 1;
     }
 
