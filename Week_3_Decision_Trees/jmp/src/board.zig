@@ -56,6 +56,11 @@ fn boardPrinter(positions: anytype) void {
     return;
 }
 
+pub const BoardError = error{
+    OccupiedPosition,
+    PositionOffBoard,
+};
+
 /// Represents a play on the board.
 const BoardPlay = struct {
     position: u4,
@@ -107,10 +112,9 @@ pub const Board = struct {
     }
 
     /// Play a position on the board, and record it in the list of plays.
-    pub fn playPosition(self: *@This(), play: Play, pos: u4) void {
-        // TODO add errors for
-        // pos > 8
-        // positions[pos] != Play.empty
+    pub fn playPosition(self: *@This(), play: Play, pos: u4) BoardError!void {
+        if (pos > 8) return error.PositionOffBoard;
+        if (self.positions[pos] != Play.empty) return error.OccupiedPosition;
         self.positions[pos] = play;
         self.plays[self.turn_num - 1] = BoardPlay{ .position = pos, .play = play };
         self.turn_num += 1;
@@ -163,8 +167,8 @@ test "Board: instanced zerod" {
 
 test "Board: plays" {
     var b = Board.init();
-    b.playPosition(Play.x, 4);
-    b.playPosition(Play.o, 3);
+    b.playPosition(Play.x, 4) catch unreachable;
+    b.playPosition(Play.o, 3) catch unreachable;
     expect(b.numFreePositions() == 7);
 }
 
@@ -175,8 +179,23 @@ test "Board: winner none" {
 
 test "Board: winner X" {
     var b = Board.init();
-    b.playPosition(Play.x, 0);
-    b.playPosition(Play.x, 3);
-    b.playPosition(Play.x, 6);
+    b.playPosition(Play.x, 0) catch unreachable;
+    b.playPosition(Play.x, 3) catch unreachable;
+    b.playPosition(Play.x, 6) catch unreachable;
     expect(b.winnerIs() == Play.x);
+}
+
+test "Board: same place error" {
+    var b = Board.init();
+    b.playPosition(Play.x, 4) catch unreachable;
+    b.playPosition(Play.o, 4) catch |err| {
+        expect(err == error.OccupiedPosition);
+    };
+}
+
+test "Board: play off board error" {
+    var b = Board.init();
+    b.playPosition(Play.o, 9) catch |err| {
+        expect(err == error.PositionOffBoard);
+    };
 }

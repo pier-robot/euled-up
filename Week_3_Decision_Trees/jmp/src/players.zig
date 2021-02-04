@@ -12,6 +12,7 @@ const utils = @import("utils.zig");
 
 const Board = board.Board;
 const Play = board.Play;
+const BoardError = board.BoardError;
 
 /// Define a generic Player that will interact with the board.
 /// This provide the interface through which the various types of players provide an
@@ -19,10 +20,10 @@ const Play = board.Play;
 pub const Player = struct {
     play: Play,
     name: []const u8,
-    playBoardFn: fn (player: *Player, game_board: *Board) void,
+    playBoardFn: fn (player: *Player, game_board: *Board) BoardError!void,
 
-    pub fn playBoard(self: *Player, game_board: *Board) void {
-        self.playBoardFn(self, game_board);
+    pub fn playBoard(self: *Player, game_board: *Board) BoardError!void {
+        try self.playBoardFn(self, game_board);
     }
 };
 
@@ -82,13 +83,13 @@ pub const ATD = struct {
     }
 
     /// Callback function that will be attached to the generic Player struct
-    fn playBoardCallback(player: *Player, game_board: *Board) void {
+    fn playBoardCallback(player: *Player, game_board: *Board) BoardError!void {
         // Since this function will be called from within the Player struct we need
         // to derive "self", we do this by looking up the parent pointer of a field
         // of an instantiated struct.
         const self = @fieldParentPtr(ATD, "player", player);
         var pos = self.pickPos(game_board.*);
-        game_board.playPosition(player.play, pos);
+        try game_board.playPosition(player.play, pos);
     }
 };
 
@@ -372,10 +373,10 @@ pub const Perfect = struct {
     }
 
     /// Implement callback function for Player struct
-    fn playBoardCallback(player: *Player, game_board: *Board) void {
+    fn playBoardCallback(player: *Player, game_board: *Board) BoardError!void {
         const self = @fieldParentPtr(Perfect, "player", player);
         var pos = self.pickPos(game_board.*);
-        game_board.playPosition(player.play, pos);
+        try game_board.playPosition(player.play, pos);
     }
 };
 
@@ -433,49 +434,47 @@ pub const Minimax = struct {
     };
 
     /// Implementation of the Minimax with optional alpha beta pruning
-
     /// Background on the Minimax algorithm
     /// https://medium.com/ai-in-plain-english/coding-the-perfect-tic-tac-toe-bot-a0827e966a74
-
     /// Background on Alpha Beta purning
     /// https://medium.com/ai-in-plain-english/optimizing-our-perfect-tic-tac-toe-bot-763226eff450
     fn minimax(self: @This(), positions: [9]Play, player: Play, depth: i8, prune: AlphaBetaPrune) PositionValue {
 
         // To determine our min and max we need to keep track of the turn of the player.
-        // This is store in player and other_player, but we also need to know 
+        // This is store in player and other_player, but we also need to know
         // which player is the minimax player as well as the opponent so we know who to
         // reward.
         var opponent: Play = if (self.player.play == Play.x) Play.o else Play.x;
-        var other_player = if (player == Play.x) Play.o else Play.x; 
+        var other_player = if (player == Play.x) Play.o else Play.x;
 
         // Handling for various termination states (wins or draws)
         var is_winner = winningPlayer(positions);
         if (is_winner == self.player.play) {
-            return PositionValue {
+            return PositionValue{
                 .position = off_board,
-                .value = 10-depth,
+                .value = 10 - depth,
             };
         }
         if (is_winner == opponent) {
-            return PositionValue {
+            return PositionValue{
                 .position = off_board,
-                .value = -10+depth,
+                .value = -10 + depth,
             };
         }
         if (numFreeSpots(positions) == 0) {
-            return PositionValue {
+            return PositionValue{
                 .position = off_board,
                 .value = 0,
             };
         }
-        
+
         var max_value: i8 = -100;
         var min_value: i8 = 100;
         var ranked_pos: u4 = off_board;
         var new_prune = prune;
 
         // Loop through all non-empty positions and compute their score, depth first.
-        for (positions) |play,index| {
+        for (positions) |play, index| {
             if (play != Play.empty) continue;
 
             var position = @intCast(u4, index);
@@ -484,7 +483,7 @@ pub const Minimax = struct {
             // as we explore plays.
             var new_positions = positions;
             new_positions[position] = player;
-            var result = self.minimax(new_positions, other_player, depth+1, new_prune).value; 
+            var result = self.minimax(new_positions, other_player, depth + 1, new_prune).value;
 
             // If the current turn matches the Minimax player, then we'll calcuate for the max
             if (self.player.play == player) {
@@ -493,24 +492,23 @@ pub const Minimax = struct {
                 if (new_prune.enabled) {
                     new_prune.alpha = std.math.max(new_prune.alpha, result);
                     if (new_prune.alpha >= new_prune.beta) {
-                        return PositionValue {
+                        return PositionValue{
                             .position = position,
                             .value = result,
                         };
                     }
                 }
 
-                if ( result > max_value ) {
+                if (result > max_value) {
                     ranked_pos = position;
                     max_value = result;
                 }
-            // otherwise for the other player we'll calculate for the min
+                // otherwise for the other player we'll calculate for the min
             } else {
-                
                 if (new_prune.enabled) {
                     new_prune.beta = std.math.min(new_prune.beta, result);
                     if (new_prune.alpha >= new_prune.beta) {
-                        return PositionValue {
+                        return PositionValue{
                             .position = position,
                             .value = result,
                         };
@@ -524,18 +522,19 @@ pub const Minimax = struct {
             }
         }
 
-        if (self.player.play == player) return PositionValue {
-            .position = ranked_pos,
-            .value = max_value
-        };
-        return PositionValue {
+        if (self.player.play == player)
+            return PositionValue{
+                .position = ranked_pos,
+                .value = max_value,
+            };
+        return PositionValue{
             .position = ranked_pos,
             .value = min_value,
         };
     }
-   
+
     fn pickPos(self: @This(), game_board: Board) u4 {
-        var ab_prune = AlphaBetaPrune {
+        var ab_prune = AlphaBetaPrune{
             .alpha = -100,
             .beta = 100,
             .enabled = self.alpha_beta_pruning,
@@ -544,10 +543,10 @@ pub const Minimax = struct {
     }
 
     /// Implement callback function for Player struct
-    fn playBoardCallback(player: *Player, game_board: *Board) void {
+    fn playBoardCallback(player: *Player, game_board: *Board) BoardError!void {
         const self = @fieldParentPtr(Minimax, "player", player);
         var pos = self.pickPos(game_board.*);
-        game_board.playPosition(player.play, pos);
+        try game_board.playPosition(player.play, pos);
     }
 };
 
@@ -602,10 +601,10 @@ pub const Human = struct {
     }
 
     /// Implement callback function for Player struct
-    fn playBoardCallback(player: *Player, game_board: *Board) void {
+    fn playBoardCallback(player: *Player, game_board: *Board) BoardError!void {
         const self = @fieldParentPtr(Human, "player", player);
         var pos = self.pickPos(game_board.*);
-        game_board.playPosition(player.play, pos);
+        try game_board.playPosition(player.play, pos);
     }
 };
 
@@ -631,7 +630,7 @@ test "Players: ATD pick till full" {
 
     var i: u4 = 0;
     while (i < 9) {
-        atd.player.playBoard(&b);
+        atd.player.playBoard(&b) catch unreachable;
         i += 1;
     }
     expect(b.numFreePositions() == 0);
@@ -648,9 +647,9 @@ test "Players: Two ATD pick till full" {
 
     for (b.positions) |_, turn| {
         if (@mod(turn, 2) == 0) {
-            player1.playBoard(&b);
+            player1.playBoard(&b) catch unreachable;
         } else {
-            player2.playBoard(&b);
+            player2.playBoard(&b) catch unreachable;
         }
     }
 
@@ -659,9 +658,10 @@ test "Players: Two ATD pick till full" {
 
 test "Players: Perfect trap 1" {
     var b = Board.init();
-    b.playPosition(Play.x, 5);
-    b.playPosition(Play.o, 4);
-    b.playPosition(Play.x, 7);
+    b.playPosition(Play.x, 5) catch unreachable;
+    b.playPosition(Play.o, 4) catch unreachable;
+    b.playPosition(Play.x, 7) catch unreachable;
+
     var perfect = Perfect.init(Play.o, "perfect");
     var forks = perfect.findForks(b, Play.x);
     var pos = perfect.pickPos(b);
@@ -670,12 +670,23 @@ test "Players: Perfect trap 1" {
 
 test "Players: Perfect trap 2" {
     var b = Board.init();
-    b.playPosition(Play.x, 4);
-    b.playPosition(Play.o, 0);
-    b.playPosition(Play.x, 8);
+    b.playPosition(Play.x, 4) catch unreachable;
+    b.playPosition(Play.o, 0) catch unreachable;
+    b.playPosition(Play.x, 8) catch unreachable;
+
     var perfect = Perfect.init(Play.o, "perfect");
     var forks = perfect.findForks(b, Play.x);
     expect(std.mem.eql(u4, &forks, &[_]u4{ 5, 6, 7, 2 }));
     var pos = perfect.pickPos(b);
     expect(pos == 2 or pos == 7);
+}
+
+test "Players: Type Tests" {
+    var atd = ATD.init(Play.o, "atd");
+    var perfect = Perfect.init(Play.o, "perfect");
+    var human = Human.init(Play.o, "human");
+    var minimax = Minimax.init(Play.o, "minimax", true);
+    expect((@TypeOf(atd.player) == @TypeOf(perfect.player)) and
+        (@TypeOf(atd.player) == @TypeOf(human.player)) and
+        (@TypeOf(atd.player) == @TypeOf(minimax.player)));
 }

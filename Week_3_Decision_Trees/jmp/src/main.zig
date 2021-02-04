@@ -6,7 +6,9 @@ const board = @import("board.zig");
 const player = @import("players.zig");
 const utils = @import("utils.zig");
 
-const game_limit: u32 = 1_000_000;
+const BoardError = board.BoardError;
+
+const game_limit: u32 = 100_000;
 
 const Stats = struct {
     player1: u32,
@@ -14,7 +16,7 @@ const Stats = struct {
     draw: u32,
 };
 
-fn game_loop(player1: *player.Player, player2: *player.Player, game_board: *board.Board, quiet: bool) board.Play {
+fn gameLoop(player1: *player.Player, player2: *player.Player, game_board: *board.Board, quiet: bool) BoardError!board.Play {
     game_board.reset();
     if (!quiet) game_board.printBoard(true);
 
@@ -30,9 +32,9 @@ fn game_loop(player1: *player.Player, player2: *player.Player, game_board: *boar
 
     for (game_board.positions) |_, turn| {
         if (@mod(turn, 2) == x_start_offset) {
-            player1.playBoard(game_board);
+            try player1.playBoard(game_board);
         } else {
-            player2.playBoard(game_board);
+            try player2.playBoard(game_board);
         }
         if (!quiet) game_board.printBoard(true);
 
@@ -72,11 +74,11 @@ pub fn main() anyerror!void {
     //var player1 = player.Minimax.init(board.Play.o, "minimax", false);
     //var player1 = player.Minimax.init(board.Play.o, "minimax with pruning", true);
     var player2 = player.ATD.init(board.Play.x, "atd");
-    // var player2 = player.Human.init(board.Play.x, "human");
+    //var player2 = player.Human.init(board.Play.x, "human");
 
     // Is there a human? If not be quiet.
     var quiet = true;
-    if (@TypeOf(player1) == @TypeOf(player.Human) or @TypeOf(player2) == @TypeOf(player.Human))
+    if (@TypeOf(player1) == player.Human or @TypeOf(player2) == player.Human)
         quiet = false;
 
     var game_counter: u32 = 0;
@@ -97,7 +99,7 @@ pub fn main() anyerror!void {
         // If we don't take the address of player then we are just
         // creating a Player type that is not associated with the
         // wrapping Struct (ATD or Human, etc)
-        var winner = game_loop(&player1.player, &player2.player, &game_board, quiet);
+        var winner = try gameLoop(&player1.player, &player2.player, &game_board, quiet);
 
         if (winner == player1.player.play) {
             if (!quiet) std.debug.print("Winner is {s}\n", .{player1.player.name});
@@ -126,8 +128,6 @@ pub fn main() anyerror!void {
             if (std.ascii.eqlIgnoreCase(input, "q")) break;
         }
 
-        //if (game_counter % 10000 == 0 and game_counter > 1 ) 
-        //    std.debug.print("{}\n", .{game_counter});
         game_counter += 1;
     }
 
