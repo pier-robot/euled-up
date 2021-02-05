@@ -18,7 +18,7 @@ Hard mode (these may not apply to all of the above problems, and may not apply t
 * Do not use lists in the above problems.
 * Do not use arithmetic operators in the above problems. (So no ++ or i += 1!).
 
-"Just for Jim" (a seperate problem to choose from if you want something bigger): 
+"Just for Jim" (a separate problem to choose from if you want something bigger): 
 * Implement one or more edit distance algorithms as described here: https://en.wikipedia.org/wiki/Edit_distance
 
 We like this one because it covers:
