@@ -77,7 +77,7 @@ function longest_lines(input_string: string) {
     )
     // Using `filter` gives all valid results, `find` would get the first
     const longest_lines = lines.filter(
-        line => line.length == longest_line.length
+        line => line.length === longest_line.length
     )
     return longest_lines
 }
