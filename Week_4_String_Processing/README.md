@@ -5,7 +5,7 @@ This week is a set of small string processing challenges to get us used to using
 * Count the most common words in a string.
 * Output the longest line in a string.
   * Bonus: Output all of the longest lines if there's a tie.
-* Output groups of characters as they appear in a string. So "hello old wool" would be output as "h, e, ll, o, o, l, d, w, oo, l".
+* Output groups of characters as they appear in a string. So "hello old wool" would be output as "h, e, ll, o, , o, l, d, , w, oo, l".
 * Get the substring of a string.
 * Replace all occurrences of a character in a string with another.
   * Bonus: Allow the replacement to be a string rather than a character. The replacement string can be of any length.
