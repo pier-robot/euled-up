@@ -101,10 +101,10 @@ function replace_substring(input_string: string, old_str: string, new_str: strin
 
 const input = "hello old wool\nand wool of all old llamas\nbut not wool of bald sheep"
 
-console.log("input string:\n" + input)
-console.log("first word:\n" + first_word(input))
-console.log("most common word:\n" + most_common_word(input))
-console.log("longest lines:\n" + longest_lines(input))
-console.log("grouped characters:\n" + groups_of_characters(input))
-console.log("substring 4:20:\n" + get_substring(input, 4, 20))
-console.log("replace old -> new:\n" + replace_substring(input, "old", "new"))
+console.log(`input string:\n${input}`)
+console.log(`first word:\n${first_word(input)}`)
+console.log(`most common word:\n${most_common_word(input)}`)
+console.log(`longest lines:\n${longest_lines(input)}`)
+console.log(`grouped characters:\n${groups_of_characters(input)}`)
+console.log(`substring 4:20:\n${get_substring(input, 4, 20)}`)
+console.log(`replace old -> new:\n${replace_substring(input, "old", "new")}`)
