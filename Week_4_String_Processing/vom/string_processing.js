@@ -14,9 +14,22 @@ function most_common_word(input_string: string) {
     // identifier used for readability only
     let counts: {[word: string]: number} = {}
 
-    // The following are 3 ways to do the same thing to show some variety:
+    // The following are 4 ways to do the same thing to show some variety:
 
-    // Using for loop shorthand and if/else (kinda Pythonic)...
+    // Using for loop, if/else, and all braces...
+    /*
+    for (let i = 0; i < sub_strings.length; i++) {
+        let word = sub_strings[i]
+        if (!counts[word]) {
+            counts[word] = 1
+        }
+        else {
+            counts[word]++
+        }
+    }
+    */
+
+    // ...using for loop shorthand and if/else (aping Python)...
     /*
     for (let word of sub_strings)
         if (counts[word]) 
