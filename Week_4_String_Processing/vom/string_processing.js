@@ -45,9 +45,9 @@ function most_common_word(input_string: string) {
         }
     )
     */
-    // ...and a one-liner using pre-incrementing, a lambda, and falsy NaN
+    // ...and a one-liner using a lambda and NaN being falsy
     // Note that if counts[word] was -1 this would evaluate incorrectly
-    sub_strings.forEach(word => counts[word] = ++counts[word] || 1)
+    sub_strings.forEach(word => counts[word] = counts[word] + 1 || 1)
 
     // Declaring types is optional when it's implied:
     // `const count_values: number[]` isn't necessary here
