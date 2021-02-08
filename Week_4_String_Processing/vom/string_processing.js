@@ -1,6 +1,6 @@
 function proper_split(input_string: string) {
     // Ensuring punctuation is properly handled
-    return input_string.trim().split(/[\s,.!?:;()"]+/)
+    return input_string.toLowerCase().trim().split(/[\s,.!?:;()"]+/)
 }
 
 function first_word(input_string: string) {
@@ -67,7 +67,7 @@ function most_common_word(input_string: string) {
 
 function longest_lines(input_string: string) {
     // Only splitting on `\n` for this one and not trimming
-    const lines = input_string.split("\n")
+    const lines = input_string.split(`\n`)
     // Using the `reduce` method here to iterate over the list of items
     // and find the longest; it takes the first item in the list and places
     // it in the first variable, then iterates through the other items
@@ -95,11 +95,13 @@ function get_substring(input_string: string, start: number, end: number) {
 function replace_substring(input_string: string, old_str: string, new_str: string) {
     // Need to construct a regex for a global search and replace as the replaceAll
     // method isn't fully supported (thanks IE)
-    let old_regex = new RegExp(old_str, "g")
+    let old_regex = new RegExp(old_str, `g`)
     return input_string.replace(old_regex, new_str)
 }
 
-const input = "hello old wool\nand wool of all old llamas\nbut not wool of bald sheep"
+const input = `hello old wool
+and wool of all old llamas
+but not wool of bald sheep`
 
 console.log(`input string:\n${input}`)
 console.log(`first word:\n${first_word(input)}`)
@@ -107,4 +109,4 @@ console.log(`most common word:\n${most_common_word(input)}`)
 console.log(`longest lines:\n${longest_lines(input)}`)
 console.log(`grouped characters:\n${groups_of_characters(input)}`)
 console.log(`substring 4:20:\n${get_substring(input, 4, 20)}`)
-console.log(`replace old -> new:\n${replace_substring(input, "old", "new")}`)
+console.log(`replace old -> new:\n${replace_substring(input, `old`, `new`)}`)
