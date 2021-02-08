@@ -1,18 +1,95 @@
 const std = @import("std");
 
+const FilterIterator = struct {
+
+    buffer: []const u8,
+    index: ?usize,
+    filter: fn (c: u8) bool,
+
+    pub fn next(self: *FilterIterator) ?[]const u8 {
+        const start = self.index orelse return null;
+        var offset: usize = start;
+
+        while (offset < self.buffer.len) : (offset+=1) {
+            if (self.filter(self.buffer[offset])) break;
+        }
+
+        // We did not find any matching filter char.
+        if (offset == self.buffer.len) {
+            self.index = null;
+            return null;
+        }
+        
+        var new_start = offset;
+        
+        while (offset < self.buffer.len) : (offset+=1) {
+            if (!self.filter(self.buffer[offset])) break;
+        }
+
+        if (offset == self.buffer.len) {
+            self.index = null;
+        } else {
+            self.index = offset;
+        }
+        
+        return self.buffer[new_start..offset];
+    }
+};
+
+fn charFilter(string: []const u8) FilterIterator {
+    return FilterIterator {
+        .buffer = string,
+        .index = 0,
+        .filter = std.ascii.isAlpha,
+    };
+} 
+
 fn printFirstWord(string: []const u8) void {
     std.debug.print("First Word:\n", .{});
-    // TODO, replace with word slicer
-    var splits = std.mem.split(string, " ");
-    var word = splits.next() orelse {
+    var filter = charFilter(string);
+    var word = filter.next() orelse {
         std.debug.print(" Nothing in {s}\n", .{string});
         return;
     };
     std.debug.print("{s}\n", .{word});
 }
 
-fn printMostCommonWords(string: []const u8) void {
-    // TODO, implement after word slicer
+fn printMostCommonWords(string: []const u8) !void {
+
+    const allocator = std.heap.page_allocator;
+    var word_map = std.StringHashMap(u32).init(allocator);
+    var lower_string = try std.ascii.allocLowerString(allocator, string);
+    defer allocator.free(lower_string);
+
+    defer word_map.deinit();
+
+    var filter = charFilter(lower_string);
+    
+    var word = filter.next() orelse {
+        std.debug.print("No words found\n", .{});
+        return;
+    };
+    var count: u32 = 0;
+    var max_word: u32 = 1;
+    while (true) {
+        if (!word_map.contains(word)) {
+            try word_map.put(word, 1);
+        } else {
+            count = word_map.get(word).?;
+            count += 1;
+            try word_map.put(word, count);
+            max_word = std.math.max(max_word, count);
+        }
+        word = filter.next() orelse break;
+    } else {}
+  
+    var iter = word_map.iterator();
+    std.debug.print("Most Common Words:\n", .{});
+    while (iter.next()) |kv| {
+        if (kv.value == max_word) {
+            std.debug.print(" {s} ({})\n", .{kv.key, kv.value});
+        }
+    }
 }
 
 fn printLongestLines(string: []const u8) void {
@@ -96,6 +173,7 @@ pub fn main() anyerror!void {
     const string = "All your codebase are belong to us.";
     std.debug.print("String:\n{s}\n", .{string});
     printFirstWord(string);
+    try printMostCommonWords(string);
     printCharacterGroups(string);
     printLongestLines(string);
     printSubString(string, 2, 5);
@@ -106,6 +184,7 @@ pub fn main() anyerror!void {
     const string2 = "Hi!";
     std.debug.print("String:\n{s}\n", .{string2});
     printFirstWord(string2);
+    try printMostCommonWords(string2);
     printCharacterGroups(string2);
     printLongestLines(string2);
     printSubString(string2, 2, 5);
@@ -124,12 +203,44 @@ pub fn main() anyerror!void {
 
     std.debug.print("String:\n{s}\n", .{string3});
     printFirstWord(string3);
+    try printMostCommonWords(string3);
     printCharacterGroups(string3);
     printLongestLines(string3);
     printSubString(string3, 2, 5);
     printWithReplacement(string3, "!", "?");
 }
 
+
+test "while how" {
+    var i: usize = 0;
+
+    // increments only happen on a continue.
+    while (i<5) : (i+=1) {
+        break;
+    }
+    std.testing.expect(i==0);
+}
+
+test "filter test" {
+
+    var filter = charFilter("7hello you there");
+
+    std.testing.expect( std.mem.eql(u8, filter.next().?, "hello"));
+    std.testing.expect( std.mem.eql(u8, filter.next().?, "you"));
+    std.testing.expect( std.mem.eql(u8, filter.next().?, "there"));
+    std.testing.expect( filter.next() == null );
+
+    filter = charFilter("a");
+    std.testing.expect( std.mem.eql(u8, filter.next().?, "a"));
+    std.testing.expect( filter.next() == null );
+    
+    filter = charFilter("77");
+    std.testing.expect( filter.next() == null );
+    
+    filter = charFilter("7aa7");
+    std.testing.expect( std.mem.eql(u8, filter.next().?, "aa"));
+    std.testing.expect( filter.next() == null );
+}
 
 
 // # String Shenanigans

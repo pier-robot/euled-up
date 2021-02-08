@@ -22,6 +22,11 @@ pub fn build(b: *Builder) void {
     tests.setBuildMode(mode);
     test_step.dependOn(&tests.step);
 
+    const main_tests = b.addTest("src/main.zig");
+    main_tests.setBuildMode(mode);
+    test_step.dependOn(&main_tests.step);
+
+
     const run_cmd = exe.run();
     run_cmd.step.dependOn(b.getInstallStep());
     if (b.args) |args| {
