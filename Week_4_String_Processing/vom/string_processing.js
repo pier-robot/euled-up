@@ -1,6 +1,6 @@
 function proper_split(input_string: string) {
     // Ensuring punctuation is properly handled
-    return input_string.trim().split(/[\s,.!?:;]+/)
+    return input_string.trim().split(/[\s,.!?:;()"]+/)
 }
 
 function first_word(input_string: string) {
