@@ -70,6 +70,16 @@ func ExampleCountWords() {
 }
 
 
+func TestLongestLines(t *testing.T) {
+	got := LongestLines("a long line\nwith many chars\nsort of")
+	want := make([]string, 1)
+	want[0] = "with many chars"
+	if reflect.DeepEqual(got, want) == false {
+		t.Errorf("got %q want %q", got, want)
+	}
+}
+
+
 func TestOutputCharGroups(t *testing.T) {
 	s1 := "hello old wool"
 	t.Run("test group \"" + s1 + "\"", func(t *testing.T) {
@@ -92,4 +102,18 @@ func ExampleOutputCharGroups() {
 	groups := OutputCharGroups("hello old wool")
 	fmt.Println(groups)
 	// Output: h, e, ll, o,  , o, l, d,  , w, oo, l
+}
+
+
+func TestSubstring(t *testing.T) {
+	got := Substring("this is awesome", 2, 7)
+	want := "is is"
+	assertCorrectString(t, got, want)
+}
+
+
+func TestReplaceSubstring(t *testing.T) {
+	got := ReplaceSubstring("this is awesome", "is", "was")
+	want := "thwas was awesome"
+	assertCorrectString(t, got, want)
 }

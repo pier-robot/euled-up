@@ -39,6 +39,27 @@ func CountWords(s string) map[string]int {
 }
 
 
+// Get the longest line(s) in a (multi)line string.
+func LongestLines(s string) (result []string) {
+	split := strings.Split(s, "\n")
+	longestIndex := make([]int, 1)
+	for index, line := range split {
+		if index == 0 {
+			longestIndex[0] = index
+		} else if len(line) == len(split[longestIndex[0]]) {
+			longestIndex = append(longestIndex, index)
+		} else if len(line) > len(split[longestIndex[0]]) {
+			longestIndex = longestIndex[:1]
+			longestIndex[0] = index
+		}
+	}
+	for _, index := range longestIndex {
+		result = append(result, split[index])
+	}
+	return
+}
+
+
 // OutputCharGroups outputs groups of characters as they
 // appear in the input string.
 func OutputCharGroups(s string) string {
@@ -59,4 +80,16 @@ func OutputCharGroups(s string) string {
 		}
 	}
 	return strings.Join(result, ", ")
+}
+
+
+// Get substring 'slice'.
+func Substring(s string, first int, last int) string {
+	return s[first:last]
+}
+
+
+// Replace all the instances of `oldstr` with `newstr` in given string.
+func ReplaceSubstring(s string, oldstr, newstr string) string {
+	return strings.ReplaceAll(s, oldstr, newstr)
 }
