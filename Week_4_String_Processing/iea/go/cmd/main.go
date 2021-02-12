@@ -10,7 +10,6 @@ const input = `hello old wool
 and wool of all old llamas
 but not wool of bald sheep`
 
-
 func main() {
 	fmt.Printf("input string: %s\n", input)
 	fmt.Println("first word:", strprocess.GetFirst(input))

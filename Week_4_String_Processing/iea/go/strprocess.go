@@ -5,7 +5,6 @@ import (
 	"unicode"
 )
 
-
 func isSeparator(character rune) bool {
 	return unicode.IsSpace(character) || unicode.IsPunct(character)
 }
@@ -18,7 +17,6 @@ func GetFirst(s string) string {
 	}
 	return ""
 }
-
 
 // CountWords, given a string, returns a map of the words
 // in it and the amount of times they were repeated.
@@ -37,7 +35,6 @@ func CountWords(s string) map[string]int {
 	}
 	return wordCounter
 }
-
 
 // Get the longest line(s) in a (multi)line string.
 func LongestLines(s string) (result []string) {
@@ -59,7 +56,6 @@ func LongestLines(s string) (result []string) {
 	return
 }
 
-
 // OutputCharGroups outputs groups of characters as they
 // appear in the input string.
 func OutputCharGroups(s string) string {
@@ -75,19 +71,17 @@ func OutputCharGroups(s string) string {
 			result = append(result, curChar)
 			curChar = char
 		}
-		if index == len(s) -1 {
+		if index == len(s)-1 {
 			result = append(result, curChar)
 		}
 	}
 	return strings.Join(result, ", ")
 }
 
-
 // Get substring 'slice'.
 func Substring(s string, first int, last int) string {
 	return s[first:last]
 }
-
 
 // Replace all the instances of `oldstr` with `newstr` in given string.
 func ReplaceSubstring(s string, oldstr, newstr string) string {

@@ -6,13 +6,12 @@ import (
 	"testing"
 )
 
-
 func assertCorrectString(t testing.TB, got, want string) {
-		t.Helper()
-		if got != want {
-			t.Errorf("got %q want %q", got, want)
-		}
+	t.Helper()
+	if got != want {
+		t.Errorf("got %q want %q", got, want)
 	}
+}
 
 func assertCorrectMap(t testing.TB, got, want map[string]int) {
 	t.Helper()
@@ -23,10 +22,9 @@ func assertCorrectMap(t testing.TB, got, want map[string]int) {
 	}
 }
 
-
 func TestGetFirst(t *testing.T) {
 	s1 := "This is a sample."
-	t.Run("test first word in " + s1, func(t *testing.T) {
+	t.Run("test first word in "+s1, func(t *testing.T) {
 		got := GetFirst(s1)
 		want := "This"
 		assertCorrectString(t, got, want)
@@ -34,7 +32,7 @@ func TestGetFirst(t *testing.T) {
 	})
 
 	s2 := "¿This is a sample?"
-	t.Run("test first word in " + s2, func(t *testing.T) {
+	t.Run("test first word in "+s2, func(t *testing.T) {
 		got := GetFirst(s2)
 		want := "This"
 		assertCorrectString(t, got, want)
@@ -42,7 +40,7 @@ func TestGetFirst(t *testing.T) {
 	})
 
 	s3 := "私は 日本語が 少し 話せます。"
-	t.Run("test first word in japanese " + s3, func(t *testing.T) {
+	t.Run("test first word in japanese "+s3, func(t *testing.T) {
 		got := GetFirst(s3)
 		want := "私は"
 		assertCorrectString(t, got, want)
@@ -56,7 +54,6 @@ func ExampleGetFirst() {
 	// Output: This
 }
 
-
 func TestCountWords(t *testing.T) {
 	got := CountWords("foobar bar a foo foobar bar foobar")
 	want := map[string]int{"foo": 1, "bar": 2, "foobar": 3, "a": 1}
@@ -69,7 +66,6 @@ func ExampleCountWords() {
 	// Output: map[a:1 bar:2 foo:1 foobar:3]
 }
 
-
 func TestLongestLines(t *testing.T) {
 	got := LongestLines("a long line\nwith many chars\nsort of")
 	want := make([]string, 1)
@@ -79,10 +75,9 @@ func TestLongestLines(t *testing.T) {
 	}
 }
 
-
 func TestOutputCharGroups(t *testing.T) {
 	s1 := "hello old wool"
-	t.Run("test group \"" + s1 + "\"", func(t *testing.T) {
+	t.Run("test group \""+s1+"\"", func(t *testing.T) {
 		got := OutputCharGroups(s1)
 		want := "h, e, ll, o,  , o, l, d,  , w, oo, l"
 		assertCorrectString(t, got, want)
@@ -90,7 +85,7 @@ func TestOutputCharGroups(t *testing.T) {
 	})
 
 	s2 := ""
-	t.Run("test group \"" + s1 + "\"", func(t *testing.T) {
+	t.Run("test group \""+s1+"\"", func(t *testing.T) {
 		got := OutputCharGroups(s2)
 		want := ""
 		assertCorrectString(t, got, want)
@@ -104,13 +99,11 @@ func ExampleOutputCharGroups() {
 	// Output: h, e, ll, o,  , o, l, d,  , w, oo, l
 }
 
-
 func TestSubstring(t *testing.T) {
 	got := Substring("this is awesome", 2, 7)
 	want := "is is"
 	assertCorrectString(t, got, want)
 }
-
 
 func TestReplaceSubstring(t *testing.T) {
 	got := ReplaceSubstring("this is awesome", "is", "was")
