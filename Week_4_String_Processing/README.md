@@ -5,7 +5,7 @@ This week is a set of small string processing challenges to get us used to using
 * Count the most common words in a string.
 * Output the longest line in a string.
   * Bonus: Output all of the longest lines if there's a tie.
-* Output groups of characters as they appear in a string. So "hello old wool" would be output as "h, e, ll, o, o, l, d, w, oo, l".
+* Output groups of characters as they appear in a string. So "hello old wool" would be output as "h, e, ll, o, , o, l, d, , w, oo, l".
 * Get the substring of a string.
 * Replace all occurrences of a character in a string with another.
   * Bonus: Allow the replacement to be a string rather than a character. The replacement string can be of any length.
@@ -18,7 +18,7 @@ Hard mode (these may not apply to all of the above problems, and may not apply t
 * Do not use lists in the above problems.
 * Do not use arithmetic operators in the above problems. (So no ++ or i += 1!).
 
-"Just for Jim" (a seperate problem to choose from if you want something bigger): 
+"Just for Jim" (a separate problem to choose from if you want something bigger): 
 * Implement one or more edit distance algorithms as described here: https://en.wikipedia.org/wiki/Edit_distance
 
 We like this one because it covers:
