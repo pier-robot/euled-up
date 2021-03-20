@@ -13,8 +13,11 @@ fn vecSub(v1: ray.Vector2, v2: ray.Vector2) ray.Vector2 {
 }
 
 fn vecLength(vec: ray.Vector2) f32 {
-    return std.math.sqrt(vec.x * vec.x + 
-                         vec.y * vec.y);
+    return std.math.sqrt(vecLengthSqr(vec));
+}
+
+fn vecLengthSqr(vec: ray.Vector2) f32 {
+    return vec.x * vec.x + vec.y * vec.y;
 }
 
 fn vecScale(v: ray.Vector2, scale: f32) ray.Vector2 {
@@ -81,8 +84,8 @@ fn rule2(boid: *Boid, radius: f32, boids: []Boid) ray.Vector2 {
     var c = ray.Vector2{ .x = 0.0, .y = 0.0 };
     for (boids) |other_boid| {
         if (boid.id == other_boid.id) continue;
-        var dist = vecLength(vecSub(boid.pos, other_boid.pos));
-        if ( dist < radius ) {
+        var dist = vecLengthSqr(vecSub(boid.pos, other_boid.pos));
+        if (dist < radius * radius) {
             c = vecSub(c, vecSub(other_boid.pos, boid.pos));
         }
     }
