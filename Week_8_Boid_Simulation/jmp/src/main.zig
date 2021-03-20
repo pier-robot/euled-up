@@ -114,11 +114,10 @@ fn apply_rules(boids: []Boid) void {
 }
 
 pub fn main() anyerror!void {
-
     const screen_width: i32 = 1920;
     const screen_height: i32 = 1080;
 
-    const num_of_boids = 100;
+    const num_of_boids = 5000;
 
     // Get a random number generator
     var prng = std.rand.DefaultPrng.init(blk: {
