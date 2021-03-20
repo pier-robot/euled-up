@@ -70,10 +70,10 @@ const Boid = struct {
 
 fn rule1(boid: *Boid, weight: f32, centroid: ray.Vector2, boids: []Boid) ray.Vector2 {
     var num_boids: f32 = @intToFloat(f32, boids.len);
-    var centroid_contribution = vecScale(boid.pos, 1.0 / num_boids);
-
-    var center = vecSub(centroid, centroid_contribution);
-    return vecScale(vecSub(center, boid.pos), weight);
+    // remove from average
+    // (avg*num - val)/(new_count)
+    var others_centroid = vecScale(vecSub(vecScale(centroid, num_boids), boid.pos), 1.0 / (num_boids - 1));
+    return vecScale(vecSub(others_centroid, boid.pos), weight);
 }
 
 fn rule2(boid: *Boid, radius: f32, boids: []Boid) ray.Vector2 {
@@ -91,10 +91,8 @@ fn rule2(boid: *Boid, radius: f32, boids: []Boid) ray.Vector2 {
 
 fn rule3(boid: *Boid, weight: f32, avg_vel: ray.Vector2, boids: []Boid) ray.Vector2 {
     var num_boids: f32 = @intToFloat(f32, boids.len);
-    var vel_contribution = vecScale(boid.vel, 1.0 / num_boids);
-
-    var vel = vecSub(avg_vel, vel_contribution);
-    return vecScale(vecSub(vel, boid.vel), weight);
+    var others_vel = vecScale(vecSub(vecScale(avg_vel, num_boids), boid.vel), 1.0 / (num_boids - 1));
+    return vecScale(vecSub(others_vel, boid.vel), weight);
 }
 
 fn apply_rules(boids: []Boid) void {
@@ -105,7 +103,7 @@ fn apply_rules(boids: []Boid) void {
         avg_vel = vecAdd(avg_vel, boid.vel);
     }
     centroid = vecScale(centroid, 1.0 / @intToFloat(f32, boids.len));
-    avg_vel = vecScale(centroid, 1.0 / @intToFloat(f32, boids.len));
+    avg_vel = vecScale(avg_vel, 1.0 / @intToFloat(f32, boids.len));
 
     for (boids) |*boid| {
         var v1 = rule1(boid, 0.001, centroid, boids);
