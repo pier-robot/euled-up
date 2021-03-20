@@ -41,16 +41,16 @@ const Boid = struct {
         var vel_n = normalize(self.vel);
 
         var tip = ray.Vector2{
-            .x = self.pos.x + (vel_n.x * 20.0),
-            .y = self.pos.y + (vel_n.y * 20.0),
+            .x = self.pos.x + (vel_n.x * 10.0),
+            .y = self.pos.y + (vel_n.y * 10.0),
         };
         var tail_1 = ray.Vector2{
-            .x = self.pos.x + (vel_n.y * 10.0),
-            .y = self.pos.y + (-vel_n.x * 10.0),
+            .x = self.pos.x + (vel_n.y * 5.0),
+            .y = self.pos.y + (-vel_n.x * 5.0),
         };
         var tail_2 = ray.Vector2{
-            .x = self.pos.x + (-vel_n.y * 10.0),
-            .y = self.pos.y + (vel_n.x * 10.0),
+            .x = self.pos.x + (-vel_n.y * 5.0),
+            .y = self.pos.y + (vel_n.x * 5.0),
         };
 
         // Counter clockwise
@@ -68,15 +68,11 @@ const Boid = struct {
     }
 };
 
-fn rule1(boid: *Boid, weight: f32, boids: []Boid) ray.Vector2 {
-    var center = ray.Vector2{ .x = 0.0, .y = 0.0 };
-    for (boids) |other_boid| {
-        if (boid.id == other_boid.id) continue;
-        center = vecAdd(center, other_boid.pos);
-    }
-    var num_other_boids: f32 = @intToFloat(f32, boids.len - 1);
-    center = vecScale(center, 1.0 / num_other_boids);
+fn rule1(boid: *Boid, weight: f32, centroid: ray.Vector2, boids: []Boid) ray.Vector2 {
+    var num_boids: f32 = @intToFloat(f32, boids.len);
+    var centroid_contribution = vecScale(boid.pos, 1.0 / num_boids);
 
+    var center = vecSub(centroid, centroid_contribution);
     return vecScale(vecSub(center, boid.pos), weight);
 }
 
@@ -93,23 +89,28 @@ fn rule2(boid: *Boid, radius: f32, boids: []Boid) ray.Vector2 {
     return c;
 }
 
-fn rule3(boid: *Boid, weight: f32, boids: []Boid) ray.Vector2 {
-    var vel = ray.Vector2{ .x = 0.0, .y = 0.0 };
-    for (boids) |other_boid| {
-        if (boid.id == other_boid.id) continue;
-        vel = vecAdd(boid.vel, other_boid.vel);
-    }
-    var num_other_boids: f32 = @intToFloat(f32, boids.len - 1);
-    vel = vecScale(vel, 1.0 / num_other_boids);
+fn rule3(boid: *Boid, weight: f32, avg_vel: ray.Vector2, boids: []Boid) ray.Vector2 {
+    var num_boids: f32 = @intToFloat(f32, boids.len);
+    var vel_contribution = vecScale(boid.vel, 1.0 / num_boids);
 
+    var vel = vecSub(avg_vel, vel_contribution);
     return vecScale(vecSub(vel, boid.vel), weight);
 }
 
 fn apply_rules(boids: []Boid) void {
+    var centroid: ray.Vector2 = ray.Vector2{ .x = 0, .y = 0 };
+    var avg_vel: ray.Vector2 = ray.Vector2{ .x = 0, .y = 0 };
     for (boids) |*boid| {
-        var v1 = rule1(boid, 0.001, boids);
+        centroid = vecAdd(centroid, boid.pos);
+        avg_vel = vecAdd(avg_vel, boid.vel);
+    }
+    centroid = vecScale(centroid, 1.0 / @intToFloat(f32, boids.len));
+    avg_vel = vecScale(centroid, 1.0 / @intToFloat(f32, boids.len));
+
+    for (boids) |*boid| {
+        var v1 = rule1(boid, 0.001, centroid, boids);
         var v2 = rule2(boid, 30.0, boids);
-        var v3 = rule3(boid, 0.12, boids);
+        var v3 = rule3(boid, 0.12, avg_vel, boids);
         boid.vel = vecAdd(boid.vel, v1);
         boid.vel = vecAdd(boid.vel, vecScale(v2, 0.5));
         boid.vel = vecAdd(boid.vel, v3);
@@ -195,4 +196,9 @@ pub fn main() anyerror!void {
         ray.DrawFPS(50, 50);
         ray.EndDrawing();
     }
+}
+
+test "float fun" {
+    std.testing.expect((1000.00001 * 5000.0) / 5000.0 == 1000.00001);
+    std.testing.expect((1000.000001 * 5000.0) / 5000.0 != 1000.000001);
 }
