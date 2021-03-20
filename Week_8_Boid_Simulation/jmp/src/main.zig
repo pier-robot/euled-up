@@ -57,18 +57,18 @@ const Boid = struct {
         ray.DrawTriangle(tip, tail_1, tail_2, self.col);
     }
 
-    fn move(self: *Boid) void {
-        if (self.limit == 0) {
-            self.pos = vecAdd(self.pos, self.vel);
-        } else {
-            var n_vel = normalize(self.vel);
-            var scale = std.math.min(self.limit, vecLength(self.vel));
-            self.pos = vecAdd(self.pos, vecScale(n_vel, scale));
+    fn move(self: *Boid, velScale: f32) void {
+        var vel = self.vel;
+        if (self.limit > 0) {
+            var n_vel = normalize(vel);
+            var scale = std.math.min(self.limit, vecLength(vel));
+            vel = vecScale(n_vel, scale);
         }
+        self.pos = vecAdd(self.pos, vecScale(vel, velScale));
     }
 };
 
-fn rule1(boid: *Boid, weight: f32, centroid: ray.Vector2, boids: []Boid) ray.Vector2 {
+fn centroidRule(boid: *Boid, weight: f32, centroid: ray.Vector2, boids: []Boid) ray.Vector2 {
     var num_boids: f32 = @intToFloat(f32, boids.len);
     // remove from average
     // (avg*num - val)/(new_count)
@@ -76,28 +76,40 @@ fn rule1(boid: *Boid, weight: f32, centroid: ray.Vector2, boids: []Boid) ray.Vec
     return vecScale(vecSub(others_centroid, boid.pos), weight);
 }
 
-fn rule2(boid: *Boid, radius: f32, boids: []Boid) ray.Vector2 {
+fn avoidanceRule(boid: *Boid, radius: f32, boids: []Boid) ray.Vector2 {
     var c = ray.Vector2{ .x = 0.0, .y = 0.0 };
+    var rad_sqr = radius*radius;
     for (boids) |other_boid| {
         if (boid.id == other_boid.id) continue;
-        var dist = vecLengthSqr(vecSub(boid.pos, other_boid.pos));
-        if (dist < radius * radius) {
+        var dist_sqr = vecLengthSqr(vecSub(boid.pos, other_boid.pos));
+        if (dist_sqr < rad_sqr) {
             c = vecSub(c, vecSub(other_boid.pos, boid.pos));
+            // c = vecScale(c, 1.0 - dist_sqr/rad_sqr);
+            c = vecScale(c, 1.0/std.math.sqrt(rad_sqr-dist_sqr));
         }
     }
 
     return c;
 }
 
-fn rule3(boid: *Boid, weight: f32, avg_vel: ray.Vector2, boids: []Boid) ray.Vector2 {
+fn velocityMatchRule(boid: *Boid, weight: f32, avg_vel: ray.Vector2, boids: []Boid) ray.Vector2 {
     var num_boids: f32 = @intToFloat(f32, boids.len);
     var others_vel = vecScale(vecSub(vecScale(avg_vel, num_boids), boid.vel), 1.0 / (num_boids - 1));
     return vecScale(vecSub(others_vel, boid.vel), weight);
 }
 
+fn mouseTargetRule(boid: *Boid, weight: f32, boids: []Boid) ray.Vector2 {
+    if (!ray.IsMouseButtonDown(0)) return ray.Vector2 {.x=0, .y=0};
+    
+    var mouse_pos = ray.GetMousePosition();
+    return vecScale(normalize(vecSub(mouse_pos, boid.pos)), weight);
+}
+
 fn apply_rules(boids: []Boid) void {
+
     var centroid: ray.Vector2 = ray.Vector2{ .x = 0, .y = 0 };
     var avg_vel: ray.Vector2 = ray.Vector2{ .x = 0, .y = 0 };
+
     for (boids) |*boid| {
         centroid = vecAdd(centroid, boid.pos);
         avg_vel = vecAdd(avg_vel, boid.vel);
@@ -106,12 +118,15 @@ fn apply_rules(boids: []Boid) void {
     avg_vel = vecScale(avg_vel, 1.0 / @intToFloat(f32, boids.len));
 
     for (boids) |*boid| {
-        var v1 = rule1(boid, 0.001, centroid, boids);
-        var v2 = rule2(boid, 30.0, boids);
-        var v3 = rule3(boid, 0.12, avg_vel, boids);
+        var v1 = centroidRule(boid, 0.01, centroid, boids);
+        var v2 = avoidanceRule(boid, 30.0, boids);
+        var v3 = velocityMatchRule(boid, 0.12, avg_vel, boids);
+        var v4 = mouseTargetRule(boid, 2, boids);
+
         boid.vel = vecAdd(boid.vel, v1);
-        boid.vel = vecAdd(boid.vel, vecScale(v2, 0.5));
+        boid.vel = vecAdd(boid.vel, vecScale(v2, 10));
         boid.vel = vecAdd(boid.vel, v3);
+        boid.vel = vecAdd(boid.vel, v4);
     }
 }
 
@@ -119,7 +134,7 @@ pub fn main() anyerror!void {
     const screen_width: i32 = 1920;
     const screen_height: i32 = 1080;
 
-    const num_of_boids = 5000;
+    const num_of_boids = 500;
 
     // Get a random number generator
     var prng = std.rand.DefaultPrng.init(blk: {
@@ -178,6 +193,7 @@ pub fn main() anyerror!void {
     ray.SetTargetFPS(60);
 
     var text_size: i32 = @divFloor(ray.MeasureText("Launch every zig!", 20), 2);
+
     while (!ray.WindowShouldClose()) {
         ray.BeginDrawing();
         ray.ClearBackground(ray.BLACK);
@@ -187,7 +203,7 @@ pub fn main() anyerror!void {
         apply_rules(boids[0..]);
 
         for (boids) |*boid| {
-            boid.move();
+            boid.move(0.5);
             boid.draw();
         }
 
