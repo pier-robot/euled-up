@@ -105,6 +105,21 @@ fn mouseTargetRule(boid: *Boid, weight: f32, boids: []Boid) ray.Vector2 {
     return vecScale(normalize(vecSub(mouse_pos, boid.pos)), weight);
 }
 
+fn avoidBordersRule(boid: *Boid, weight: f32, padding: f32) ray.Vector2 {
+    var vel = ray.Vector2 { .x=0, .y=0 };
+    if ( boid.pos.x < -padding ) {
+        vel.x = 1;
+    } else if ( boid.pos.x > @intToFloat(f32,screen_width)+padding ) {
+        vel.x = -1;
+    }
+    if ( boid.pos.y < -padding ) {
+        vel.y = 1;
+    } else if ( boid.pos.y > @intToFloat(f32,screen_height)+padding ) {
+        vel.y = -1;
+    }
+    return vecScale(vel, weight);
+}
+
 fn apply_rules(boids: []Boid) void {
 
     var centroid: ray.Vector2 = ray.Vector2{ .x = 0, .y = 0 };
@@ -121,20 +136,22 @@ fn apply_rules(boids: []Boid) void {
         var v1 = centroidRule(boid, 0.01, centroid, boids);
         var v2 = avoidanceRule(boid, 30.0, boids);
         var v3 = velocityMatchRule(boid, 0.12, avg_vel, boids);
-        var v4 = mouseTargetRule(boid, 2, boids);
+        var v4 = mouseTargetRule(boid, 5, boids);
+        var v5 = avoidBordersRule(boid, 10, -10);
 
         boid.vel = vecAdd(boid.vel, v1);
         boid.vel = vecAdd(boid.vel, vecScale(v2, 10));
         boid.vel = vecAdd(boid.vel, v3);
         boid.vel = vecAdd(boid.vel, v4);
+        boid.vel = vecAdd(boid.vel, v5);
     }
 }
 
-pub fn main() anyerror!void {
-    const screen_width: i32 = 1920;
-    const screen_height: i32 = 1080;
+const screen_width: i32 = 1920;
+const screen_height: i32 = 1080;
+const num_of_boids = 1000;
 
-    const num_of_boids = 500;
+pub fn main() anyerror!void {
 
     // Get a random number generator
     var prng = std.rand.DefaultPrng.init(blk: {
