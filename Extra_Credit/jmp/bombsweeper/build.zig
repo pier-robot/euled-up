@@ -21,6 +21,11 @@ pub fn build(b: *std.build.Builder) void {
     exe.linkSystemLibrary("raylib");
     exe.linkLibC();
 
+    const test_step = b.step("test", "Run Tests");
+    const tests = b.addTest("src/main.zig");
+    tests.setBuildMode(mode);
+    test_step.dependOn(&tests.step);
+
     const run_cmd = exe.run();
     run_cmd.step.dependOn(b.getInstallStep());
     if (b.args) |args| {
