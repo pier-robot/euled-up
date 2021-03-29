@@ -269,6 +269,21 @@ fn drawBoard(board: GameBoard) !void {
     }
 }
 
+fn highlightTile() void {
+
+    var x = ray.GetMouseX();
+    var y = ray.GetMouseY();
+    var idx = coordToIdx(x, y);
+
+    var rect = indexToBox(idx);
+    var yellow = ray.Color{
+        .r = 255,
+        .g = 255,
+        .b = 0,
+        .a = 128 };
+    ray.DrawRectangleRec(rect, yellow);
+}
+
 pub fn main() anyerror!void {
     ray.InitWindow(board_size_x * square_size, board_size_y * square_size, "SOMEBODY SET US UP THE BOMB");
     defer ray.CloseWindow();
@@ -285,6 +300,9 @@ pub fn main() anyerror!void {
         if (!board.failed and !board.winningState()) interact(&board);
 
         try drawBoard(board);
+
+        highlightTile();
+
         if (board.winningState()) {
             const text_size = 50;
             const win_msg = "For great justice!";
