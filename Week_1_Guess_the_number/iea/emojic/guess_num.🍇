@@ -1,0 +1,58 @@
+🏁🍇
+    10 ➡️ max
+    0 ➡️ min
+
+    💭🔜
+    Need to figure out if there are RNGs and if not
+    make a little one. For now let's just hard code the
+    number to guess
+    🔚💭
+    6 ➡️ target
+
+    💭🔜
+    🍿/🍆 == start/end of dict definition, keys must be strings.
+    Doing this.. cause no idea how to cast a string to an int.
+    🔚💭
+    🍿
+        🔤0🔤 ➡️ 0
+        🔤1🔤 ➡️ 1
+        🔤2🔤 ➡️ 2
+        🔤3🔤 ➡️ 3
+        🔤4🔤 ➡️ 4
+        🔤5🔤 ➡️ 5
+        🔤6🔤 ➡️ 6
+        🔤7🔤 ➡️ 7
+        🔤8🔤 ➡️ 8
+        🔤9🔤 ➡️ 9
+        🔤10🔤 ➡️ 10
+    🍆 ➡️ num_map
+
+    👍 ➡️ 🖍🆕 pending 💭 mutable bool true variable
+
+    🔁 pending 🍇
+
+        😀 🔤Guess a value between 🧲min🧲 and 🧲max🧲:🔤❗️
+        🆕🔡▶️👂🏼❗️ ➡️ guess_str
+
+        💭🔜
+            The thing bellow, is an if statement with a try to get the `guess`
+            value from num_map.
+        🔚💭
+        ↪️ 🐽num_map guess_str❗️ ➡️ guess 🍇
+
+            ↪️ target ▶️ guess 🍇
+                😀 🔤Guess higher🔤❗️
+            🍉
+
+            🙅↪️ target ◀️ guess 🍇
+                😀 🔤Guess lower🔤❗️
+            🍉
+
+            🙅 🍇
+                😀 🔤Correct! The number was 🧲target🧲!🔤❗️
+                pending ⬅️ 🤝 👎 💭🔜 doing an and operation as no idea which
+                one would be the not 🔚💭
+            🍉
+        🍉
+    🍉
+🍉
