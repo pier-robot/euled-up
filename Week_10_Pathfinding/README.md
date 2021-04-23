@@ -45,11 +45,11 @@ At the edge of the city the cab screeches to a halt and asks you to leave. Appar
 
 ## Task 1
 
-Use Dijkstra’s Algorithm to find the shortest path. For this task the movement cost will be based on tile distance. Move a tile, it has a cost of 1.
+Use Dijkstraâ€™s Algorithm to find the shortest path. For this task the movement cost will be based on tile distance. Move a tile, it has a cost of 1.
 
 ![act2.png](./media/act2.png)
 
-* Path Finding Algorithm: Dijkstra’s Algorithm
+* Path Finding Algorithm: Dijkstraâ€™s Algorithm
 * Grid size: 100 x 100
 * Starting position: 0,0
 * Ending position: 99, 99
@@ -63,7 +63,7 @@ Same as the previous task, but instead of using tile movement as your cost we'll
 
 ![act2.png](./media/act2_speeds.png)
 
-* Path Finding Algorithm: Dijkstra’s Algorithm
+* Path Finding Algorithm: Dijkstraâ€™s Algorithm
 * Grid size: 100 x 100
 * Starting position: 0,0
 * Ending position: 99, 99
@@ -87,6 +87,12 @@ How you plan your hike will be up to you and you have come equiped with some var
 * [Gradient](./data/act3_gradient.csv) This value is the magnitude of the height gradient. Lower values mean relatively flat, higher values mean steep. You can use this to attempt to avoid going up steep slopes.
 * [Bears](./data/act3_bears.csv) (0 = no bear, 1 = bear), You might want to stay at least two tiles away from bears.
 * You may have some other maps available to you not listed here! Feel free to be creative. You can also use the elevation map to come up with fancier heuristic and cost functions like if you are going down a slope it has 0 cost because you brought skis!
+
+### Elevation
+![act3_elevation.png](./media/act3_elevation.png)
+
+### Gradient Magnitude
+![act3_gradient.png](./media/act3_gradient.png)
 
 ## Task 1
 * Path Finding Algorithm: A\*
