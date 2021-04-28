@@ -16,8 +16,8 @@ pub fn build(b: *std.build.Builder) void {
     exe.setBuildMode(mode);
     exe.install();
 
-    exe.addLibPath("/opt/raylib/raylib-3.5.0/lib");
-    exe.addSystemIncludeDir("/opt/raylib/raylib-3.5.0/include");
+    exe.addLibPath("/opt/raylib/raylib-3.7.0/lib");
+    exe.addSystemIncludeDir("/opt/raylib/raylib-3.7.0/include");
     exe.linkSystemLibrary("raylib");
     exe.linkLibC();
 

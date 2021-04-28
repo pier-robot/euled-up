@@ -13,8 +13,8 @@ pub fn build(b: *Builder) void {
 
     const exe = b.addExecutable("zoids", "src/main.zig");
 
-    exe.addLibPath("/opt/raylib/raylib-3.5.0/lib");
-    exe.addSystemIncludeDir("/opt/raylib/raylib-3.5.0/include");
+    exe.addLibPath("/opt/raylib/raylib-3.7.0/lib");
+    exe.addSystemIncludeDir("/opt/raylib/raylib-3.7.0/include");
     exe.linkSystemLibrary("raylib");
     exe.linkLibC();
 
