@@ -43,6 +43,8 @@ To navigate the city we'll be using the Breath First Search algorithm
 
 At the edge of the city the cab screeches to a halt and asks you to leave. Apparently there are juristictions for cabs here, who knew? You must now get a "suburb cab". With your new found path finding confidence you no longer want to be at the mercy of the cab driver and will instead be giving the cab directions as you go.  This act has two parts, one is to navigate the suburbs and staying on the streets. The second part is to take the speed limits into account and use that as part of the cost algorithm. Pedal to the metal!
 
+Oh no! As you start to speed away a heavy rainfall sets in and triggers some flash flooding! Luckily we know where the flood zones are so we can avoid them. So much for our easy navaigation through our suburb's boring grid layout.
+
 ## Task 1
 
 Use Dijkstra’s Algorithm to find the shortest path. For this task the movement cost will be based on tile distance. Move a tile, it has a cost of 1.
@@ -100,6 +102,10 @@ How you plan your hike will be up to you and you have come equiped with some var
 * Starting position: 0,0
 * Ending position: 499, 499
 * Use any combination of maps or derive new data to get from the start to the destination
+
+This task is meant to be a bit free form so you can come up with your own heuristic. You could just avoid snow, water and bears on your way to the destination. Or you could prioritize staying on flat ground by using the gradient map. You could plot a course along the peaks, by setting the higher elevations as low costs, and low lands as a high cost. Try different things!
+
+**Super awesome bonus:** You can use what you learn about filtering in Week 11, to "blur" the bear locations, which will allow you to avoid them with a wider radius.
 
 ## References
 
