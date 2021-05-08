@@ -1,6 +1,6 @@
-const Builder = @import("std").build.Builder;
+const std = @import("std");
 
-pub fn build(b: *Builder) void {
+pub fn build(b: *std.build.Builder) void {
     // Standard target options allows the person running `zig build` to choose
     // what target to build for. Here we do not override the defaults, which
     // means any target is allowed, and the default is native. Other options
@@ -11,16 +11,20 @@ pub fn build(b: *Builder) void {
     // between Debug, ReleaseSafe, ReleaseFast, and ReleaseSmall.
     const mode = b.standardReleaseOptions();
 
-    const exe = b.addExecutable("zoids", "src/main.zig");
+    const exe = b.addExecutable("zigzag", "src/main.zig");
+    exe.setTarget(target);
+    exe.setBuildMode(mode);
+    exe.install();
 
     exe.addLibPath("/opt/raylib/raylib-3.7.0/lib");
     exe.addSystemIncludeDir("/opt/raylib/raylib-3.7.0/include");
     exe.linkSystemLibrary("raylib");
     exe.linkLibC();
 
-    exe.setTarget(target);
-    exe.setBuildMode(mode);
-    exe.install();
+    const test_step = b.step("test", "Run Tests");
+    const tests = b.addTest("src/main.zig");
+    tests.setBuildMode(mode);
+    test_step.dependOn(&tests.step);
 
     const run_cmd = exe.run();
     run_cmd.step.dependOn(b.getInstallStep());

@@ -1,0 +1,230 @@
+{
+  "graph": [
+    {
+      "id": "entrance",
+      "name": "Entrance",
+      "north": "1stroom",
+      "south": null,
+      "east": null,
+      "west": null
+    },
+    {
+      "id": "1st room",
+      "name": "1st Room",
+      "north": "bigroom",
+      "south": "entrance",
+      "east": null,
+      "west": null
+    },
+    {
+      "id": "bigroom",
+      "name": "Big room",
+      "north": "bossroom",
+      "south": "1stroom",
+      "east": "rightwing",
+      "west": "leftwing"
+    },
+    {
+      "id": "bossroom",
+      "name": "Boss room",
+      "north": null,
+      "south": "bigroom",
+      "east": null,
+      "west": null
+    },
+    {
+      "id": "leftwing",
+      "name": "Left Wing",
+      "north": null,
+      "south": null,
+      "east": "bigroom",
+      "west": null
+    },
+    {
+      "id": "rightwing",
+      "name": "Right Wing",
+      "north": null,
+      "south": null,
+      "east": null,
+      "west": "bigroom"
+    }
+  ],
+  "win-condition": {
+    "condition": {
+      "left": "hp",
+      "right": "0",
+      "symbol": "<=",
+      "type": "comparison"
+    },
+    "source": "finalboss"
+  },
+  "lose-condition": {
+    "condition": {
+      "left": "hp",
+      "right": "0",
+      "symbol": "<=",
+      "type": "comparison"
+    },
+    "source": "player"
+  },
+  "rooms": {
+    "1stroom": {
+      "description": {
+        "default": "You're in a very dark room. There are no windows and no source of light, other than the one at the entrance. You get the feeling you're not alone here.",
+        "conditionals": {
+          "has light": "The room you find yourself in appears to be empty, aside from a single chair in the right corner. There appears to be only one way out: deeper into the dungeon."
+        }
+      },
+      "items": [
+        {
+          "details": "It's a wooden chair, nothing fancy about it. It appears to have been sitting here, untouched, for a while now.",
+          "id": "chair",
+          "name": "Wooden chair",
+          "subitems": [
+            {
+              "damage": 2,
+              "destination": "inventory",
+              "id": "woodenleg",
+              "name": "Wooden leg",
+              "triggeractions": [
+                {
+                  "action": "break",
+                  "target": "chair"
+                },
+                {
+                  "action": "throw",
+                  "target": "chair"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "exits": {},
+      "npcs": []
+    },
+    "leftwing": {
+      "description": {
+        "default": "Another dark room. It doesn't look like it's that big, but you can't really tell what's inside. You do, however, smell rotten meat somewhere inside.",
+        "conditionals": {
+          "has light": "You appear to have found the kitchen. There are tables full of meat everywhere, and a big knife sticking out of what appears to be the head of a cow."
+        }
+      },
+      "items": [
+        {
+          "damage": 10,
+          "destination": "inventory",
+          "id": "bigknife",
+          "name": "Big knife"
+        }
+      ],
+      "exits": {},
+      "npcs": []
+    },
+    "bossroom": {
+      "description": {
+        "default": "You appear to have reached the end of the dungeon. There are no exits other than the one you just came in through. The only other thing that bothers you is the hulking giant looking like it's going to kill you, standing about 10 feet from you.",
+        "conditionals": {}
+      },
+      "items": [],
+      "exits": {},
+      "npcs": [
+        {
+          "id": "finalboss",
+          "name": "Hulking Ogre",
+          "details": "A huge, green, muscular giant with a single eye in the middle of his forehead. It doesn't just look bad, it also smells like hell.",
+          "stats": {
+            "hp": 10,
+            "damage": 3
+          }
+        }
+      ]
+    },
+    "entrance": {
+      "description": {
+        "default": "You're at the entrance of the dungeon. There are two lit torches on each wall (one on your right and one on your left). You see only one path: ahead.",
+        "conditionals": {}
+      },
+      "items": [
+        {
+          "destination": "hand",
+          "id": "littorch1",
+          "name": "Lit torch on the right",
+          "triggers": [
+            {
+              "action": "grab",
+              "effect": {
+                "statusUpdate": "has light",
+                "target": "game"
+              }
+            }
+          ]
+        },
+        {
+          "destination": "hand",
+          "id": "littorch2",
+          "name": "Lit torch on the left",
+          "triggers": [
+            {
+              "action": "grab",
+              "effect": {
+                "statusUpdate": "has light",
+                "target": "game"
+              }
+            }
+          ]
+        }
+      ],
+      "exits": {},
+      "npcs": []
+    },
+    "rightwing": {
+      "description": {
+        "default": "This appear to be some sort of office. There is a wooden desk in the middle, torches lighting every wall, and a single key resting on top of the desk.",
+        "conditionals": {}
+      },
+      "items": [
+        {
+          "destination": "inventory",
+          "details": "A small golden key. What use could you have for it?",
+          "id": "key",
+          "name": "Golden key",
+          "triggers": [
+            {
+              "action": "use",
+              "effect": {
+                "statusUpdate": "unlocked",
+                "target": {
+                  "exit": "north",
+                  "room": "bigroom"
+                }
+              },
+              "target": {
+                "exit": "north",
+                "room": "bigroom"
+              }
+            }
+          ]
+        }
+      ],
+      "exits": {},
+      "npcs": []
+    },
+    "bigroom": {
+      "description": {
+        "default": "You've reached the big room. On every wall are torches lighting every corner. The walls are painted white, and the ceiling is tall and filled with painted white stars on a black background. There is a gateway on either side and a big, wooden double door in front of you.",
+        "conditionals": {}
+      },
+      "items": [],
+      "exits": {
+        "north": {
+          "id": "bossdoor",
+          "name": "Big double door",
+          "status": "locked",
+          "details": "A aig, wooden double door. It seems like something big usually comes through here."
+        }
+      },
+      "npcs": []
+    }
+  }
+}

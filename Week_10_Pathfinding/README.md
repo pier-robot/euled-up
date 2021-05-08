@@ -108,4 +108,9 @@ How you plan your hike will be up to you and you have come equiped with some var
 
 # Epilogue
 
+Outputting the results is optional. It's recommended that you do so in order to compare with other people, but the choice of output medium is purely up to you. Could generate a new CSV file of the path taken, use a GUI library (Qt/Raylib/etc), or generate an image, etc.
+
+You are also encouraged to come up with your own heurstics and cost functions or even alternative maps! No reason they have to be just 2D grids.
+
+If you are looking to experiment a bit before getting into coding have a look at the [Find Shortest Path SOP](https://www.sidefx.com/docs/houdini/nodes/sop/findshortestpath.html) in Houdini. Or reach for some inspiration with this video (and demo files) of [Shortest Path Growth](https://entagma.com/special-guest-tutorial-shortest-path-growth).
 
